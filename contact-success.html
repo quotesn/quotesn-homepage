@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Meta -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
+  <title>Thank You — Quotesn</title>
+  <meta name="description" content="Thank you for contacting Quotesn. We’ll get back to you within 1–2 business days." />
+  <link rel="canonical" href="https://www.quotesn.com/contact-success" />
+
+  <!-- Favicon -->
+  <link rel="icon" href="/images/favicon.ico" sizes="any" />
+
+  <!-- Preconnects -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #0b0d12;
+      --bg-elev-1: #11141b;
+      --bg-elev-2: #151927;
+      --text: #e8eefc;
+      --text-muted: #b7c0d8;
+      --primary: #7aa2ff;
+      --accent: #ffb757;
+      --card: #0f121a;
+      --border: #1d2333;
+      --ff-sans: "Inter", system-ui, sans-serif;
+      --ff-display: "Plus Jakarta Sans", var(--ff-sans);
+      --container-max: 1200px;
+      --container-pad: clamp(1rem, 3vw, 2rem);
+      --radius-lg: 18px;
+      --shadow-2: 0 16px 40px rgba(0,0,0,0.28), inset 0 1px 0 rgba(255,255,255,0.02);
+    }
+    body {
+      margin: 0;
+      font-family: var(--ff-sans);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    a { color: var(--primary); text-decoration: none; }
+    a:hover { color: white; }
+
+    /* Layout */
+    .container {
+      width: min(100%, var(--container-max));
+      margin-inline: auto;
+      padding-inline: var(--container-pad);
+    }
+
+    /* Header (same as homepage) */
+    header.site-header {
+      position: sticky;
+      top: 0;
+      z-index: 900;
+      backdrop-filter: saturate(140%) blur(8px);
+      background: rgba(11, 13, 18, 0.85);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+    .brand img {
+      width: 40px; height: 40px;
+      border-radius: 10px;
+    }
+    .brand span {
+      font-family: var(--ff-display);
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: var(--text);
+    }
+    .nav-links {
+      display: flex;
+      gap: 1rem;
+    }
+    .nav-links a {
+      color: var(--text);
+      font-weight: 500;
+      padding: 0.35rem 0.5rem;
+      border-radius: 8px;
+    }
+    .nav-links a:hover { background: var(--bg-elev-2); }
+
+    /* Success message */
+    .page-header {
+      padding: 3rem 0;
+      text-align: center;
+    }
+    .page-header h1 {
+      font-family: var(--ff-display);
+      font-size: clamp(2rem, 4vw, 2.5rem);
+      margin-bottom: 1rem;
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-2);
+      padding: 2rem;
+      text-align: center;
+      max-width: 600px;
+      margin: 2rem auto;
+    }
+    .card p {
+      color: var(--text-muted);
+    }
+    .btn-primary {
+      display: inline-block;
+      margin-top: 1.5rem;
+      background: linear-gradient(135deg, var(--accent) 0%, #ff9d1f 100%);
+      color: #1a1206;
+      padding: 0.6rem 1.2rem;
+      font-weight: 700;
+      border-radius: 10px;
+      box-shadow: 0 8px 18px rgba(255, 151, 55, 0.25);
+    }
+    .btn-primary:hover {
+      transform: translateY(-1px);
+    }
+
+    /* Footer */
+    footer.site-footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem 0;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+    .footer-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .footer-links {
+      display: flex;
+      gap: 1rem;
+    }
+    .footer-links a {
+      color: var(--text-muted);
+    }
+    .footer-links a:hover { color: var(--text); }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="/">
+        <img src="https://app.quotesn.com/images/app_logo.png" alt="Quotesn logo">
+        <span>Quotesn</span>
+      </a>
+      <nav class="nav-links">
+        <a href="https://app.quotesn.com/">Quotes App</a>
+        <a href="/pro-post-generator">Pro Post Generator</a>
+        <a href="https://app.quotesn.com/quizzes">Quizzes</a>
+        <a href="/#quote-of-day">Quote of the Day</a>
+        <a href="/blog">Blog</a>
+        <a href="/about">About Us</a>
+        <a href="/contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Success Content -->
+  <section class="page-header">
+    <div class="container">
+      <h1>Thank You!</h1>
+      <p>Your message has been sent successfully. We’ll get back to you within <strong>1–2 business days</strong>.</p>
+    </div>
+  </section>
+
+  <div class="card">
+    <p>If you don’t see our reply in your inbox, please check your spam folder.</p>
+    <a href="/" class="btn-primary">Return to Homepage</a>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-row">
+      <div class="brand">
+        <img src="https://app.quotesn.com/images/app_logo.png" alt="" width="36" height="36">
+        <span>Quotesn</span>
+      </div>
+      <nav class="footer-links">
+        <a href="/privacy">Privacy</a>
+        <a href="/terms">Terms</a>
+        <a href="/sitemap.xml">Sitemap</a>
+        <a href="/contact">Contact</a>
+        <span>© <span id="year"></span></span>
+      </nav>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
