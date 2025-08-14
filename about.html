@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Meta -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
+  <title>About Us – Quotesn</title>
+  <meta name="description" content="Learn more about Quotesn — our mission, vision, and why we believe in the power of words to inspire and connect people." />
+  <link rel="canonical" href="https://www.quotesn.com/about" />
+
+  <!-- Preconnects -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://app.quotesn.com" crossorigin>
+  <link rel="dns-prefetch" href="https://app.quotesn.com">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700&display=swap" rel="stylesheet">
+
+  <!-- Styles copied from homepage for design consistency -->
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="/">
+        <img src="https://app.quotesn.com/images/app_logo.png" width="40" height="40" alt="Quotesn logo">
+        <span>Quotesn</span>
+      </a>
+      <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-menu">☰</button>
+      <div class="nav-menu" id="nav-menu">
+        <nav class="nav-links" aria-label="Primary">
+          <a href="https://app.quotesn.com/">Quotes App</a>
+          <a href="/pro-post-generator">Pro Post Generator</a>
+          <a href="https://app.quotesn.com/quizzes">Quizzes</a>
+          <a href="/#quote-of-day">Quote of the Day</a>
+          <a href="/blog">Blog</a>
+          <a href="/about" aria-current="page">About Us</a>
+          <a class="btn-primary" href="https://app.quotesn.com/">Browse Library</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- ABOUT HERO -->
+    <section class="hero">
+      <div class="container hero-inner">
+        <div>
+          <span class="eyebrow">About Quotesn</span>
+          <h1>Our Story &amp; Mission</h1>
+          <p>Quotesn was born from a simple idea: to make daily inspiration accessible, beautiful, and shareable. Words have the power to spark action, change perspectives, and connect hearts — and we wanted to make those words easier to find, enjoy, and share.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- MISSION SECTION -->
+    <section class="section has-tint">
+      <div class="container grid grid-2">
+        <div>
+          <h2>Our Mission</h2>
+          <p class="muted">We aim to curate the most inspiring quotes, present them beautifully, and make it effortless for anyone to share them with the world. We believe that daily exposure to uplifting words can improve mood, mindset, and motivation.</p>
+        </div>
+        <div>
+          <h2>Our Vision</h2>
+          <p class="muted">To be the world’s most-loved platform for daily inspiration, blending timeless wisdom with modern design and tools that make sharing positivity second nature.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHY QUOTESN -->
+    <section class="section">
+      <div class="container grid grid-2">
+        <div>
+          <h2>Why People Love Quotesn</h2>
+          <ul class="muted">
+            <li>Daily curated quotes from reliable sources.</li>
+            <li>Fun and interactive quizzes to challenge your knowledge.</li>
+            <li>Pro Post Generator for instant social media visuals.</li>
+            <li>Fast, clean, and mobile-friendly experience.</li>
+          </ul>
+        </div>
+        <div class="quote-block">
+          <div class="chip">From our community</div>
+          <p class="quote-text">“Quotesn has become my morning ritual — I start my day with a smile and share that joy with my friends.”</p>
+          <div class="quote-author">— Regular User</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container footer-row">
+      <div class="brand">
+        <img src="https://app.quotesn.com/images/app_logo.png" width="36" height="36" alt="">
+        <span class="truncate">Quotesn</span>
+      </div>
+      <nav class="footer-links" aria-label="Footer">
+        <a href="/privacy">Privacy</a>
+        <a href="/terms">Terms</a>
+        <a href="/sitemap.xml">Sitemap</a>
+        <a href="/contact">Contact</a>
+        <span aria-hidden="true">© <span id="year"></span></span>
+      </nav>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile nav toggle
+    const menuBtn = document.querySelector('.menu-toggle');
+    const navMenu = document.querySelector('.nav-menu');
+    if (menuBtn && navMenu) {
+      menuBtn.addEventListener('click', () => {
+        const open = navMenu.classList.toggle('show');
+        menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+    }
+    // Dynamic year
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

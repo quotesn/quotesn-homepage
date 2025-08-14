@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Meta -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
+  <title>Contact Us – Quotesn</title>
+  <meta name="description" content="Get in touch with Quotesn. We'd love to hear your feedback, suggestions, or questions." />
+  <link rel="canonical" href="https://www.quotesn.com/contact" />
+
+  <!-- Favicon -->
+  <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+
+  <!-- Preconnects -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://app.quotesn.com" crossorigin>
+  <link rel="dns-prefetch" href="https://app.quotesn.com">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700&display=swap" rel="stylesheet">
+
+  <!-- Styles (copied from homepage for exact match) -->
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="/">
+        <img src="https://app.quotesn.com/images/app_logo.png" width="40" height="40" alt="Quotesn logo">
+        <span>Quotesn</span>
+      </a>
+      <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-menu">☰</button>
+      <div class="nav-menu" id="nav-menu">
+        <nav class="nav-links" aria-label="Primary">
+          <a href="https://app.quotesn.com/">Quotes App</a>
+          <a href="/pro-post-generator">Pro Post Generator</a>
+          <a href="https://app.quotesn.com/quizzes">Quizzes</a>
+          <a href="/#quote-of-day">Quote of the Day</a>
+          <a href="/blog">Blog</a>
+          <a href="/about">About Us</a>
+          <a class="btn-primary" href="https://app.quotesn.com/">Browse Library</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container hero-inner">
+        <div>
+          <span class="eyebrow">Get in Touch</span>
+          <h1>Contact Us</h1>
+          <p>Have feedback, questions, or partnership ideas? Drop us a message — we’d love to hear from you.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT FORM -->
+    <section class="section has-tint">
+      <div class="container">
+        <h2>Send Us a Message</h2>
+        <form action="https://formsubmit.co/quotesn.com@gmail.com" method="POST" class="card card-pad" style="max-width: 600px; margin:auto;">
+          <!-- FormSubmit hidden inputs -->
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_next" value="https://www.quotesn.com/contact-success.html">
+
+          <label for="name">Your Name</label>
+          <input type="text" id="name" name="name" required style="width:100%; padding:0.5rem; margin-bottom:1rem; border-radius:8px; border:1px solid var(--border);">
+
+          <label for="email">Your Email</label>
+          <input type="email" id="email" name="email" required style="width:100%; padding:0.5rem; margin-bottom:1rem; border-radius:8px; border:1px solid var(--border);">
+
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="5" required style="width:100%; padding:0.5rem; margin-bottom:1rem; border-radius:8px; border:1px solid var(--border);"></textarea>
+
+          <button type="submit" class="btn-primary">Send Message</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container footer-row">
+      <div class="brand">
+        <img src="https://app.quotesn.com/images/app_logo.png" width="36" height="36" alt="">
+        <span class="truncate">Quotesn</span>
+      </div>
+      <nav class="footer-links" aria-label="Footer">
+        <a href="/privacy">Privacy</a>
+        <a href="/terms">Terms</a>
+        <a href="/sitemap.xml">Sitemap</a>
+        <a href="/contact" aria-current="page">Contact</a>
+        <span aria-hidden="true">© <span id="year"></span></span>
+      </nav>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile nav toggle
+    const menuBtn = document.querySelector('.menu-toggle');
+    const navMenu = document.querySelector('.nav-menu');
+    if (menuBtn && navMenu) {
+      menuBtn.addEventListener('click', () => {
+        const open = navMenu.classList.toggle('show');
+        menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+    }
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
