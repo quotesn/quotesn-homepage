@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Meta -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
+  <title>Contact Quotesn — We’d Love to Hear From You</title>
+  <meta name="description" content="Have feedback, questions, or partnership ideas? Contact Quotesn using the form and we’ll get back to you." />
+  <link rel="canonical" href="https://www.quotesn.com/contact/" />
+  <link rel="icon" href="/images/favicon.ico" sizes="any" />
+
+  <!-- Preconnects -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://app.quotesn.com" crossorigin>
+  <link rel="dns-prefetch" href="https://app.quotesn.com">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700&display=swap" rel="stylesheet">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Contact Quotesn — We’d Love to Hear From You">
+  <meta property="og:description" content="Send us a message about feedback, questions, or partnerships.">
+  <meta property="og:image" content="https://app.quotesn.com/images/app_logo.png">
+  <meta property="og:url" content="https://www.quotesn.com/contact/">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <style>
+    /* === QUOTESN DESIGN SYSTEM (same as homepage) ===================== */
+    :root{
+      --bg:#0b0d12;--bg-elev-1:#11141b;--bg-elev-2:#151927;--text:#e8eefc;--text-muted:#b7c0d8;
+      --primary:#7aa2ff;--primary-strong:#5a86ff;--accent:#ffb757;--accent-strong:#ff9d1f;
+      --card:#0f121a;--border:#1d2333;--success:#38d39f;--warning:#ffd166;
+      --grad-hero:radial-gradient(1200px 600px at 10% 10%,#2a2f4a 0%,rgba(17,20,27,0) 55%),radial-gradient(1200px 600px at 90% 20%,#1b2c52 0%,rgba(17,20,27,0) 60%),linear-gradient(180deg,#0b0d12 0%,#0e1220 100%);
+      --grad-section:linear-gradient(180deg,rgba(90,134,255,.08),rgba(90,134,255,0));
+      --grad-accent:linear-gradient(135deg,#ffb757 0%,#ff9d1f 100%);
+      --ff-sans:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans","Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+      --ff-display:"Plus Jakarta Sans",var(--ff-sans);
+      --fs-hero:clamp(2rem,4vw + 1rem,3rem);--fs-h2:clamp(1.25rem,1.2vw + 1rem,1.75rem);
+      --fs-body:clamp(1rem,.4vw + .9rem,1.125rem);--fs-small:.925rem;
+      --space-1:.25rem;--space-2:.5rem;--space-3:.75rem;--space-4:1rem;--space-5:1.5rem;--space-6:2rem;--space-7:3rem;
+      --radius-sm:10px;--radius-md:14px;--radius-lg:18px;
+      --shadow-1:0 8px 24px rgba(0,0,0,.22);
+      --shadow-2:0 16px 40px rgba(0,0,0,.28), inset 0 1px 0 rgba(255,255,255,.02);
+      --container-max:1200px;--container-pad:clamp(1rem,3vw,2rem);
+      --ease:cubic-bezier(.2,.8,.2,1);--time-1:120ms;--time-2:180ms;--time-3:240ms;
+    }
+    @media (prefers-color-scheme:light){
+      :root{
+        --bg:#fff;--bg-elev-1:#f7f8fb;--bg-elev-2:#eef1f7;--text:#0b0d12;--text-muted:#4a556f;
+        --primary:#3157ff;--primary-strong:#2647db;--accent:#ff8c2b;--accent-strong:#ff7a00;
+        --card:#fff;--border:#e7eaf2;
+        --grad-hero:radial-gradient(1200px 600px at 15% 15%,#e9edff 0%,rgba(255,255,255,0) 55%),radial-gradient(1200px 600px at 90% 20%,#e4f0ff 0%,rgba(255,255,255,0) 60%),linear-gradient(180deg,#ffffff 0%,#f9fbff 100%);
+        --grad-section:linear-gradient(180deg,rgba(49,87,255,.08),rgba(49,87,255,0));
+        --shadow-1:0 8px 24px rgba(10,22,70,.08);
+        --shadow-2:0 18px 44px rgba(10,22,70,.10), inset 0 1px 0 rgba(255,255,255,.65);
+      }
+    }
+    @media (prefers-reduced-motion:reduce){:root{--time-1:0ms;--time-2:0ms;--time-3:0ms}*{animation:none!important;transition:none!important}}
+
+    *,*::before,*::after{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0;font-family:var(--ff-sans);font-size:var(--fs-body);line-height:1.6;color:var(--text);background:var(--bg);text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+    a{color:var(--primary);text-decoration:none}
+    a:hover{color:var(--primary-strong)}
+    ::selection{background:rgba(122,162,255,.35)}
+    .skip-link{position:absolute;left:-999px;top:auto;width:1px;height:1px;overflow:hidden}
+    .skip-link:focus{position:fixed;left:var(--space-4);top:var(--space-4);background:var(--bg-elev-2);color:var(--text);padding:var(--space-2) var(--space-3);border-radius:var(--radius-sm);box-shadow:var(--shadow-1);z-index:10000}
+    :focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:8px}
+
+    .container{width:min(100%,var(--container-max));margin-inline:auto;padding-inline:var(--container-pad)}
+    section.section{padding:clamp(2.25rem,4vw,3.25rem) 0}
+    .grid{display:grid;gap:var(--space-5)}
+    .grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+    @media (max-width:900px){.grid-2{grid-template-columns:1fr}}
+
+    header.site-header{position:sticky;top:0;z-index:900;backdrop-filter:saturate(140%) blur(8px);background:color-mix(in oklab,var(--bg),transparent 25%);border-bottom:1px solid var(--border)}
+    .nav{display:flex;align-items:center;justify-content:space-between;height:64px;gap:var(--space-4)}
+    .brand{display:inline-flex;align-items:center;gap:var(--space-3);text-decoration:none}
+    .brand img{width:40px;height:40px;border-radius:10px;box-shadow:0 6px 18px rgba(0,0,0,.25)}
+    .brand span{font-family:var(--ff-display);font-weight:700;letter-spacing:.2px;font-size:1.05rem;color:var(--text)}
+    .nav-links{display:flex;align-items:center;gap:var(--space-4)}
+    .nav-links a{color:var(--text);opacity:.9;font-weight:500;padding:.35rem .5rem;border-radius:8px;transition:background var(--time-2) var(--ease),opacity var(--time-1) var(--ease)}
+    .nav-links a:hover{background:var(--bg-elev-2);opacity:1}
+    .btn-primary{background:var(--grad-accent);color:#1a1206;padding:.55rem .9rem;font-weight:700;border-radius:10px;box-shadow:0 8px 18px rgba(255,151,55,.25);transition:transform var(--time-1) var(--ease),box-shadow var(--time-2) var(--ease);display:inline-flex;align-items:center;gap:.5rem}
+    .btn-primary:hover{transform:translateY(-1px);box-shadow:0 12px 26px rgba(255,151,55,.32)}
+    .nav-menu{display:flex;gap:var(--space-4)}
+    .menu-toggle{display:none;background:transparent;border:0;color:var(--text);font-size:1.35rem;line-height:1;padding:.35rem .5rem;border-radius:8px}
+    @media (max-width:820px){
+      .menu-toggle{display:inline-flex}
+      .nav-menu{display:none;flex-direction:column;position:absolute;left:0;right:0;top:64px;background:var(--bg-elev-1);border-bottom:1px solid var(--border);padding:.75rem var(--container-pad)}
+      .nav-menu.show{display:flex}
+      .nav-links{flex-direction:column;align-items:flex-start;gap:.5rem}
+      .btn-primary{margin-top:.5rem}
+    }
+
+    .page-hero{background:var(--grad-hero)}
+    .page-hero .inner{padding:clamp(2rem,6vw,4rem) 0}
+    .page-hero h1{font-family:var(--ff-display);font-weight:700;letter-spacing:.3px;font-size:var(--fs-hero);line-height:1.08;margin:0 0 var(--space-3)}
+    .page-hero p{color:var(--text-muted);max-width:65ch;margin:0}
+
+    .card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);box-shadow:var(--shadow-2)}
+    .card-pad{padding:var(--space-5)}
+    .section h2{font-family:var(--ff-display);font-size:var(--fs-h2);letter-spacing:.2px;margin:0 0 var(--space-4)}
+    .muted{color:var(--text-muted)}
+
+    /* Form styles */
+    form .row{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-4)}
+    @media (max-width:700px){form .row{grid-template-columns:1fr}}
+    .field{display:flex;flex-direction:column;gap:.4rem}
+    .input, textarea{
+      background:var(--bg-elev-1);color:var(--text);
+      border:1px solid var(--border);border-radius:12px;
+      padding:.8rem 1rem;line-height:1.4;box-shadow:inset 0 1px 0 rgba(255,255,255,.03)
+    }
+    .input:focus, textarea:focus{outline:2px solid color-mix(in oklab,var(--primary),#fff 15%);outline-offset:0;border-color:var(--primary)}
+    textarea{min-height:160px;resize:vertical}
+    .actions{display:flex;gap:.75rem;align-items:center}
+    .btn{display:inline-flex;align-items:center;gap:.5rem;border:none;border-radius:12px;padding:.75rem 1rem;font-weight:700;cursor:pointer}
+    .btn-accent{background:var(--grad-accent);color:#1a1206;box-shadow:0 8px 18px rgba(255,151,55,.25)}
+    .btn-accent:hover{transform:translateY(-1px)}
+    .note{font-size:.95rem;color:var(--text-muted)}
+    .badge{display:inline-block;padding:.25rem .5rem;border-radius:999px;border:1px solid var(--border);background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(0,0,0,.05));font-size:.85rem;color:var(--text-muted)}
+    footer.site-footer{border-top:1px solid var(--border);background:linear-gradient(180deg,rgba(122,162,255,.06),rgba(122,162,255,0));padding:var(--space-6) 0;color:var(--text-muted)}
+    .footer-row{display:flex;flex-wrap:wrap;gap:var(--space-5);align-items:center;justify-content:space-between}
+    .footer-links{display:flex;gap:var(--space-4);flex-wrap:wrap}
+    .footer-links a{color:var(--text-muted);text-decoration:none;font-weight:500}
+    .footer-links a:hover{color:var(--text)}
+  </style>
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <!-- Header (identical to homepage) -->
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="/">
+        <img src="https://app.quotesn.com/images/app_logo.png" width="40" height="40" alt="Quotesn logo">
+        <span>Quotesn</span>
+      </a>
+      <button class="menu-toggle" aria-label="Toggle menu">☰</button>
+      <div class="nav-menu" id="nav-menu">
+        <nav class="nav-links" aria-label="Primary">
+          <a href="https://app.quotesn.com/">Quotes App</a>
+          <a href="/pro-post-generator">Pro Post Generator</a>
+          <a href="https://app.quotesn.com/quizzes">Quizzes</a>
+          <a href="/#quote-of-day">Quote of the Day</a>
+          <a href="/blog">Blog</a>
+          <a href="/about">About Us</a>
+          <a class="btn-primary" href="https://app.quotesn.com/">Browse Library</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- Page hero -->
+    <section class="page-hero">
+      <div class="container inner">
+        <h1>Contact Us</h1>
+        <p>Have feedback, questions, or partnership ideas? Send us a message — we’d love to hear from you.</p>
+      </div>
+    </section>
+
+    <!-- Contact form -->
+    <section class="section">
+      <div class="container grid grid-2">
+        <article class="card card-pad">
+          <h2>Send Us a Message</h2>
+          <!-- FormSubmit integration -->
+          <form action="https://formsubmit.co/quotesn.com@gmail.com" method="POST">
+            <!-- Required FormSubmit fields -->
+            <input type="hidden" name="_subject" value="New message from Quotesn Contact form">
+            <input type="hidden" name="_template" value="table">
+            <input type="hidden" name="_captcha" value="true">
+            <input type="hidden" name="_next" value="https://www.quotesn.com/contact/?sent=1">
+            <!-- Honeypot -->
+            <input type="text" name="_honey" class="visually-hidden" tabindex="-1" autocomplete="off">
+            <!-- Disable FormSubmit’s reCAPTCHA badge -->
+            <input type="hidden" name="_formsubmit_id" value="quotesn-contact">
+
+            <div class="row" style="margin-top:1rem">
+              <div class="field">
+                <label for="name">Your Name</label>
+                <input class="input" type="text" id="name" name="name" placeholder="Jane Doe" autocomplete="name" required>
+              </div>
+              <div class="field">
+                <label for="email">Your Email</label>
+                <input class="input" type="email" id="email" name="email" placeholder="you@example.com" autocomplete="email" required>
+              </div>
+            </div>
+            <div class="field" style="margin-top:1rem">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" class="input" placeholder="How can we help?" required></textarea>
+            </div>
+            <div class="actions" style="margin-top:1rem">
+              <button class="btn btn-accent" type="submit">Send Message</button>
+              <span class="note">Tip: On first use, FormSubmit may send a one-time verification to this address.</span>
+            </div>
+          </form>
+        </article>
+
+        <aside class="card card-pad" aria-label="Other ways to reach us">
+          <h2>Other Ways</h2>
+          <p class="muted">Prefer email? Write to us at <a href="mailto:quotesn.com@gmail.com">quotesn.com@gmail.com</a>.</p>
+          <p class="muted">You can also explore our <a href="https://app.quotesn.com/">Quotes App</a> or read the latest on our <a href="/blog">Blog</a>.</p>
+          <span class="badge" aria-hidden="true">Average reply: 1–2 business days</span>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer (identical to homepage) -->
+  <footer class="site-footer">
+    <div class="container footer-row">
+      <div class="brand" aria-label="Quotesn home">
+        <img src="https://app.quotesn.com/images/app_logo.png" width="36" height="36" alt="">
+        <span>Quotesn</span>
+      </div>
+      <nav class="footer-links" aria-label="Footer">
+        <a href="/privacy">Privacy</a>
+        <a href="/terms">Terms</a>
+        <a href="/sitemap.xml">Sitemap</a>
+        <a href="/contact" aria-current="page">Contact</a>
+        <span aria-hidden="true">© <span id="year"></span></span>
+      </nav>
+    </div>
+  </footer>
+
+  <script defer>
+    const menuBtn=document.querySelector('.menu-toggle');
+    const navMenu=document.querySelector('.nav-menu');
+    menuBtn&&menuBtn.addEventListener('click',()=>navMenu.classList.toggle('show'));
+    const y=document.getElementById('year'); if(y) y.textContent=new Date().getFullYear();
+
+    // Success indicator (optional)
+    const params=new URLSearchParams(location.search);
+    if(params.get('sent')==='1'){
+      const note=document.createElement('p');
+      note.className='note';
+      note.textContent='Thanks! Your message was sent.';
+      document.querySelector('form')?.prepend(note);
+    }
+  </script>
+</body>
+</html>
