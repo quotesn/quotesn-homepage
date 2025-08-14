@@ -1,29 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Contact Us - Quotesn</title>
-  <link rel="icon" href="images/favicon.ico" type="image/x-icon">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --primary-color: #ff9800;
-      --secondary-color: #222;
-      --bg-light: #ffffff;
-      --bg-gray: #f8f9fa;
+      --primary: #ff9800;
+      --primary-dark: #e68900;
       --text-dark: #111;
-      --text-gray: #555;
+      --text-light: #555;
+      --bg-light: #fff;
+      --bg-gray: #f8f9fa;
       --radius: 12px;
       --shadow: 0 4px 12px rgba(0,0,0,0.08);
     }
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: 'Inter', sans-serif;
       color: var(--text-dark);
@@ -33,9 +29,7 @@
     header {
       background: var(--bg-light);
       border-bottom: 1px solid #eee;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
+      position: sticky; top: 0; z-index: 1000;
     }
     nav {
       max-width: 1200px;
@@ -51,9 +45,7 @@
       margin: 0 0.75rem;
       font-weight: 500;
     }
-    nav a:hover {
-      color: var(--primary-color);
-    }
+    nav a:hover { color: var(--primary); }
     .logo {
       display: flex;
       align-items: center;
@@ -95,8 +87,16 @@
       margin-bottom: 1rem;
       font-size: 1rem;
     }
+    .note {
+      background: var(--bg-gray);
+      padding: 0.75rem;
+      border-radius: var(--radius);
+      font-size: 0.9rem;
+      color: var(--text-light);
+      margin-bottom: 1rem;
+    }
     form button {
-      background: var(--primary-color);
+      background: var(--primary);
       color: white;
       padding: 0.75rem 1.5rem;
       border: none;
@@ -106,30 +106,28 @@
       transition: background 0.2s ease;
     }
     form button:hover {
-      background: #e68900;
+      background: var(--primary-dark);
     }
     footer {
       background: var(--bg-gray);
       padding: 1.5rem 1rem;
       margin-top: 3rem;
       text-align: center;
-      color: var(--text-gray);
+      color: var(--text-light);
     }
     footer a {
       color: var(--text-dark);
       text-decoration: none;
       margin: 0 0.5rem;
     }
-    footer a:hover {
-      color: var(--primary-color);
-    }
+    footer a:hover { color: var(--primary); }
   </style>
 </head>
 <body>
   <header>
     <nav>
       <div class="logo">
-        <img src="https://app.quotesn.com/images/app_logo.png" alt="Quotesn Logo">
+        <img src="https://app.quotesn.com/images/app_logo.png" alt="Quotesn Logo" />
         <strong>Quotesn</strong>
       </div>
       <div>
@@ -147,6 +145,7 @@
   <main>
     <h1>Contact Us</h1>
     <div class="contact-grid">
+      <!-- Left column -->
       <div class="contact-card">
         <h2>Send Us a Message</h2>
         <form action="https://formsubmit.co/quotesn.com@gmail.com" method="POST">
@@ -160,10 +159,13 @@
           <label for="message">Message</label>
           <textarea id="message" name="message" rows="5" placeholder="How can we help?" required></textarea>
 
+          <div class="note">We usually respond within 1–2 business days. Please check your spam folder if you don’t see our reply.</div>
+
           <button type="submit">Send Message</button>
         </form>
       </div>
 
+      <!-- Right column -->
       <div class="contact-card">
         <h2>Other Ways</h2>
         <p>Prefer email? Write to us at <a href="mailto:quotesn.com@gmail.com">quotesn.com@gmail.com</a>.</p>
