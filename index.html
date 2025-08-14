@@ -30,7 +30,7 @@
   <style>
     /* 
     =====================================================================
-    QUOTESN — PURE CSS DESIGN SYSTEM (The Alchemist)
+    QUOTESN — PURE CSS DESIGN SYSTEM (The Harmonizer)
     - Tokens
     - Base Reset
     - Layout
@@ -471,7 +471,7 @@
         <span>Quotesn</span>
       </a>
 
-      <button class="menu-toggle" aria-label="Toggle menu">☰</button>
+      <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-menu">☰</button>
 
       <div class="nav-menu" id="nav-menu">
         <nav class="nav-links" aria-label="Primary">
@@ -502,10 +502,12 @@
             <a class="btn-outline" href="/pro-post-generator">Try Pro Post Generator</a>
           </div>
         </div>
-        <div class="quote-block" id="quote-of-day">
+        <!-- Quote of the Day (author appears ONCE, below the quote) -->
+        <div class="quote-block" id="quote-of-day" aria-live="polite">
           <div class="chip" aria-hidden="true">Quote of the Day</div>
-          <p class="quote-text" id="quote-display">“The journey of a thousand miles begins with a single step.”</p>
-          <div class="quote-author">— Lao Tzu</div>
+          <!-- Default content for no-JS; JS will replace text only -->
+          <p class="quote-text" id="quote-text">“The journey of a thousand miles begins with a single step.”</p>
+          <div class="quote-author" id="quote-author">— Lao Tzu</div>
         </div>
       </div>
     </section>
@@ -652,30 +654,49 @@
     </div>
   </footer>
 
-  <!-- Minimal, non-animated JS (not used for layout/animation) -->
+  <!-- Minimal, non-animated JS (content only; no layout/animation) -->
   <script defer>
-    // Quote pool (content logic only)
-    const quotes = [
-      ["The journey of a thousand miles begins with a single step.","Lao Tzu"],
-      ["You miss 100% of the shots you don’t take.","Wayne Gretzky"],
-      ["In the middle of every difficulty lies opportunity.","Albert Einstein"],
-      ["Do what you can, with what you have, where you are.","Theodore Roosevelt"],
-      ["Happiness is not something ready made. It comes from your own actions.","Dalai Lama"],
-      ["Believe you can and you're halfway there.","Theodore Roosevelt"],
-      ["The only way to do great work is to love what you do.","Steve Jobs"],
-      ["Turn your wounds into wisdom.","Oprah Winfrey"],
-      ["It always seems impossible until it's done.","Nelson Mandela"],
-      ["What you get by achieving your goals is not as important as what you become by achieving your goals.","Zig Ziglar"]
+    // ----------------------------
+    // Daily Quote Rotation (7 items)
+    // Shows the same quote to all visitors on the same day (UTC),
+    // changes once every 24h. Author appears ONLY below the quote.
+    // ----------------------------
+    const DAILY_QUOTES = [
+      { text: "The journey of a thousand miles begins with a single step.", author: "Lao Tzu" },
+      { text: "You miss 100% of the shots you don’t take.", author: "Wayne Gretzky" },
+      { text: "In the middle of every difficulty lies opportunity.", author: "Albert Einstein" },
+      { text: "What you do speaks so loudly that I cannot hear what you say.", author: "Ralph Waldo Emerson" },
+      { text: "It is never too late to be what you might have been.", author: "George Eliot" },
+      { text: "The only way to do great work is to love what you do.", author: "Steve Jobs" },
+      { text: "Whether you think you can, or you think you can’t—you’re right.", author: "Henry Ford" }
     ];
-    const pick = quotes[Math.floor(Math.random() * quotes.length)];
-    const display = document.getElementById('quote-display');
-    if (display) display.textContent = `“${pick[0]}” — ${pick[1]}`;
 
-    // Mobile nav toggler (class toggle only)
+    function dayIndexUTC() {
+      // Days since Unix epoch in UTC
+      const now = new Date();
+      const utcMidnight = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate());
+      return Math.floor(utcMidnight / 86400000); // 24*60*60*1000
+    }
+
+    (function renderDailyQuote(){
+      const idx = dayIndexUTC() % DAILY_QUOTES.length;
+      const q = DAILY_QUOTES[idx];
+      const qTextEl = document.getElementById('quote-text');
+      const qAuthorEl = document.getElementById('quote-author');
+      if (qTextEl) qTextEl.textContent = `“${q.text}”`;
+      if (qAuthorEl) qAuthorEl.textContent = `— ${q.author}`;
+    })();
+
+    // ----------------------------
+    // Mobile nav toggler
+    // ----------------------------
     const menuBtn = document.querySelector('.menu-toggle');
     const navMenu = document.querySelector('.nav-menu');
     if (menuBtn && navMenu) {
-      menuBtn.addEventListener('click', () => navMenu.classList.toggle('show'));
+      menuBtn.addEventListener('click', () => {
+        const open = navMenu.classList.toggle('show');
+        menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
     }
 
     // Year
