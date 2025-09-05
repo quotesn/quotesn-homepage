@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "updated": "2025-08-15",
+  "posts": [
+    {
+      "slug": "how-to-find-daily-inspiration",
+      "title": "How to Find Daily Inspiration",
+      "excerpt": "Simple daily rituals to spark motivation and keep you consistent.",
+      "author": "Quotesn Editorial",
+      "date": "2025-08-12",
+      "cover": "https://picsum.photos/id/1025/1200/630",
+      "tags": ["inspiration", "habits"],
+      "url": "blog/how-to-find-daily-inspiration/"
+    },
+    {
+      "slug": "quotes-that-shift-your-mindset",
+      "title": "12 Quotes That Shift Your Mindset",
+      "excerpt": "A curated set of lines that help you reframe challenges.",
+      "author": "Quotesn Editorial",
+      "date": "2025-08-10",
+      "cover": "https://picsum.photos/id/1043/1200/630",
+      "tags": ["mindset", "growth"],
+      "url": "blog/quotes-that-shift-your-mindset/"
+    },
+    {
+      "slug": "author-spotlight-maya-angelou",
+      "title": "Author Spotlight: Maya Angelou",
+      "excerpt": "Exploring the timeless voice and lessons of Maya Angelou.",
+      "author": "Quotesn Editorial",
+      "date": "2025-08-08",
+      "cover": "https://picsum.photos/id/1035/1200/630",
+      "tags": ["authors", "spotlight"],
+      "url": "blog/author-spotlight-maya-angelou/"
+    }
+  ]
+}
