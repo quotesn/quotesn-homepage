@@ -1,0 +1,52 @@
+<main id="main">
+  <section class="page-header">
+    <div class="container">
+      <span class="badge" aria-hidden="true">Blog</span>
+      <h1>Latest Articles</h1>
+      <p class="sub">Insights, spotlights, and practical inspiration from the Quotesn team.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div id="blog-list" class="grid grid-3">
+        <noscript>
+          <p class="muted">Enable JavaScript to see the latest posts.</p>
+        </noscript>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script defer>
+  (async function renderBlogIndex(){
+    const grid = document.getElementById('blog-list');
+    if (!grid) return;
+    try {
+      const res = await fetch('posts.json', { cache: 'no-cache' });
+      if (!res.ok) throw new Error('Fetch posts.json failed');
+      const data = await res.json();
+      const posts = (data.posts || [])
+        .slice()
+        .sort((a,b)=> new Date(b.date) - new Date(a.date));
+
+      grid.innerHTML = posts.map(p => `
+        <article class="card">
+          <div class="media">
+            <img src="${p.cover}" width="640" height="360" alt="${p.title}" loading="lazy">
+          </div>
+          <div class="card-pad">
+            <h3><a class="link-title" href="../${p.url}">${p.title}</a></h3>
+            <p class="muted">${p.excerpt}</p>
+            <p class="muted" style="margin-top:.5rem;">
+              <time datetime="${p.date}">${new Date(p.date).toLocaleDateString(undefined,{year:'numeric',month:'short',day:'numeric'})}</time> · ${p.author}
+            </p>
+          </div>
+        </article>
+      `).join('');
+    } catch (e) {
+      grid.innerHTML = `<p class="muted">Posts will appear here shortly.</p>`;
+      console.warn('Blog index fallback:', e);
+    }
+  })();
+</script>
