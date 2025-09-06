@@ -1,33 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Meta -->
+  <!-- =========================================================
+       Meta / SEO
+  ========================================================== -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
   <title>Quotesn – Inspirational Quotes, Fun Quizzes & Daily Motivation</title>
-  <meta name="description" content="Discover thousands of quotes and quizzes at Quotesn. Find daily inspiration, take fun quizzes, and share motivational quotes with friends." />
+  <meta name="description" content="Explore inspirational and motivational quotes, take fun quizzes, and discover uplifting blog posts. Quotesn is your daily source of wisdom and creativity." />
   <link rel="canonical" href="https://www.quotesn.com/" />
+  <link rel="icon" href="/images/favicon.ico" sizes="any" />
 
-  <!-- Preconnects -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Preconnects (performance hints) -->
   <link rel="preconnect" href="https://app.quotesn.com" crossorigin>
   <link rel="dns-prefetch" href="https://app.quotesn.com">
   <link rel="preconnect" href="https://picsum.photos" crossorigin>
   <link rel="dns-prefetch" href="https://picsum.photos">
 
-  <!-- Fonts (optional; swap for CLS safety) -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700&display=swap" rel="stylesheet">
-
   <!-- Open Graph -->
   <meta property="og:title" content="Quotesn – Inspirational Quotes, Fun Quizzes & Daily Motivation">
-  <meta property="og:description" content="Discover thousands of quotes and quizzes at Quotesn. Find daily inspiration, take fun quizzes, and share motivational quotes with friends.">
+  <meta property="og:description" content="Discover quotes, quizzes, and uplifting stories. Get inspired and create beautiful shareables with Quotesn.">
   <meta property="og:image" content="https://app.quotesn.com/images/app_logo.png">
   <meta property="og:url" content="https://www.quotesn.com/">
   <meta name="twitter:card" content="summary_large_image">
 
-  <!-- JSON-LD: WebSite + Organization + BreadcrumbList -->
+  <!-- =========================================================
+       JSON-LD (WebSite, Organization, BreadcrumbList)
+  ========================================================== -->
   <script type="application/ld+json">
   {
     "@context":"https://schema.org",
@@ -36,8 +36,8 @@
     "url":"https://www.quotesn.com/",
     "potentialAction":{
       "@type":"SearchAction",
-      "target":"https://www.quotesn.com/search?q={search_term_string}",
-      "query-input":"required name=search_term_string"
+      "target":"https://www.quotesn.com/search?q={query}",
+      "query-input":"required name=query"
     }
   }
   </script>
@@ -47,11 +47,7 @@
     "@type":"Organization",
     "name":"Quotesn",
     "url":"https://www.quotesn.com/",
-    "logo":"https://app.quotesn.com/images/app_logo.png",
-    "sameAs":[
-      "https://twitter.com/",
-      "https://www.facebook.com/"
-    ]
+    "logo":"https://app.quotesn.com/images/app_logo.png"
   }
   </script>
   <script type="application/ld+json">
@@ -59,453 +55,203 @@
     "@context":"https://schema.org",
     "@type":"BreadcrumbList",
     "itemListElement":[
-      {
-        "@type":"ListItem",
-        "position":1,
-        "name":"Home",
-        "item":"https://www.quotesn.com/"
-      }
+      {"@type":"ListItem","position":1,"name":"Home","item":"https://www.quotesn.com/"}
     ]
   }
   </script>
 
+  <!-- =========================================================
+       Inline Critical CSS (light theme default)
+  ========================================================== -->
   <style>
-    /* 
-    =====================================================================
-    QUOTESN — PURE CSS DESIGN SYSTEM (The Harmonizer)
-    - Tokens
-    - Base Reset
-    - Layout
-    - Components (header, hero, cards, buttons, grids, footer)
-    - Utilities (visually-hidden, text-truncate, aspect helpers)
-    - A11y: focus-visible, reduced motion, high contrast
-    - Footer links: no underline (per requirement)
-    =====================================================================
-    */
+    /* ------------------------------
+       Design Tokens
+    ------------------------------ */
+    :root{
+      /* Light (default) */
+      --bg:#ffffff;
+      --bg-elev-1:#f7f8fb;
+      --bg-elev-2:#eef1f7;
+      --text:#0b0d12;
+      --text-muted:#4a556f;
+      --primary:#3157ff;
+      --primary-strong:#2647db;
+      --accent:#ff8c2b;
+      --accent-strong:#ff7a00;
+      --card:#ffffff;
+      --border:#e7eaf2;
 
-    /* -----------------------------------------------------------------
-       TOKENS
-    ----------------------------------------------------------------- */
-    :root {
-      /* Colors */
-      --bg: #0b0d12;                 /* deep slate */
-      --bg-elev-1: #11141b;
-      --bg-elev-2: #151927;
-      --text: #e8eefc;               /* near-white on dark */
-      --text-muted: #b7c0d8;
-      --primary: #7aa2ff;            /* accessible blue */
-      --primary-strong: #5a86ff;
-      --accent: #ffb757;             /* warm accent for CTAs */
-      --accent-strong: #ff9d1f;
-      --card: #0f121a;
-      --border: #1d2333;
-      --success: #38d39f;
-      --warning: #ffd166;
+      --grad-hero:radial-gradient(1200px 600px at 15% 15%,#e9edff 0%,rgba(255,255,255,0) 55%),
+                   radial-gradient(1200px 600px at 90% 20%,#e4f0ff 0%,rgba(255,255,255,0) 60%),
+                   linear-gradient(180deg,#ffffff 0%,#f9fbff 100%);
+      --grad-section:linear-gradient(180deg,rgba(49,87,255,.08),rgba(49,87,255,0));
 
-      /* Gradients */
-      --grad-hero: radial-gradient(1200px 600px at 10% 10%, #2a2f4a 0%, rgba(17,20,27,0) 55%), 
-                   radial-gradient(1200px 600px at 90% 20%, #1b2c52 0%, rgba(17,20,27,0) 60%), 
-                   linear-gradient(180deg, #0b0d12 0%, #0e1220 100%);
-      --grad-section: linear-gradient(180deg, rgba(90,134,255,0.08), rgba(90,134,255,0));
-      --grad-accent: linear-gradient(135deg, #ffb757 0%, #ff9d1f 100%);
+      --ff-sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+      --ff-display: ui-sans-serif, "Inter", var(--ff-sans);
 
-      /* Typography */
-      --ff-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
-      --ff-display: "Plus Jakarta Sans", var(--ff-sans);
       --fs-hero: clamp(2rem, 4vw + 1rem, 3rem);
       --fs-h2: clamp(1.25rem, 1.2vw + 1rem, 1.75rem);
       --fs-body: clamp(1rem, 0.4vw + 0.9rem, 1.125rem);
-      --fs-small: 0.925rem;
 
-      /* Spacing */
-      --space-1: .25rem;
-      --space-2: .5rem;
-      --space-3: .75rem;
-      --space-4: 1rem;
-      --space-5: 1.5rem;
-      --space-6: 2rem;
-      --space-7: 3rem;
+      --space-1:.25rem; --space-2:.5rem; --space-3:.75rem; --space-4:1rem; --space-5:1.5rem; --space-6:2rem; --space-7:3rem;
 
-      /* Radii & Shadows */
-      --radius-sm: 10px;
-      --radius-md: 14px;
-      --radius-lg: 18px;
-      --shadow-1: 0 8px 24px rgba(0,0,0,0.22);
-      --shadow-2: 0 16px 40px rgba(0,0,0,0.28), inset 0 1px 0 rgba(255,255,255,0.02);
+      --radius-sm:12px; --radius-md:14px; --radius-lg:16px;
 
-      /* Layout */
-      --container-max: 1200px;
+      --shadow-1: 0 8px 24px rgba(10,22,70,.08);
+      --shadow-2: 0 18px 44px rgba(10,22,70,.10), inset 0 1px 0 rgba(255,255,255,.65);
+
+      --container-max:1200px;
       --container-pad: clamp(1rem, 3vw, 2rem);
 
-      /* Motion */
-      --ease: cubic-bezier(.2,.8,.2,1);
-      --time-1: 120ms;
-      --time-2: 180ms;
-      --time-3: 240ms;
+      --ease:cubic-bezier(.2,.8,.2,1);
+      --time-1:120ms; --time-2:180ms;
+
+      /* Nav spacing tuned to keep one-line */
+      --gap-nav: clamp(.6rem, 1.6vw, 1.1rem);
     }
 
-    @media (prefers-color-scheme: light) {
-      :root {
-        --bg: #ffffff;
-        --bg-elev-1: #f7f8fb;
-        --bg-elev-2: #eef1f7;
-        --text: #0b0d12;
-        --text-muted: #4a556f;
-        --primary: #3157ff;
-        --primary-strong: #2647db;
-        --accent: #ff8c2b;
-        --accent-strong: #ff7a00;
-        --card: #ffffff;
-        --border: #e7eaf2;
-        --grad-hero: radial-gradient(1200px 600px at 15% 15%, #e9edff 0%, rgba(255,255,255,0) 55%), 
-                     radial-gradient(1200px 600px at 90% 20%, #e4f0ff 0%, rgba(255,255,255,0) 60%), 
-                     linear-gradient(180deg, #ffffff 0%, #f9fbff 100%);
-        --grad-section: linear-gradient(180deg, rgba(49,87,255,0.08), rgba(49,87,255,0));
-        --shadow-1: 0 8px 24px rgba(10,22,70,0.08);
-        --shadow-2: 0 18px 44px rgba(10,22,70,0.10), inset 0 1px 0 rgba(255,255,255,0.65);
+    /* Optional dark scheme (keeps LIGHT as initial paint) */
+    @media (prefers-color-scheme: dark){
+      :root{
+        --bg:#0b0d12; --bg-elev-1:#11141b; --bg-elev-2:#151927;
+        --text:#e8eefc; --text-muted:#b7c0d8;
+        --primary:#7aa2ff; --primary-strong:#5a86ff;
+        --accent:#ffb757; --accent-strong:#ff9d1f;
+        --card:#0f121a; --border:#1d2333;
+        --grad-hero:radial-gradient(1200px 600px at 10% 10%,#2a2f4a 0%,rgba(17,20,27,0) 55%),
+                     radial-gradient(1200px 600px at 90% 20%,#1b2c52 0%,rgba(17,20,27,0) 60%),
+                     linear-gradient(180deg,#0b0d12 0%,#0e1220 100%);
+        --grad-section:linear-gradient(180deg,rgba(90,134,255,.08),rgba(90,134,255,0));
+        --shadow-1:0 8px 24px rgba(0,0,0,.22);
+        --shadow-2:0 16px 40px rgba(0,0,0,.28), inset 0 1px 0 rgba(255,255,255,.02);
       }
     }
 
-    @media (prefers-reduced-motion: reduce) {
-      :root { --time-1: 0ms; --time-2: 0ms; --time-3: 0ms; }
-      * { animation: none !important; transition: none !important; }
+    /* ------------------------------
+       Base / A11y
+    ------------------------------ */
+    *,*::before,*::after{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family:var(--ff-sans); font-size:var(--fs-body); line-height:1.6;
+      color:var(--text); background:var(--bg); text-rendering:optimizeLegibility;
+      -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+    }
+    img{max-width:100%; display:block}
+    a{color:var(--primary); text-decoration:none}
+    a:hover{color:var(--primary-strong)}
+    ::selection{background:rgba(49,87,255,.18)}
+    .container{width:min(100%,var(--container-max)); margin-inline:auto; padding-inline:var(--container-pad)}
+    .section{padding:clamp(2.25rem,4vw,3.25rem) 0}
+    .section.has-tint{background:var(--grad-section); border-top:1px solid var(--border); border-bottom:1px solid var(--border)}
+    .grid{display:grid; gap:var(--space-5)}
+    .grid-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+    .grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+    @media (max-width:1024px){.grid-3{grid-template-columns:repeat(2,minmax(0,1fr))}}
+    @media (max-width:640px){.grid-3,.grid-2{grid-template-columns:1fr}}
+
+    .skip-link{position:absolute; left:-999px; top:auto; width:1px; height:1px; overflow:hidden}
+    .skip-link:focus{position:fixed; left:var(--space-4); top:var(--space-4); background:var(--bg-elev-2); color:var(--text);
+      padding:.4rem .6rem; border-radius:10px; box-shadow:var(--shadow-1); z-index:10000}
+    :focus-visible{outline:2px solid var(--accent); outline-offset:2px; border-radius:8px}
+
+    /* ------------------------------
+       Header / Navigation (single-line until hamburger)
+    ------------------------------ */
+    header.site-header{
+      position:sticky; top:0; z-index:900;
+      backdrop-filter:saturate(140%) blur(8px);
+      background:color-mix(in oklab,var(--bg),transparent 15%);
+      border-bottom:1px solid var(--border);
+    }
+    .nav{display:flex; align-items:center; justify-content:space-between; height:64px; gap:1rem; flex-wrap:nowrap}
+    .brand{display:inline-flex; align-items:center; gap:.6rem; flex-shrink:0}
+    .brand img{width:40px; height:40px; border-radius:10px; box-shadow:0 6px 18px rgba(0,0,0,.08)}
+    .brand span{font-family:var(--ff-display); font-weight:700; letter-spacing:.2px; color:var(--text)}
+    .nav-menu{display:flex; align-items:center; gap:var(--gap-nav)}
+    .nav-links{display:flex; align-items:center; gap:var(--gap-nav); flex-wrap:nowrap}
+    .nav-links a{color:var(--text); opacity:.95; font-weight:500; padding:.35rem .45rem; border-radius:8px;
+      transition:background var(--time-2) var(--ease),opacity var(--time-2) var(--ease);
+      white-space:nowrap; flex-shrink:0}
+    .nav-links a:hover{background:var(--bg-elev-2); opacity:1}
+    .btn-primary{background:linear-gradient(135deg,var(--accent),var(--accent-strong)); color:#1a1206;
+      padding:.55rem .9rem; font-weight:700; border-radius:10px; box-shadow:0 8px 18px rgba(255,140,43,.18);
+      display:inline-flex; align-items:center; gap:.5rem; transition:transform var(--time-1) var(--ease), box-shadow var(--time-2) var(--ease);
+      white-space:nowrap; flex-shrink:0}
+    .btn-primary:hover{transform:translateY(-1px); box-shadow:0 12px 26px rgba(255,140,43,.28)}
+    .menu-toggle{display:none; background:transparent; border:0; color:var(--text); font-size:1.35rem; line-height:1;
+      padding:.35rem .5rem; border-radius:8px}
+
+    /* switch to hamburger a bit earlier to guarantee no wrap */
+    @media (max-width: 980px){
+      .menu-toggle{display:inline-flex}
+      .nav-menu{display:none; position:absolute; left:0; right:0; top:64px; background:var(--bg-elev-1);
+        border-bottom:1px solid var(--border); padding:.8rem var(--container-pad)}
+      .nav-menu.show{display:block}
+      .nav-links{flex-direction:column; align-items:flex-start; gap:.6rem}
+      .btn-primary{margin-top:.6rem}
     }
 
-    /* -----------------------------------------------------------------
-       BASE RESET
-    ----------------------------------------------------------------- */
-    *, *::before, *::after { box-sizing: border-box; }
-    html, body { height: 100%; }
-    body {
-      margin: 0;
-      font-family: var(--ff-sans);
-      font-size: var(--fs-body);
-      line-height: 1.6;
-      color: var(--text);
-      background: var(--bg);
-      text-rendering: optimizeLegibility;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-    }
-    img { max-width: 100%; display: block; }
-    a { color: var(--primary); text-decoration: none; }
-    a:hover { color: var(--primary-strong); }
-    button, input, select, textarea { font: inherit; color: inherit; }
-    ::selection { background: rgba(122,162,255,0.35); }
+    /* ------------------------------
+       Hero
+    ------------------------------ */
+    .hero{background:var(--grad-hero)}
+    .hero-inner{display:grid; grid-template-columns:1.2fr .8fr; gap:var(--space-6); align-items:center;
+      padding:clamp(2rem,6vw,4rem) 0}
+    @media (max-width:900px){.hero-inner{grid-template-columns:1fr}}
 
-    /* Skip link */
-    .skip-link {
-      position: absolute;
-      left: -999px;
-      top: auto;
-      width: 1px;
-      height: 1px;
-      overflow: hidden;
-    }
-    .skip-link:focus {
-      position: fixed;
-      left: var(--space-4);
-      top: var(--space-4);
-      width: auto; height: auto;
-      background: var(--bg-elev-2);
-      color: var(--text);
-      padding: var(--space-2) var(--space-3);
-      border-radius: var(--radius-sm);
-      box-shadow: var(--shadow-1);
-      z-index: 10000;
-    }
+    .eyebrow{display:inline-flex; align-items:center; gap:.45rem; padding:.25rem .6rem; font-size:.85rem; border-radius:999px;
+      color:#0f1524; background:linear-gradient(180deg,#bcd0ff,#8fb1ff); box-shadow:inset 0 1px 0 rgba(255,255,255,.5); font-weight:700}
+    .hero h1{font-family:var(--ff-display); font-weight:700; letter-spacing:.3px; font-size:var(--fs-hero); line-height:1.08;
+      margin:var(--space-4) 0 var(--space-4)}
+    .hero p{color:var(--text-muted); max-width:60ch; margin-bottom:var(--space-5)}
+    .cta-row{display:flex; flex-wrap:wrap; gap:var(--space-3)}
+    .btn-outline{border:1px solid color-mix(in oklab, var(--primary), #ffffff 10%); color:var(--text);
+      padding:.55rem .9rem; border-radius:10px; background:linear-gradient(180deg, rgba(49,87,255,.10), rgba(49,87,255,.05));
+      transition:border-color var(--time-2) var(--ease), transform var(--time-1) var(--ease); font-weight:600}
+    .btn-outline:hover{transform:translateY(-1px); border-color:var(--primary)}
 
-    /* Focus visible */
-    :focus-visible {
-      outline: 2px solid var(--accent);
-      outline-offset: 2px;
-      border-radius: 8px;
-    }
+    /* ------------------------------
+       Cards / Utilities
+    ------------------------------ */
+    .card{background:var(--card); border:1px solid var(--border); border-radius:var(--radius-lg); box-shadow:var(--shadow-2); overflow:hidden}
+    .card-pad{padding:var(--space-5)}
+    .media{position:relative; width:100%; aspect-ratio:16/9; background:var(--bg-elev-2)}
+    .media img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover}
+    .section h2{font-family:var(--ff-display); font-size:var(--fs-h2); margin:0 0 var(--space-4)}
+    .muted{color:var(--text-muted)}
+    .link-title{color:var(--text); display:inline-block; transition:transform var(--time-1) var(--ease), color var(--time-2) var(--ease)}
+    .link-title:hover{color:var(--primary); transform:translateY(-1px)}
 
-    /* -----------------------------------------------------------------
-       LAYOUT
-    ----------------------------------------------------------------- */
-    .container {
-      width: min(100%, var(--container-max));
-      margin-inline: auto;
-      padding-inline: var(--container-pad);
-    }
+    /* ------------------------------
+       Quote Block
+    ------------------------------ */
+    .quote-block{position:relative; padding:var(--space-5);
+      background:radial-gradient(600px 260px at 20% 0%, rgba(49,87,255,.12), rgba(0,0,0,0)), var(--card);
+      border:1px solid var(--border); border-radius:var(--radius-lg); box-shadow:var(--shadow-2)}
+    .quote-text{font-family:var(--ff-display); font-weight:700; letter-spacing:.25px;
+      font-size:clamp(1.125rem, 1.2vw + 1rem, 1.5rem); line-height:1.4}
+    .quote-author{margin-top:.5rem; color:var(--text-muted); font-weight:600}
+    .chip{display:inline-flex; align-items:center; gap:.35rem; padding:.3rem .6rem; border-radius:999px;
+      border:1px solid var(--border); background:linear-gradient(180deg, rgba(255,255,255,.6), rgba(255,255,255,.3)); color:var(--text-muted); font-size:.85rem}
 
-    section.section {
-      padding: clamp(2.25rem, 4vw, 3.25rem) 0;
-      background: transparent;
-    }
-    section.section.has-tint {
-      background: var(--grad-section);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-    }
-
-    .grid {
-      display: grid;
-      gap: var(--space-5);
-    }
-    .grid-3 {
-      grid-template-columns: repeat(3, minmax(0,1fr));
-    }
-    .grid-2 {
-      grid-template-columns: repeat(2, minmax(0,1fr));
-    }
-    @media (max-width: 1024px) {
-      .grid-3 { grid-template-columns: repeat(2, minmax(0,1fr)); }
-    }
-    @media (max-width: 640px) {
-      .grid-3, .grid-2 { grid-template-columns: 1fr; }
-    }
-
-    /* -----------------------------------------------------------------
-       HEADER / NAV
-    ----------------------------------------------------------------- */
-    header.site-header {
-      position: sticky;
-      top: 0;
-      z-index: 900;
-      backdrop-filter: saturate(140%) blur(8px);
-      background: color-mix(in oklab, var(--bg), transparent 25%);
-      border-bottom: 1px solid var(--border);
-    }
-    .nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: 64px;
-      gap: var(--space-4);
-    }
-    .brand {
-      display: inline-flex;
-      align-items: center;
-      gap: var(--space-3);
-      text-decoration: none;
-    }
-    .brand img {
-      width: 40px; height: 40px;
-      border-radius: 10px;
-      box-shadow: 0 6px 18px rgba(0,0,0,.25);
-    }
-    .brand span {
-      font-family: var(--ff-display);
-      font-weight: 700;
-      letter-spacing: .2px;
-      font-size: 1.05rem;
-      color: var(--text);
-    }
-    .nav-links {
-      display: flex; align-items: center; gap: var(--space-4);
-    }
-    .nav-links a {
-      color: var(--text);
-      opacity: .9;
-      font-weight: 500;
-      padding: .35rem .5rem;
-      border-radius: 8px;
-      transition: background var(--time-2) var(--ease), opacity var(--time-1) var(--ease);
-    }
-    .nav-links a:hover { background: var(--bg-elev-2); opacity: 1; }
-    .btn-primary {
-      background: var(--grad-accent);
-      color: #1a1206;
-      padding: .55rem .9rem;
-      font-weight: 700;
-      border-radius: 10px;
-      box-shadow: 0 8px 18px rgba(255, 151, 55, 0.25);
-      transition: transform var(--time-1) var(--ease), box-shadow var(--time-2) var(--ease);
-      display: inline-flex; align-items: center; gap: .5rem;
-    }
-    .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 12px 26px rgba(255,151,55,.32); }
-
-    /* Mobile nav toggle (controlled by JS class 'show') */
-    .nav-menu { display: flex; gap: var(--space-4); }
-    .menu-toggle {
-      display: none;
-      background: transparent; border: 0; color: var(--text);
-      font-size: 1.35rem; line-height: 1;
-      padding: .35rem .5rem;
-      border-radius: 8px;
-    }
-    @media (max-width: 820px) {
-      .menu-toggle { display: inline-flex; }
-      .nav-menu { display: none; flex-direction: column; position: absolute; left: 0; right: 0; top: 64px;
-        background: var(--bg-elev-1); border-bottom: 1px solid var(--border); padding: .75rem var(--container-pad); }
-      .nav-menu.show { display: flex; }
-      .nav-links { flex-direction: column; align-items: flex-start; gap: .5rem; }
-      .btn-primary { margin-top: .5rem; }
-    }
-
-    /* -----------------------------------------------------------------
-       HERO
-    ----------------------------------------------------------------- */
-    .hero {
-      background: var(--grad-hero);
-      position: relative;
-      overflow: clip;
-    }
-    .hero-inner {
-      display: grid;
-      grid-template-columns: 1.2fr .8fr;
-      gap: var(--space-6);
-      align-items: center;
-      padding-top: clamp(2rem, 6vw, 4rem);
-      padding-bottom: clamp(2rem, 6vw, 4rem);
-    }
-    @media (max-width: 900px){ .hero-inner { grid-template-columns: 1fr; } }
-
-    .eyebrow {
-      display: inline-flex; align-items: center; gap: .5rem;
-      padding: .25rem .6rem;
-      font-size: .85rem;
-      border-radius: 999px;
-      color: #0f1524;
-      background: linear-gradient(180deg,#bcd0ff,#8fb1ff);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,.5);
-      font-weight: 700;
-      letter-spacing: .25px;
-    }
-    .hero h1 {
-      font-family: var(--ff-display);
-      font-weight: 700;
-      letter-spacing: .3px;
-      font-size: var(--fs-hero);
-      line-height: 1.08;
-      margin: var(--space-4) 0 var(--space-4);
-    }
-    .hero p {
-      color: var(--text-muted);
-      max-width: 60ch;
-      margin-bottom: var(--space-5);
-    }
-    .cta-row { display: flex; flex-wrap: wrap; gap: var(--space-3); }
-    .btn-outline {
-      border: 1px solid color-mix(in oklab, var(--primary), #ffffff 10%);
-      color: var(--text);
-      padding: .55rem .9rem;
-      border-radius: 10px;
-      background: linear-gradient(180deg, rgba(122,162,255,.12), rgba(122,162,255,.06));
-      transition: border-color var(--time-2) var(--ease), transform var(--time-1) var(--ease);
-      font-weight: 600;
-    }
-    .btn-outline:hover { transform: translateY(-1px); border-color: var(--primary); }
-
-    /* -----------------------------------------------------------------
-       FEATURE STRIP / CARDS
-    ----------------------------------------------------------------- */
-    .card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      box-shadow: var(--shadow-2);
-      overflow: clip;
-    }
-    .card-pad { padding: var(--space-5); }
-    .card h3 {
-      margin: 0 0 .35rem 0;
-      font-family: var(--ff-display);
-      font-weight: 700;
-      font-size: 1.05rem;
-      letter-spacing: .2px;
-    }
-    .muted { color: var(--text-muted); }
-
-    /* Media aspect helper for images */
-    .media {
-      position: relative; width: 100%;
-      aspect-ratio: 16/9;
-      background: #0a0c12;
-    }
-    .media img {
-      position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
-      filter: saturate(1.05);
-    }
-
-    /* Quote block */
-    .quote-block {
-      position: relative;
-      padding: var(--space-6);
-      background: radial-gradient(600px 260px at 20% 0%, rgba(122,162,255,.14), rgba(0,0,0,0)),
-                  var(--card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      box-shadow: var(--shadow-2);
-    }
-    .quote-text {
-      font-family: var(--ff-display);
-      font-weight: 700;
-      letter-spacing: .25px;
-      font-size: clamp(1.125rem, 1.2vw + 1rem, 1.5rem);
-      line-height: 1.4;
-    }
-    .quote-author { margin-top: .5rem; color: var(--text-muted); font-weight: 600; }
-
-    /* Section titles */
-    .section h2 {
-      font-family: var(--ff-display);
-      font-size: var(--fs-h2);
-      letter-spacing: .2px;
-      margin: 0 0 var(--space-4) 0;
-    }
-
-    /* Link cards (title hover) */
-    .link-title {
-      color: var(--text);
-      text-decoration: none;
-      display: inline-block;
-      transition: transform var(--time-1) var(--ease), color var(--time-2) var(--ease);
-    }
-    .link-title:hover { color: var(--primary); transform: translateY(-1px); }
-
-    /* Chips */
-    .chip {
-      display: inline-flex; align-items: center;
-      gap: .35rem; padding: .3rem .6rem;
-      border-radius: 999px;
-      border: 1px solid var(--border);
-      background: linear-gradient(180deg, rgba(255,255,255,.02), rgba(0,0,0,.05));
-      color: var(--text-muted);
-      font-size: .85rem;
-    }
-
-    /* Footer */
-    footer.site-footer {
-      border-top: 1px solid var(--border);
-      background: linear-gradient(180deg, rgba(122,162,255,.06), rgba(122,162,255,0));
-      padding: var(--space-6) 0;
-      color: var(--text-muted);
-    }
-    .footer-row {
-      display: flex; flex-wrap: wrap; gap: var(--space-5);
-      align-items: center; justify-content: space-between;
-    }
-    .footer-links {
-      display: flex; gap: var(--space-4); flex-wrap: wrap;
-    }
-    .footer-links a {
-      color: var(--text-muted);
-      text-decoration: none;               /* <- no underline in footer */
-      font-weight: 500;
-    }
-    .footer-links a:hover { color: var(--text); }
-
-    /* Utilities */
-    .visually-hidden {
-      position: absolute !important;
-      width: 1px; height: 1px; padding: 0; margin: -1px;
-      overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
-    }
-    .truncate {
-      overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
-    }
+    /* ------------------------------
+       Footer
+    ------------------------------ */
+    footer.site-footer{border-top:1px solid var(--border); background:linear-gradient(180deg, rgba(49,87,255,.06), rgba(49,87,255,0));
+      padding:var(--space-6) 0; color:var(--text-muted)}
+    .footer-row{display:flex; flex-wrap:wrap; gap:var(--space-5); align-items:center; justify-content:space-between}
+    .footer-links{display:flex; gap:var(--space-4); flex-wrap:wrap}
+    .footer-links a{color:var(--text-muted); text-decoration:none; font-weight:500}
+    .footer-links a:hover{color:var(--text)}
   </style>
 </head>
 <body>
   <a href="#main" class="skip-link">Skip to content</a>
 
-  <!-- ===========================
-       HEADER / NAV
-  ============================ -->
+  <!-- =========================================================
+       Header / Navigation
+  ========================================================== -->
   <header class="site-header">
     <div class="container nav">
       <a class="brand" href="/" aria-label="Quotesn home">
@@ -513,27 +259,26 @@
         <span>Quotesn</span>
       </a>
 
-      <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-menu">☰</button>
+      <button class="menu-toggle" aria-label="Toggle menu" aria-controls="nav-menu" aria-expanded="false">☰</button>
 
       <div class="nav-menu" id="nav-menu">
         <nav class="nav-links" aria-label="Primary">
           <a href="https://app.quotesn.com/" rel="noopener">Quotes App</a>
           <a href="/pro-post-generator">Pro Post Generator</a>
           <a href="/quizzes/">Quizzes</a>
-          <a href="#quote-of-day">Quote of the Day</a>
           <a href="/blog/">Blog</a>
-          <a href="/about/">About Us</a>
-          <a href="/contact/">Contact Us</a>
-          <a class="btn-primary" href="https://app.quotesn.com/" rel="noopener" aria-label="Browse the Quotes App on app.quotesn.com">Browse Library</a>
+          <a href="/about/">About</a>
+          <a href="/contact/">Contact</a>
+          <a class="btn-primary" href="https://app.quotesn.com/" rel="noopener" aria-label="Open the Quotes app">Quotes</a>
         </nav>
       </div>
     </div>
   </header>
 
   <main id="main">
-    <!-- ===========================
-         HERO
-    ============================ -->
+    <!-- =========================================================
+         Hero
+    ========================================================== -->
     <section class="hero">
       <div class="container hero-inner">
         <div>
@@ -541,160 +286,164 @@
           <h1>Quotes, Quizzes &amp; Inspiration to Brighten Your Day</h1>
           <p>Explore thousands of motivational and inspirational quotes, fun quizzes, and shareable wisdom — free, every day. Curated categories, beautiful share cards, and fast navigation.</p>
           <div class="cta-row">
-            <a class="btn-primary" href="https://app.quotesn.com/" rel="noopener" aria-label="Open Quotes App on app.quotesn.com">Open Quotes App</a>
+            <a class="btn-primary" href="https://app.quotesn.com/" rel="noopener">Open Quotes App</a>
             <a class="btn-outline" href="/pro-post-generator">Try Pro Post Generator</a>
           </div>
         </div>
 
-        <!-- Quote of the Day (author appears ONCE, below the quote) -->
+        <!-- Quote of the Day (body section; not in top nav) -->
         <div class="quote-block" id="quote-of-day" aria-live="polite">
           <div class="chip" aria-hidden="true">Quote of the Day</div>
-          <!-- Default content for no-JS; JS will replace text only -->
           <p class="quote-text" id="quote-text">“The journey of a thousand miles begins with a single step.”</p>
           <div class="quote-author" id="quote-author">— Lao Tzu</div>
         </div>
       </div>
     </section>
 
-    <!-- ===========================
-         FEATURE STRIP
-    ============================ -->
+    <!-- =========================================================
+         Feature Strip
+    ========================================================== -->
     <section class="section has-tint">
       <div class="container grid grid-3">
         <article class="card card-pad">
-          <h3><a class="link-title" href="https://app.quotesn.com/" rel="noopener">Quotes App</a></h3>
+          <h2 style="margin:0 0 .35rem 0; font-size:1.1rem"><a class="link-title" href="https://app.quotesn.com/" rel="noopener">Quotes App</a></h2>
           <p class="muted">Browse by category, mood, and author. Create shareable text &amp; image posts in a tap.</p>
         </article>
-
         <article class="card card-pad">
-          <h3><a class="link-title" href="/pro-post-generator">Pro Post Generator</a></h3>
+          <h2 style="margin:0 0 .35rem 0; font-size:1.1rem"><a class="link-title" href="/pro-post-generator">Pro Post Generator</a></h2>
           <p class="muted">Turn quotes into polished social posts with perfect aspect ratios and crisp typography.</p>
         </article>
-
         <article class="card card-pad">
-          <h3><a class="link-title" href="/quizzes/">Quizzes</a></h3>
+          <h2 style="margin:0 0 .35rem 0; font-size:1.1rem"><a class="link-title" href="/quizzes/">Quizzes</a></h2>
           <p class="muted">Test your knowledge with fun quote trivia and author guessers.</p>
         </article>
       </div>
     </section>
 
-    <!-- ===========================
-         TRENDING QUIZZES (local static, Option A)
-    ============================ -->
+    <!-- =========================================================
+         Trending Quizzes
+    ========================================================== -->
     <section class="section">
       <div class="container">
         <h2>Trending Quizzes</h2>
         <div class="grid grid-3">
           <article class="card">
             <div class="media">
-              <img src="https://picsum.photos/640/360?random=1" width="640" height="360" alt="Collage of famous authors for the Famous Quotes Quiz" loading="lazy">
+              <img src="https://picsum.photos/640/360?random=1" srcset="https://picsum.photos/640/360?random=1 640w, https://picsum.photos/960/540?random=1 960w" sizes="(max-width: 640px) 100vw, 33vw" width="640" height="360" alt="Collage of classic authors for the Famous Quotes Quiz" loading="lazy">
             </div>
             <div class="card-pad">
-              <h3><a class="link-title" href="/quizzes/famous-quotes/">Famous Quotes Quiz</a></h3>
-              <p class="muted truncate">Match legendary lines to their authors in this classic challenge.</p>
+              <h3 style="margin:.2rem 0 0"><a class="link-title" href="/quizzes/famous-quotes/">Famous Quotes Quiz</a></h3>
+              <p class="muted" style="margin:.4rem 0 0">Match legendary lines to their authors in this classic challenge.</p>
             </div>
           </article>
 
           <article class="card">
             <div class="media">
-              <img src="https://picsum.photos/640/360?random=2" width="640" height="360" alt="Vibrant abstract shapes for the Motivational Quotes Challenge" loading="lazy">
+              <img src="https://picsum.photos/640/360?random=2" srcset="https://picsum.photos/640/360?random=2 640w, https://picsum.photos/960/540?random=2 960w" sizes="(max-width: 640px) 100vw, 33vw" width="640" height="360" alt="Vibrant abstract shapes for the Motivational Quotes Challenge" loading="lazy">
             </div>
             <div class="card-pad">
-              <h3><a class="link-title" href="/quizzes/motivational-challenge/">Motivational Quotes Challenge</a></h3>
-              <p class="muted truncate">How well do you know the most uplifting messages of all time?</p>
+              <h3 style="margin:.2rem 0 0"><a class="link-title" href="/quizzes/motivational-challenge/">Motivational Quotes Challenge</a></h3>
+              <p class="muted" style="margin:.4rem 0 0">How well do you know the most uplifting messages of all time?</p>
             </div>
           </article>
 
           <article class="card">
             <div class="media">
-              <img src="https://picsum.photos/640/360?random=3" width="640" height="360" alt="Question mark pattern for the Who Said It quiz" loading="lazy">
+              <img src="https://picsum.photos/640/360?random=3" srcset="https://picsum.photos/640/360?random=3 640w, https://picsum.photos/960/540?random=3 960w" sizes="(max-width: 640px) 100vw, 33vw" width="640" height="360" alt="Question mark pattern for Who Said It quiz" loading="lazy">
             </div>
             <div class="card-pad">
-              <h3><a class="link-title" href="/quizzes/who-said-it/">Who Said It?</a></h3>
-              <p class="muted truncate">Read the line. Guess the mind. Can you spot the author?</p>
+              <h3 style="margin:.2rem 0 0"><a class="link-title" href="/quizzes/who-said-it/">Who Said It?</a></h3>
+              <p class="muted" style="margin:.4rem 0 0">Read the line. Guess the mind. Can you spot the author?</p>
             </div>
           </article>
-        </div>
-
-        <div class="cta-row" style="margin-top: var(--space-5);">
-          <a class="btn-outline" href="/quizzes/">See all quizzes</a>
         </div>
       </div>
     </section>
 
-    <!-- ===========================
-         BLOG TEASERS (Option A slugs)
-    ============================ -->
+    <!-- =========================================================
+         Blog Teasers
+    ========================================================== -->
     <section class="section has-tint">
       <div class="container">
         <h2>From Our Blog</h2>
         <div class="grid grid-3">
           <article class="card">
             <div class="media">
-              <img src="https://picsum.photos/640/360?random=4" width="640" height="360" alt="Notebook and pen for inspirational quotes article" loading="lazy">
+              <img src="https://picsum.photos/640/360?random=4" srcset="https://picsum.photos/640/360?random=4 640w, https://picsum.photos/960/540?random=4 960w" sizes="(max-width: 640px) 100vw, 33vw" width="640" height="360" alt="Notebook and pen for inspirational quotes article" loading="lazy">
             </div>
             <div class="card-pad">
-              <h3><a class="link-title" href="/blog/top-50-inspirational-quotes-2025/">Top 50 Inspirational Quotes for 2025</a></h3>
-              <p class="muted truncate">Curated wisdom to start the year with clarity and energy.</p>
+              <h3 style="margin:.2rem 0 0"><a class="link-title" href="/blog/top-50-inspirational-quotes-2025/">Top 50 Inspirational Quotes for 2025</a></h3>
+              <p class="muted" style="margin:.4rem 0 0">Curated wisdom to start the year with clarity and energy.</p>
             </div>
           </article>
 
           <article class="card">
             <div class="media">
-              <img src="https://picsum.photos/640/360?random=5" width="640" height="360" alt="Playful icons for fun quizzes article" loading="lazy">
+              <img src="https://picsum.photos/640/360?random=5" srcset="https://picsum.photos/640/360?random=5 640w, https://picsum.photos/960/540?random=5 960w" sizes="(max-width: 640px) 100vw, 33vw" width="640" height="360" alt="Playful icons for fun quizzes article" loading="lazy">
             </div>
             <div class="card-pad">
-              <h3><a class="link-title" href="/blog/10-fun-quizzes-to-spark-your-mind/">10 Fun Quizzes to Spark Your Mind</a></h3>
-              <p class="muted truncate">Quick, engaging brain-boosters for your coffee break.</p>
+              <h3 style="margin:.2rem 0 0"><a class="link-title" href="/blog/10-fun-quizzes-to-spark-your-mind/">10 Fun Quizzes to Spark Your Mind</a></h3>
+              <p class="muted" style="margin:.4rem 0 0">Quick, engaging brain-boosters for your coffee break.</p>
             </div>
           </article>
 
           <article class="card">
             <div class="media">
-              <img src="https://picsum.photos/640/360?random=6" width="640" height="360" alt="Sunrise for motivational quotes article" loading="lazy">
+              <img src="https://picsum.photos/640/360?random=6" srcset="https://picsum.photos/640/360?random=6 640w, https://picsum.photos/960/540?random=6 960w" sizes="(max-width: 640px) 100vw, 33vw" width="640" height="360" alt="Sunrise for motivational quotes article" loading="lazy">
             </div>
             <div class="card-pad">
-              <h3><a class="link-title" href="/blog/daily-dose-of-motivation/">Daily Dose of Motivation</a></h3>
-              <p class="muted truncate">Tiny sparks that add up to big momentum.</p>
+              <h3 style="margin:.2rem 0 0"><a class="link-title" href="/blog/daily-dose-of-motivation/">Daily Dose of Motivation</a></h3>
+              <p class="muted" style="margin:.4rem 0 0">Tiny sparks that add up to big momentum.</p>
             </div>
           </article>
-        </div>
-
-        <div class="cta-row" style="margin-top: var(--space-5);">
-          <a class="btn-outline" href="/blog/">Read all posts</a>
         </div>
       </div>
     </section>
 
-    <!-- ===========================
-         ABOUT
-    ============================ -->
+    <!-- =========================================================
+         About Preview & Contact CTA
+    ========================================================== -->
     <section class="section">
       <div class="container grid grid-2">
-        <div>
+        <div class="card card-pad">
           <h2>About Quotesn</h2>
-          <p class="muted">Quotesn is your go-to destination for uplifting quotes, engaging quizzes, and creative post generation tools. We believe in the power of words to inspire change and connection.</p>
+          <p class="muted">Quotesn is your destination for uplifting quotes, engaging quizzes, and creative post-generation tools. We believe in the power of words to inspire change and connection.</p>
           <div class="cta-row" style="margin-top:.5rem;">
-            <a class="btn-outline" href="/about/">Learn More</a>
+            <a class="btn-outline" href="/about/">Learn About Us</a>
           </div>
         </div>
-        <div class="quote-block">
-          <div class="chip" aria-hidden="true">Why people love us</div>
-          <p class="quote-text">“Beautiful presentation, fast browsing, and instant shareables. Quotesn makes inspiration part of my routine.”</p>
-          <div class="quote-author">— Happy Reader</div>
-        </div>
+
+        <!-- Simple Contact (client-side only) -->
+        <form class="card card-pad" id="contact-form" novalidate>
+          <h2>Contact</h2>
+          <p class="muted" style="margin:0 0 .75rem">Have feedback or a quote request? Send a note.</p>
+          <div style="display:grid; gap:.75rem">
+            <label>
+              <span class="visually-hidden">Your email</span>
+              <input type="email" id="email" name="email" inputmode="email" placeholder="you@example.com" required
+                style="width:100%;padding:.7rem .9rem;border:1px solid var(--border);border-radius:10px;background:var(--bg-elev-1);color:var(--text)">
+            </label>
+            <label>
+              <span class="visually-hidden">Message</span>
+              <textarea id="message" name="message" rows="3" placeholder="Your message..." required
+                style="width:100%;padding:.7rem .9rem;border:1px solid var(--border);border-radius:10px;background:var(--bg-elev-1);color:var(--text)"></textarea>
+            </label>
+            <button type="submit" class="btn-primary" style="justify-content:center;">Send</button>
+            <p id="form-status" class="muted" role="status" aria-live="polite" style="margin:0"></p>
+          </div>
+        </form>
       </div>
     </section>
   </main>
 
-  <!-- ===========================
-       FOOTER  (links have no underline)
-  ============================ -->
+  <!-- =========================================================
+       Footer
+  ========================================================== -->
   <footer class="site-footer">
     <div class="container footer-row">
       <div class="brand" aria-label="Quotesn home">
         <img src="https://app.quotesn.com/images/app_logo.png" width="36" height="36" alt="">
-        <span class="truncate">Quotesn</span>
+        <span>Quotesn</span>
       </div>
       <nav class="footer-links" aria-label="Footer">
         <a href="/privacy">Privacy</a>
@@ -706,74 +455,76 @@
     </div>
   </footer>
 
-  <!-- Minimal, non-animated JS (content only; no layout/animation) -->
+  <!-- =========================================================
+       Tiny Vanilla JS (defer)
+  ========================================================== -->
   <script defer>
-    // ----------------------------
-    // Daily Quote Rotation (8 items)
-    // Shows the same quote to all visitors on the same day (UTC),
-    // changes once every 24h. Author appears ONLY below the quote.
-    // ----------------------------
-    const DAILY_QUOTES = [
-      { text: "The journey of a thousand miles begins with a single step.", author: "Lao Tzu" },
-      { text: "You miss 100% of the shots you don’t take.", author: "Wayne Gretzky" },
-      { text: "In the middle of every difficulty lies opportunity.", author: "Albert Einstein" },
-      { text: "What you do speaks so loudly that I cannot hear what you say.", author: "Ralph Waldo Emerson" },
-      { text: "It is never too late to be what you might have been.", author: "George Eliot" },
-      { text: "The only way to do great work is to love what you do.", author: "Steve Jobs" },
-      { text: "Whether you think you can, or you think you can’t—you’re right.", author: "Henry Ford" },
-      { text: "What we think, we become.", author: "Buddha" }
-    ];
+    // ---- Mobile nav toggler (no layout shift) ----
+    (function(){
+      const btn=document.querySelector('.menu-toggle');
+      const menu=document.getElementById('nav-menu');
+      if(!btn||!menu) return;
+      btn.addEventListener('click',()=>{
+        const open = menu.classList.toggle('show');
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+    })();
 
-    function dayIndexUTC() {
-      // Days since Unix epoch in UTC
+    // ---- Quote of the Day (fixed set, same author once) ----
+    (function(){
+      const QUOTES = [
+        {t:"The journey of a thousand miles begins with a single step.", a:"Lao Tzu"},
+        {t:"You miss 100% of the shots you don’t take.", a:"Wayne Gretzky"},
+        {t:"In the middle of every difficulty lies opportunity.", a:"Albert Einstein"},
+        {t:"It is never too late to be what you might have been.", a:"George Eliot"},
+        {t:"The only way to do great work is to love what you do.", a:"Steve Jobs"},
+        {t:"Whether you think you can, or you think you can’t—you’re right.", a:"Henry Ford"},
+        {t:"What you do speaks so loudly that I cannot hear what you say.", a:"Ralph Waldo Emerson"},
+        {t:"Try not to become a man of success, but rather try to become a man of value.", a:"Albert Einstein"},
+        {t:"Raise your words, not voice. It is rain that grows flowers, not thunder.", a:"Rumi"},
+        {t:"Success is not final, failure is not fatal: it is the courage to continue that counts.", a:"Winston Churchill"},
+        {t:"If you can dream it, you can do it.", a:"Walt Disney"},
+        {t:"Nothing will work unless you do.", a:"Maya Angelou"}
+      ];
       const now = new Date();
-      const utcMidnight = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate());
-      return Math.floor(utcMidnight / 86400000); // 24*60*60*1000
-    }
-
-    (function renderDailyQuote(){
-      const idx = dayIndexUTC() % DAILY_QUOTES.length;
-      const q = DAILY_QUOTES[idx];
-      const qTextEl = document.getElementById('quote-text');
-      const qAuthorEl = document.getElementById('quote-author');
-      if (qTextEl) qTextEl.textContent = `“${q.text}”`;
-      if (qAuthorEl) qAuthorEl.textContent = `— ${q.author}`;
+      const day = Math.floor(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate()) / 86400000);
+      const q = QUOTES[day % QUOTES.length];
+      const qt=document.getElementById('quote-text');
+      const qa=document.getElementById('quote-author');
+      if(qt) qt.textContent = `“${q.t}”`;
+      if(qa) qa.textContent = `— ${q.a}`;
     })();
 
-    // ----------------------------
-    // Mobile nav toggler
-    // ----------------------------
-    const menuBtn = document.querySelector('.menu-toggle');
-    const navMenu = document.querySelector('.nav-menu');
-    if (menuBtn && navMenu) {
-      menuBtn.addEventListener('click', () => {
-        const open = navMenu.classList.toggle('show');
-        menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
-      });
-    }
+    // ---- Contact form (client-side only) ----
+    (function(){
+      const form = document.getElementById('contact-form');
+      if(!form) return;
+      const email = document.getElementById('email');
+      const message = document.getElementById('message');
+      const status = document.getElementById('form-status');
 
-    // ----------------------------
-    // Nav aria-current for internal links
-    // ----------------------------
-    (function() {
-      const path = location.pathname.replace(/\/+$/, '') || '/';
-      document.querySelectorAll('nav[aria-label="Primary"] a').forEach(a => {
-        try {
-          const url = new URL(a.href, location.origin);
-          const sameHost = url.origin === location.origin;
-          if (sameHost) {
-            const hrefPath = url.pathname.replace(/\/+$/, '') || '/';
-            if (path === hrefPath || path.startsWith(hrefPath + '/')) {
-              a.setAttribute('aria-current', 'page');
-            }
-          }
-        } catch {}
+      form.addEventListener('submit', (e)=>{
+        e.preventDefault();
+        if(!email.checkValidity()){
+          status.textContent = "Please enter a valid email address.";
+          email.focus();
+          return;
+        }
+        if(!message.value.trim()){
+          status.textContent = "Please write a short message.";
+          message.focus();
+          return;
+        }
+        // No backend; provide a friendly success note.
+        status.textContent = "Thanks! Your message has been noted.";
+        form.reset();
       });
     })();
 
-    // Year
-    const y = document.getElementById('year');
-    if (y) y.textContent = new Date().getFullYear();
+    // ---- Footer year ----
+    (function(){
+      const y=document.getElementById('year'); if(y) y.textContent=new Date().getFullYear();
+    })();
   </script>
 </body>
 </html>
