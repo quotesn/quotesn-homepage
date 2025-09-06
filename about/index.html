@@ -16,7 +16,7 @@
   <link rel="preconnect" href="https://app.quotesn.com" crossorigin>
   <link rel="dns-prefetch" href="https://app.quotesn.com">
 
-  <!-- Fonts -->
+  <!-- Fonts (optional; swap for CLS safety) -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700&display=swap" rel="stylesheet">
 
   <!-- Open Graph -->
@@ -25,6 +25,27 @@
   <meta property="og:image" content="https://app.quotesn.com/images/app_logo.png">
   <meta property="og:url" content="https://www.quotesn.com/about/">
   <meta name="twitter:card" content="summary_large_image">
+
+  <!-- JSON-LD: WebPage + BreadcrumbList -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"WebPage",
+    "name":"About Quotesn",
+    "url":"https://www.quotesn.com/about/",
+    "description":"Learn about Quotesn: our story, mission, and vision to make daily inspiration accessible, beautiful, and shareable."
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"BreadcrumbList",
+    "itemListElement":[
+      {"@type":"ListItem","position":1,"name":"Home","item":"https://www.quotesn.com/"},
+      {"@type":"ListItem","position":2,"name":"About","item":"https://www.quotesn.com/about/"}
+    ]
+  }
+  </script>
 
   <style>
     /* === QUOTESN DESIGN SYSTEM (same as homepage) ===================== */
@@ -123,23 +144,24 @@
 <body>
   <a href="#main" class="skip-link">Skip to content</a>
 
-  <!-- Header (identical to homepage) -->
+  <!-- Header (matches homepage; internal links point to local pages) -->
   <header class="site-header">
     <div class="container nav">
-      <a class="brand" href="/">
+      <a class="brand" href="/" aria-label="Quotesn home">
         <img src="https://app.quotesn.com/images/app_logo.png" width="40" height="40" alt="Quotesn logo">
         <span>Quotesn</span>
       </a>
-      <button class="menu-toggle" aria-label="Toggle menu">☰</button>
+      <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-menu">☰</button>
       <div class="nav-menu" id="nav-menu">
         <nav class="nav-links" aria-label="Primary">
-          <a href="https://app.quotesn.com/">Quotes App</a>
+          <a href="https://app.quotesn.com/" rel="noopener">Quotes App</a>
           <a href="/pro-post-generator">Pro Post Generator</a>
-          <a href="https://app.quotesn.com/quizzes">Quizzes</a>
+          <a href="/quizzes/">Quizzes</a>
           <a href="/#quote-of-day">Quote of the Day</a>
-          <a href="/blog">Blog</a>
-          <a href="/about" aria-current="page">About Us</a>
-          <a class="btn-primary" href="https://app.quotesn.com/">Browse Library</a>
+          <a href="/blog/">Blog</a>
+          <a href="/about/" aria-current="page">About Us</a>
+          <a href="/contact/">Contact Us</a>
+          <a class="btn-primary" href="https://app.quotesn.com/" rel="noopener" aria-label="Browse the Quotes App on app.quotesn.com">Browse Library</a>
         </nav>
       </div>
     </div>
@@ -161,8 +183,8 @@
           <h2>Our Story &amp; Mission</h2>
           <p class="muted">Quotesn was born from a simple idea: bring inspiring words closer to people’s everyday lives. We curate credible quotes, present them beautifully, and make sharing effortless — so positivity travels faster.</p>
         </article>
-        <aside class="quote-block">
-          <p class="quote-text">“The only limit to our realization of tomorrow is our doubts of today.”</p>
+        <aside class="quote-block" aria-labelledby="about-quote-1">
+          <p id="about-quote-1" class="quote-text">“The only limit to our realization of tomorrow is our doubts of today.”</p>
           <div class="quote-author">— Franklin D. Roosevelt</div>
         </aside>
       </div>
@@ -195,15 +217,15 @@
     <!-- Community note -->
     <section class="section">
       <div class="container">
-        <div class="quote-block">
-          <div class="quote-text">“Quotesn has become my morning ritual — I start the day with a smile and share that joy with friends.”</div>
+        <div class="quote-block" aria-labelledby="about-quote-2">
+          <p id="about-quote-2" class="quote-text">“Quotesn has become my morning ritual — I start the day with a smile and share that joy with friends.”</p>
           <div class="quote-author">— A Happy Reader</div>
         </div>
       </div>
     </section>
   </main>
 
-  <!-- Footer (identical to homepage) -->
+  <!-- Footer (matches homepage) -->
   <footer class="site-footer">
     <div class="container footer-row">
       <div class="brand" aria-label="Quotesn home">
@@ -214,16 +236,41 @@
         <a href="/privacy">Privacy</a>
         <a href="/terms">Terms</a>
         <a href="/sitemap.xml">Sitemap</a>
-        <a href="/contact">Contact</a>
+        <a href="/contact/">Contact</a>
         <span aria-hidden="true">© <span id="year"></span></span>
       </nav>
     </div>
   </footer>
 
   <script defer>
+    // Mobile nav toggler
     const menuBtn=document.querySelector('.menu-toggle');
     const navMenu=document.querySelector('.nav-menu');
-    menuBtn&&menuBtn.addEventListener('click',()=>navMenu.classList.toggle('show'));
+    if(menuBtn&&navMenu){
+      menuBtn.addEventListener('click',()=>{
+        const open = navMenu.classList.toggle('show');
+        menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+    }
+
+    // Mark current nav link for internal paths
+    (function() {
+      const path = location.pathname.replace(/\/+$/, '') || '/';
+      document.querySelectorAll('nav[aria-label="Primary"] a').forEach(a => {
+        try {
+          const url = new URL(a.href, location.origin);
+          const sameHost = url.origin === location.origin;
+          if (sameHost) {
+            const hrefPath = url.pathname.replace(/\/+$/, '') || '/';
+            if (path === hrefPath || path.startsWith(hrefPath + '/')) {
+              a.setAttribute('aria-current', 'page');
+            }
+          }
+        } catch {}
+      });
+    })();
+
+    // Year
     const y=document.getElementById('year'); if(y) y.textContent=new Date().getFullYear();
   </script>
 </body>
