@@ -17,7 +17,7 @@
   <link rel="preconnect" href="https://picsum.photos" crossorigin>
   <link rel="dns-prefetch" href="https://picsum.photos">
 
-  <!-- Fonts -->
+  <!-- Fonts (optional; swap for CLS safety) -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700&display=swap" rel="stylesheet">
 
   <!-- Open Graph -->
@@ -26,6 +26,48 @@
   <meta property="og:image" content="https://app.quotesn.com/images/app_logo.png">
   <meta property="og:url" content="https://www.quotesn.com/">
   <meta name="twitter:card" content="summary_large_image">
+
+  <!-- JSON-LD: WebSite + Organization + BreadcrumbList -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"WebSite",
+    "name":"Quotesn",
+    "url":"https://www.quotesn.com/",
+    "potentialAction":{
+      "@type":"SearchAction",
+      "target":"https://www.quotesn.com/search?q={search_term_string}",
+      "query-input":"required name=search_term_string"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Organization",
+    "name":"Quotesn",
+    "url":"https://www.quotesn.com/",
+    "logo":"https://app.quotesn.com/images/app_logo.png",
+    "sameAs":[
+      "https://twitter.com/",
+      "https://www.facebook.com/"
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"BreadcrumbList",
+    "itemListElement":[
+      {
+        "@type":"ListItem",
+        "position":1,
+        "name":"Home",
+        "item":"https://www.quotesn.com/"
+      }
+    ]
+  }
+  </script>
 
   <style>
     /* 
@@ -466,7 +508,7 @@
   ============================ -->
   <header class="site-header">
     <div class="container nav">
-      <a class="brand" href="/">
+      <a class="brand" href="/" aria-label="Quotesn home">
         <img src="https://app.quotesn.com/images/app_logo.png" width="40" height="40" alt="Quotesn logo">
         <span>Quotesn</span>
       </a>
@@ -481,7 +523,8 @@
           <a href="#quote-of-day">Quote of the Day</a>
           <a href="/blog/">Blog</a>
           <a href="/about/">About Us</a>
-          <a class="btn-primary" href="https://app.quotesn.com/" rel="noopener" aria-label="Open Quotes App on app.quotesn.com">Browse Library</a>
+          <a href="/contact/">Contact Us</a>
+          <a class="btn-primary" href="https://app.quotesn.com/" rel="noopener" aria-label="Browse the Quotes App on app.quotesn.com">Browse Library</a>
         </nav>
       </div>
     </div>
@@ -502,6 +545,7 @@
             <a class="btn-outline" href="/pro-post-generator">Try Pro Post Generator</a>
           </div>
         </div>
+
         <!-- Quote of the Day (author appears ONCE, below the quote) -->
         <div class="quote-block" id="quote-of-day" aria-live="polite">
           <div class="chip" aria-hidden="true">Quote of the Day</div>
@@ -535,7 +579,7 @@
     </section>
 
     <!-- ===========================
-         TRENDING QUIZZES
+         TRENDING QUIZZES (local static, Option A)
     ============================ -->
     <section class="section">
       <div class="container">
@@ -570,6 +614,10 @@
               <p class="muted truncate">Read the line. Guess the mind. Can you spot the author?</p>
             </div>
           </article>
+        </div>
+
+        <div class="cta-row" style="margin-top: var(--space-5);">
+          <a class="btn-outline" href="/quizzes/">See all quizzes</a>
         </div>
       </div>
     </section>
@@ -606,10 +654,14 @@
               <img src="https://picsum.photos/640/360?random=6" width="640" height="360" alt="Sunrise for motivational quotes article" loading="lazy">
             </div>
             <div class="card-pad">
-              <h3><a class="link-title" href="/blog/daily-dose-of-motivation/">Daily Dose of Motivation: Quotes to Live By</a></h3>
+              <h3><a class="link-title" href="/blog/daily-dose-of-motivation/">Daily Dose of Motivation</a></h3>
               <p class="muted truncate">Tiny sparks that add up to big momentum.</p>
             </div>
           </article>
+        </div>
+
+        <div class="cta-row" style="margin-top: var(--space-5);">
+          <a class="btn-outline" href="/blog/">Read all posts</a>
         </div>
       </div>
     </section>
@@ -654,29 +706,10 @@
     </div>
   </footer>
 
-  <!-- Auto “current page” highlighter (internal links only) -->
-  <script defer>
-    (function() {
-      const path = location.pathname.replace(/\/+$/, '') || '/';
-      document.querySelectorAll('nav[aria-label="Primary"] a').forEach(a => {
-        try {
-          const url = new URL(a.href, location.origin);
-          const sameHost = url.origin === location.origin;
-          if (sameHost) {
-            const hrefPath = url.pathname.replace(/\/+$/, '') || '/';
-            if (path === hrefPath || path.startsWith(hrefPath + '/')) {
-              a.setAttribute('aria-current', 'page');
-            }
-          }
-        } catch {}
-      });
-    })();
-  </script>
-
   <!-- Minimal, non-animated JS (content only; no layout/animation) -->
   <script defer>
     // ----------------------------
-    // Daily Quote Rotation (7 items)
+    // Daily Quote Rotation (8 items)
     // Shows the same quote to all visitors on the same day (UTC),
     // changes once every 24h. Author appears ONLY below the quote.
     // ----------------------------
@@ -687,7 +720,8 @@
       { text: "What you do speaks so loudly that I cannot hear what you say.", author: "Ralph Waldo Emerson" },
       { text: "It is never too late to be what you might have been.", author: "George Eliot" },
       { text: "The only way to do great work is to love what you do.", author: "Steve Jobs" },
-      { text: "Whether you think you can, or you think you can’t—you’re right.", author: "Henry Ford" }
+      { text: "Whether you think you can, or you think you can’t—you’re right.", author: "Henry Ford" },
+      { text: "What we think, we become.", author: "Buddha" }
     ];
 
     function dayIndexUTC() {
@@ -717,6 +751,25 @@
         menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
       });
     }
+
+    // ----------------------------
+    // Nav aria-current for internal links
+    // ----------------------------
+    (function() {
+      const path = location.pathname.replace(/\/+$/, '') || '/';
+      document.querySelectorAll('nav[aria-label="Primary"] a').forEach(a => {
+        try {
+          const url = new URL(a.href, location.origin);
+          const sameHost = url.origin === location.origin;
+          if (sameHost) {
+            const hrefPath = url.pathname.replace(/\/+$/, '') || '/';
+            if (path === hrefPath || path.startsWith(hrefPath + '/')) {
+              a.setAttribute('aria-current', 'page');
+            }
+          }
+        } catch {}
+      });
+    })();
 
     // Year
     const y = document.getElementById('year');
