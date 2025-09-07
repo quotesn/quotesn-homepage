@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- =========================================================
+       Meta / SEO
+  ========================================================== -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
+  <title>Quotesn Quizzes – Fun & Inspirational Quote Challenges</title>
+  <meta name="description" content="Play fun quizzes about inspirational quotes, authors, and life lessons. Test your knowledge and discover new favorites with Quotesn quizzes." />
+  <link rel="canonical" href="https://www.quotesn.com/quizzes/" />
+  <link rel="icon" href="/images/favicon.ico" sizes="any" />
+
+  <!-- Preconnects -->
+  <link rel="preconnect" href="https://app.quotesn.com" crossorigin>
+  <link rel="dns-prefetch" href="https://app.quotesn.com">
+  <link rel="preconnect" href="https://picsum.photos" crossorigin>
+  <link rel="dns-prefetch" href="https://picsum.photos">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Quotesn Quizzes – Fun & Inspirational Quote Challenges">
+  <meta property="og:description" content="Play engaging quizzes on quotes and authors. Learn, have fun, and get inspired.">
+  <meta property="og:image" content="https://app.quotesn.com/images/app_logo.png">
+  <meta property="og:url" content="https://www.quotesn.com/quizzes/">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- JSON-LD -->
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"WebPage","name":"Quotesn Quizzes","url":"https://www.quotesn.com/quizzes/","description":"Fun quizzes about inspirational quotes, authors, and life lessons."}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"Organization","name":"Quotesn","url":"https://www.quotesn.com/","logo":"https://app.quotesn.com/images/app_logo.png"}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+    {"@type":"ListItem","position":1,"name":"Home","item":"https://www.quotesn.com/"},
+    {"@type":"ListItem","position":2,"name":"Quizzes","item":"https://www.quotesn.com/quizzes/"}
+  ]}
+  </script>
+
+  <!-- =========================================================
+       Inline Critical CSS (Light default)
+  ========================================================== -->
+  <style>
+    /* ------------------------------
+       Tokens
+    ------------------------------ */
+    :root{
+      /* Light (default) */
+      --bg:#ffffff; --bg-elev-1:#f7f8fb; --bg-elev-2:#eef1f7;
+      --text:#0b0d12; --text-muted:#4a556f;
+      --primary:#3157ff; --primary-strong:#2647db;
+      --card:#ffffff; --border:#e7eaf2;
+
+      --grad-hero:radial-gradient(1200px 600px at 15% 15%,#e9edff 0%,rgba(255,255,255,0) 55%),
+                   radial-gradient(1200px 600px at 90% 20%,#e4f0ff 0%,rgba(255,255,255,0) 60%),
+                   linear-gradient(180deg,#ffffff 0%,#f9fbff 100%);
+      --grad-section:linear-gradient(180deg,rgba(49,87,255,.08),rgba(49,87,255,0));
+
+      --ff-sans: system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans";
+      --ff-display: ui-sans-serif,"Inter",var(--ff-sans);
+
+      --fs-hero:clamp(2rem,4vw + 1rem,3rem);
+      --fs-h2:clamp(1.25rem,1.2vw + 1rem,1.75rem);
+      --fs-body:clamp(1rem,.4vw + .9rem,1.125rem);
+
+      --space-1:.25rem; --space-2:.5rem; --space-3:.75rem; --space-4:1rem; --space-5:1.5rem; --space-6:2rem; --space-7:3rem;
+
+      --radius-sm:12px; --radius-md:14px; --radius-lg:16px;
+      --shadow-1:0 8px 24px rgba(10,22,70,.08);
+      --shadow-2:0 18px 44px rgba(10,22,70,.10), inset 0 1px 0 rgba(255,255,255,.65);
+
+      --container-max:1200px;
+      --container-pad: clamp(1.25rem, 4vw, 2.25rem);
+
+      --ease:cubic-bezier(.2,.8,.2,1);
+      --time-1:120ms; --time-2:180ms;
+
+      --gap-nav: clamp(.6rem, 1.6vw, 1.1rem);
+    }
+
+    /* Optional dark scheme (light paints first) */
+    @media (prefers-color-scheme:dark){
+      :root{
+        --bg:#0b0d12; --bg-elev-1:#11141b; --bg-elev-2:#151927;
+        --text:#e8eefc; --text-muted:#b7c0d8;
+        --primary:#7aa2ff; --primary-strong:#5a86ff;
+        --card:#0f121a; --border:#1d2333;
+        --grad-hero:radial-gradient(1200px 600px at 10% 10%,#2a2f4a 0%,rgba(17,20,27,0) 55%),
+                     radial-gradient(1200px 600px at 90% 20%,#1b2c52 0%,rgba(17,20,27,0) 60%),
+                     linear-gradient(180deg,#0b0d12 0%,#0e1220 100%);
+        --grad-section:linear-gradient(180deg,rgba(90,134,255,.08),rgba(90,134,255,0));
+        --shadow-1:0 8px 24px rgba(0,0,0,.22);
+        --shadow-2:0 16px 40px rgba(0,0,0,.28), inset 0 1px 0 rgba(255,255,255,.02);
+      }
+    }
+
+    /* ------------------------------
+       Base / Layout / A11y
+    ------------------------------ */
+    *,*::before,*::after{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family:var(--ff-sans); font-size:var(--fs-body); line-height:1.6;
+      color:var(--text); background:var(--bg);
+      -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+    }
+    img{max-width:100%; display:block}
+    a{color:var(--primary); text-decoration:none}
+    a:hover{color:var(--primary-strong)}
+    ::selection{background:rgba(49,87,255,.18)}
+
+    .container{
+      width:min(100%,var(--container-max));
+      margin-inline:auto;
+      padding-left: calc(var(--container-pad) + env(safe-area-inset-left, 0px));
+      padding-right: calc(var(--container-pad) + env(safe-area-inset-right, 0px));
+    }
+    .section{padding:clamp(2.25rem,4vw,3.25rem) 0}
+    .section.has-tint{background:var(--grad-section);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+    .grid{display:grid;gap:var(--space-5)}
+    .grid-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+    .grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+    @media (max-width:1024px){.grid-3{grid-template-columns:repeat(2,minmax(0,1fr))}}
+    @media (max-width:640px){.grid-3,.grid-2{grid-template-columns:1fr}}
+
+    .skip-link{position:absolute;left:-999px;top:auto;width:1px;height:1px;overflow:hidden}
+    .skip-link:focus{position:fixed;left:var(--space-4);top:var(--space-4);background:var(--bg-elev-2);color:var(--text);padding:.45rem .6rem;border-radius:10px;box-shadow:var(--shadow-1);z-index:10000}
+    :focus-visible{outline:2px solid #FFB000; outline-offset:2px; border-radius:8px}
+
+    /* ------------------------------
+       Header / Navigation (locked)
+    ------------------------------ */
+    header.site-header{
+      position:sticky; top:0; z-index:900;
+      backdrop-filter:saturate(140%) blur(8px);
+      background:color-mix(in oklab,var(--bg),transparent 12%);
+      border-bottom:1px solid var(--border);
+    }
+    .nav{display:flex; align-items:center; justify-content:space-between; height:64px; gap:1rem; flex-wrap:nowrap}
+    .brand{display:inline-flex; align-items:center; gap:.6rem; flex-shrink:0}
+    .brand img{width:40px; height:40px; border-radius:10px; box-shadow:0 6px 18px rgba(0,0,0,.08)}
+    .brand span{font-family:var(--ff-display); font-weight:700; color:var(--text)}
+    .nav-menu{display:flex; align-items:center; gap:var(--gap-nav)}
+    .nav-links{display:flex; align-items:center; gap:var(--gap-nav); flex-wrap:nowrap}
+    .nav-links a{color:var(--text); opacity:.95; font-weight:500; padding:.35rem .45rem; border-radius:8px; transition:background var(--time-2) var(--ease),opacity var(--time-2) var(--ease); white-space:nowrap; flex-shrink:0}
+    .nav-links a:hover{background:var(--bg-elev-2); opacity:1}
+
+    /* Unified buttons (fixed height) */
+    .btn{display:inline-flex; align-items:center; justify-content:center; height:44px; padding:0 14px; border-radius:10px; font-weight:700; white-space:nowrap; line-height:1}
+    .btn-primary{
+      background: linear-gradient(135deg, #FFD24A 0%, #FFB000 100%);
+      color:#1a1206;
+      box-shadow:0 8px 18px rgba(255,178,0,.18);
+      transition:transform var(--time-1) var(--ease), box-shadow var(--time-2) var(--ease);
+    }
+    .btn-primary:hover{transform:translateY(-1px); box-shadow:0 12px 26px rgba(255,178,0,.28)}
+    .btn-outline{
+      border:1px solid color-mix(in oklab, var(--primary), #ffffff 10%);
+      color:var(--text);
+      background: linear-gradient(180deg, rgba(49,87,255,.10), rgba(49,87,255,.05));
+      transition:border-color var(--time-2) var(--ease), transform var(--time-1) var(--ease);
+    }
+    .btn-outline:hover{transform:translateY(-1px); border-color:var(--primary)}
+
+    .menu-toggle{display:none; background:transparent; border:0; color:var(--text); font-size:1.35rem; line-height:1; padding:.35rem .5rem; border-radius:8px}
+
+    /* earlier hamburger to guarantee no wrap */
+    @media (max-width:980px){
+      .menu-toggle{display:inline-flex}
+      .nav-menu{display:none; position:absolute; left:0; right:0; top:64px; background:var(--bg-elev-1);
+        border-bottom:1px solid var(--border); padding:.8rem var(--container-pad)}
+      .nav-menu.show{display:block}
+      .nav-links{flex-direction:column; align-items:flex-start; gap:.6rem}
+      .btn-primary{margin-top:.6rem}
+    }
+
+    /* ------------------------------
+       Hero (with slight extra left inset)
+    ------------------------------ */
+    .hero{background:var(--grad-hero)}
+    .hero > .container{
+      padding-left: calc((var(--container-pad) + 0.5rem) + env(safe-area-inset-left, 0px));
+    }
+    .hero-inner{padding:clamp(2rem,6vw,4rem) 0}
+    .hero h1{font-family:var(--ff-display); font-weight:700; letter-spacing:.3px; font-size:var(--fs-hero); line-height:1.08; margin:0 0 var(--space-3)}
+    .hero p{color:var(--text-muted); max-width:65ch; margin:0}
+
+    /* ------------------------------
+       Cards / Utilities
+    ------------------------------ */
+    .card{background:var(--card); border:1px solid var(--border); border-radius:var(--radius-lg); box-shadow:var(--shadow-2); overflow:hidden}
+    .card-pad{padding:var(--space-5)}
+    .media{position:relative; width:100%; aspect-ratio:16/9; background:var(--bg-elev-2)}
+    .media img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover}
+    .section h2{font-family:var(--ff-display); font-size:var(--fs-h2); margin:0 0 var(--space-4)}
+    .muted{color:var(--text-muted)}
+    .link-title{color:var(--text); display:inline-block; transition:transform var(--time-1) var(--ease), color var(--time-2) var(--ease)}
+    .link-title:hover{color:var(--primary); transform:translateY(-1px)}
+
+    /* ------------------------------
+       Footer (locked)
+    ------------------------------ */
+    footer.site-footer{border-top:1px solid var(--border); background:linear-gradient(180deg, rgba(49,87,255,.06), rgba(49,87,255,0)); padding:var(--space-6) 0; color:var(--text-muted)}
+    .footer-row{display:flex; flex-wrap:wrap; gap:var(--space-5); align-items:center; justify-content:space-between}
+    .footer-links{display:flex; gap:var(--space-4); flex-wrap:wrap}
+    .footer-links a{color:var(--text-muted); text-decoration:none; font-weight:500}
+    .footer-links a:hover{color:var(--text)}
+    .visually-hidden{position:absolute!important; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0}
+  </style>
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <!-- =========================================================
+       Header / Navigation (locked)
+  ========================================================== -->
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="/" aria-label="Quotesn home">
+        <img src="https://app.quotesn.com/images/app_logo.png" width="40" height="40" alt="Quotesn logo">
+        <span>Quotesn</span>
+      </a>
+
+      <button class="menu-toggle" aria-label="Toggle menu" aria-controls="nav-menu" aria-expanded="false">☰</button>
+
+      <div class="nav-menu" id="nav-menu">
+        <nav class="nav-links" aria-label="Primary">
+          <a href="https://app.quotesn.com/" rel="noopener">Quotes App</a>
+          <a href="/pro-post-generator">Pro Post Generator</a>
+          <a href="/quizzes/" aria-current="page">Quizzes</a>
+          <a href="/blog/">Blog</a>
+          <a href="/about/">About</a>
+          <a href="/contact/">Contact</a>
+          <a class="btn btn-primary" href="https://app.quotesn.com/" rel="noopener">Quotes</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- =========================================================
+         Hero
+    ========================================================== -->
+    <section class="hero">
+      <div class="container hero-inner">
+        <h1>Explore Our Quizzes</h1>
+        <p>Test your knowledge and have fun with interactive challenges about famous lines, inspiring authors, and life lessons.</p>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         Quiz Grid
+    ========================================================== -->
+    <section class="section">
+      <div class="container">
+        <h2>Popular Quizzes</h2>
+        <div class="grid grid-3">
+          <!-- Quiz 1 -->
+          <article class="card">
+            <div class="media">
+              <img src="https://picsum.photos/640/360?random=21"
+                   srcset="https://picsum.photos/640/360?random=21 640w, https://picsum.photos/960/540?random=21 960w"
+                   sizes="(max-width: 640px) 100vw, 33vw"
+                   width="640" height="360"
+                   alt="Collage of classic authors for the Famous Quotes Quiz"
+                   loading="lazy">
+            </div>
+            <div class="card-pad">
+              <h3 style="margin:.25rem 0 0"><a class="link-title" href="/quizzes/famous-quotes/">Famous Quotes Quiz</a></h3>
+              <p class="muted" style="margin:.4rem 0 0">Match legendary lines with the minds who wrote them.</p>
+            </div>
+          </article>
+
+          <!-- Quiz 2 -->
+          <article class="card">
+            <div class="media">
+              <img src="https://picsum.photos/640/360?random=22"
+                   srcset="https://picsum.photos/640/360?random=22 640w, https://picsum.photos/960/540?random=22 960w"
+                   sizes="(max-width: 640px) 100vw, 33vw"
+                   width="640" height="360"
+                   alt="Energetic abstract art for the Motivational Challenge quiz"
+                   loading="lazy">
+            </div>
+            <div class="card-pad">
+              <h3 style="margin:.25rem 0 0"><a class="link-title" href="/quizzes/motivational-challenge/">Motivational Challenge</a></h3>
+              <p class="muted" style="margin:.4rem 0 0">Can you finish the quote? Turn inspiration into action.</p>
+            </div>
+          </article>
+
+          <!-- Quiz 3 -->
+          <article class="card">
+            <div class="media">
+              <img src="https://picsum.photos/640/360?random=23"
+                   srcset="https://picsum.photos/640/360?random=23 640w, https://picsum.photos/960/540?random=23 960w"
+                   sizes="(max-width: 640px) 100vw, 33vw"
+                   width="640" height="360"
+                   alt="Question mark pattern for the Who Said It quiz"
+                   loading="lazy">
+            </div>
+            <div class="card-pad">
+              <h3 style="margin:.25rem 0 0"><a class="link-title" href="/quizzes/who-said-it/">Who Said It?</a></h3>
+              <p class="muted" style="margin:.4rem 0 0">Read the line. Guess the mind. Spot the author!</p>
+            </div>
+          </article>
+
+          <!-- Quiz 4 -->
+          <article class="card">
+            <div class="media">
+              <img src="https://picsum.photos/640/360?random=24"
+                   srcset="https://picsum.photos/640/360?random=24 640w, https://picsum.photos/960/540?random=24 960w"
+                   sizes="(max-width: 640px) 100vw, 33vw"
+                   width="640" height="360"
+                   alt="Sunrise and mountains for the Life Lessons Trivia quiz"
+                   loading="lazy">
+            </div>
+            <div class="card-pad">
+              <h3 style="margin:.25rem 0 0"><a class="link-title" href="/quizzes/life-lessons-trivia/">Life Lessons Trivia</a></h3>
+              <p class="muted" style="margin:.4rem 0 0">Discover wisdom hidden inside everyday sayings.</p>
+            </div>
+          </article>
+
+          <!-- Quiz 5 -->
+          <article class="card">
+            <div class="media">
+              <img src="https://picsum.photos/640/360?random=25"
+                   srcset="https://picsum.photos/640/360?random=25 640w, https://picsum.photos/960/540?random=25 960w"
+                   sizes="(max-width: 640px) 100vw, 33vw"
+                   width="640" height="360"
+                   alt="Books and glasses for the Quote Origins quiz"
+                   loading="lazy">
+            </div>
+            <div class="card-pad">
+              <h3 style="margin:.25rem 0 0"><a class="link-title" href="/quizzes/quote-origins/">Quote Origins</a></h3>
+              <p class="muted" style="margin:.4rem 0 0">Do you know where these famous lines began?</p>
+            </div>
+          </article>
+
+          <!-- Quiz 6 -->
+          <article class="card">
+            <div class="media">
+              <img src="https://picsum.photos/640/360?random=26"
+                   srcset="https://picsum.photos/640/360?random=26 640w, https://picsum.photos/960/540?random=26 960w"
+                   sizes="(max-width: 640px) 100vw, 33vw"
+                   width="640" height="360"
+                   alt="Minimal pattern for the Short & Sweet quiz"
+                   loading="lazy">
+            </div>
+            <div class="card-pad">
+              <h3 style="margin:.25rem 0 0"><a class="link-title" href="/quizzes/short-and-sweet/">Short &amp; Sweet</a></h3>
+              <p class="muted" style="margin:.4rem 0 0">One-liners that pack a punch. Name the author.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         About Preview
+    ========================================================== -->
+    <section class="section has-tint">
+      <div class="container grid grid-2">
+        <div class="card card-pad">
+          <h2>Why Quizzes?</h2>
+          <p class="muted">Quizzes turn inspiration into play. They help you discover new authors, remember powerful lines, and build a daily habit of curiosity.</p>
+          <div class="cta-row" style="display:flex;gap:.75rem;margin-top:.5rem">
+            <a class="btn btn-outline" href="/about/">Learn More</a>
+            <a class="btn btn-primary" href="https://app.quotesn.com/" rel="noopener">Open Quotes App</a>
+          </div>
+        </div>
+        <div class="card card-pad">
+          <h2>Looking for the Blog?</h2>
+          <p class="muted">Read deeper dives on inspirational themes, listicles, and creative prompts to keep your momentum going.</p>
+          <div class="cta-row" style="display:flex;gap:.75rem;margin-top:.5rem">
+            <a class="btn btn-outline" href="/blog/">Browse Blog</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- =========================================================
+       Footer (locked)
+  ========================================================== -->
+  <footer class="site-footer">
+    <div class="container footer-row">
+      <div class="brand" aria-label="Quotesn home">
+        <img src="https://app.quotesn.com/images/app_logo.png" width="36" height="36" alt="">
+        <span>Quotesn</span>
+      </div>
+      <nav class="footer-links" aria-label="Footer">
+        <a href="/privacy">Privacy</a>
+        <a href="/terms">Terms</a>
+        <a href="/sitemap.xml">Sitemap</a>
+        <a href="/contact/">Contact</a>
+        <span aria-hidden="true">© <span id="year"></span></span>
+      </nav>
+    </div>
+  </footer>
+
+  <!-- =========================================================
+       Tiny Vanilla JS (defer)
+  ========================================================== -->
+  <script defer>
+    // Mobile nav toggler
+    (function(){
+      const btn=document.querySelector('.menu-toggle');
+      const menu=document.getElementById('nav-menu');
+      if(!btn||!menu) return;
+      btn.addEventListener('click',()=> {
+        const open=menu.classList.toggle('show');
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+    })();
+
+    // Footer year
+    (function(){
+      const y=document.getElementById('year');
+      if(y) y.textContent=new Date().getFullYear();
+    })();
+  </script>
+</body>
+</html>
