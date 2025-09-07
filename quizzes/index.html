@@ -7,8 +7,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
-  <title>Quotesn Quizzes – Fun & Inspirational Quote Challenges</title>
-  <meta name="description" content="Play fun quizzes about inspirational quotes, authors, and life lessons. Test your knowledge and discover new favorites with Quotesn quizzes." />
+  <title>Quizzes — Fun Quote Trivia & Author Guessers | Quotesn</title>
+  <meta name="description" content="Try fun, fast quote quizzes: famous lines, who-said-it, and themed trivia. Learn new authors and test your wisdom with shareable results." />
   <link rel="canonical" href="https://www.quotesn.com/quizzes/" />
   <link rel="icon" href="/images/favicon.ico" sizes="any" />
 
@@ -19,15 +19,15 @@
   <link rel="dns-prefetch" href="https://picsum.photos">
 
   <!-- Open Graph -->
-  <meta property="og:title" content="Quotesn Quizzes – Fun & Inspirational Quote Challenges">
-  <meta property="og:description" content="Play engaging quizzes on quotes and authors. Learn, have fun, and get inspired.">
+  <meta property="og:title" content="Quizzes — Fun Quote Trivia & Author Guessers | Quotesn">
+  <meta property="og:description" content="Famous quotes, who-said-it challenges, and themed trivia — quick, delightful quizzes to spark your mind.">
   <meta property="og:image" content="https://app.quotesn.com/images/app_logo.png">
   <meta property="og:url" content="https://www.quotesn.com/quizzes/">
   <meta name="twitter:card" content="summary_large_image">
 
   <!-- JSON-LD -->
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"WebPage","name":"Quotesn Quizzes","url":"https://www.quotesn.com/quizzes/","description":"Fun quizzes about inspirational quotes, authors, and life lessons."}
+  {"@context":"https://schema.org","@type":"WebPage","name":"Quizzes","url":"https://www.quotesn.com/quizzes/","description":"Try fun, fast quote quizzes and author guessers."}
   </script>
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"Organization","name":"Quotesn","url":"https://www.quotesn.com/","logo":"https://app.quotesn.com/images/app_logo.png"}
@@ -40,14 +40,13 @@
   </script>
 
   <!-- =========================================================
-       Inline Critical CSS (Light default)
+       Inline Critical CSS (Light default; tokens locked)
   ========================================================== -->
   <style>
     /* ------------------------------
-       Tokens
+       Tokens (locked)
     ------------------------------ */
     :root{
-      /* Light (default) */
       --bg:#ffffff; --bg-elev-1:#f7f8fb; --bg-elev-2:#eef1f7;
       --text:#0b0d12; --text-muted:#4a556f;
       --primary:#3157ff; --primary-strong:#2647db;
@@ -147,8 +146,8 @@
     .nav-links a{color:var(--text); opacity:.95; font-weight:500; padding:.35rem .45rem; border-radius:8px; transition:background var(--time-2) var(--ease),opacity var(--time-2) var(--ease); white-space:nowrap; flex-shrink:0}
     .nav-links a:hover{background:var(--bg-elev-2); opacity:1}
 
-    /* Unified buttons (fixed height) */
-    .btn{display:inline-flex; align-items:center; justify-content:center; height:44px; padding:0 14px; border-radius:10px; font-weight:700; white-space:nowrap; line-height:1}
+    /* Unified buttons (locked) */
+    .btn{display:inline-flex; align-items:center; justify-content:center; height:44px; padding:0 14px; border-radius:10px; font-weight:700; white-space:nowrap; line-height:1; flex:0 0 auto}
     .btn-primary{
       background: linear-gradient(135deg, #FFD24A 0%, #FFB000 100%);
       color:#1a1206;
@@ -165,8 +164,6 @@
     .btn-outline:hover{transform:translateY(-1px); border-color:var(--primary)}
 
     .menu-toggle{display:none; background:transparent; border:0; color:var(--text); font-size:1.35rem; line-height:1; padding:.35rem .5rem; border-radius:8px}
-
-    /* earlier hamburger to guarantee no wrap */
     @media (max-width:980px){
       .menu-toggle{display:inline-flex}
       .nav-menu{display:none; position:absolute; left:0; right:0; top:64px; background:var(--bg-elev-1);
@@ -177,12 +174,10 @@
     }
 
     /* ------------------------------
-       Hero (with slight extra left inset)
+       Hero (with left inset like blog/about)
     ------------------------------ */
     .hero{background:var(--grad-hero)}
-    .hero > .container{
-      padding-left: calc((var(--container-pad) + 0.5rem) + env(safe-area-inset-left, 0px));
-    }
+    .hero > .container{padding-left: calc((var(--container-pad) + 0.5rem) + env(safe-area-inset-left, 0px))}
     .hero-inner{padding:clamp(2rem,6vw,4rem) 0}
     .hero h1{font-family:var(--ff-display); font-weight:700; letter-spacing:.3px; font-size:var(--fs-hero); line-height:1.08; margin:0 0 var(--space-3)}
     .hero p{color:var(--text-muted); max-width:65ch; margin:0}
@@ -198,6 +193,13 @@
     .muted{color:var(--text-muted)}
     .link-title{color:var(--text); display:inline-block; transition:transform var(--time-1) var(--ease), color var(--time-2) var(--ease)}
     .link-title:hover{color:var(--primary); transform:translateY(-1px)}
+
+    /* CTA row — resilient wrapping & spacing */
+    .cta-row{display:flex; flex-wrap:wrap; column-gap:var(--space-3); row-gap:var(--space-3)}
+
+    /* Scoped fix: ensure extra bottom breathing room in the CTA cards section
+       so wrapped buttons never touch the rounded edge on resize. */
+    .cta-cards .card-pad{padding-bottom: calc(var(--space-5) + .5rem)}
 
     /* ------------------------------
        Footer (locked)
@@ -245,111 +247,54 @@
     ========================================================== -->
     <section class="hero">
       <div class="container hero-inner">
-        <h1>Explore Our Quizzes</h1>
-        <p>Test your knowledge and have fun with interactive challenges about famous lines, inspiring authors, and life lessons.</p>
+        <h1>Quizzes to Spark Your Mind</h1>
+        <p>Play quick, delightful challenges — famous quotes, who-said-it, and themed trivia — to discover new authors and lines you’ll love.</p>
       </div>
     </section>
 
     <!-- =========================================================
-         Quiz Grid
+         Featured Quizzes
     ========================================================== -->
     <section class="section">
       <div class="container">
-        <h2>Popular Quizzes</h2>
+        <h2>Featured Quizzes</h2>
         <div class="grid grid-3">
-          <!-- Quiz 1 -->
           <article class="card">
             <div class="media">
               <img src="https://picsum.photos/640/360?random=21"
                    srcset="https://picsum.photos/640/360?random=21 640w, https://picsum.photos/960/540?random=21 960w"
-                   sizes="(max-width: 640px) 100vw, 33vw"
-                   width="640" height="360"
-                   alt="Collage of classic authors for the Famous Quotes Quiz"
-                   loading="lazy">
+                   sizes="(max-width: 640px) 100vw, 33vw" width="640" height="360"
+                   alt="Collage of classic authors for the Famous Quotes Quiz" loading="lazy">
             </div>
             <div class="card-pad">
-              <h3 style="margin:.25rem 0 0"><a class="link-title" href="/quizzes/famous-quotes/">Famous Quotes Quiz</a></h3>
-              <p class="muted" style="margin:.4rem 0 0">Match legendary lines with the minds who wrote them.</p>
+              <h3 style="margin:.2rem 0 0"><a class="link-title" href="/quizzes/famous-quotes/">Famous Quotes Quiz</a></h3>
+              <p class="muted" style="margin:.4rem 0 0">Match legendary lines to their authors in this classic challenge.</p>
             </div>
           </article>
 
-          <!-- Quiz 2 -->
           <article class="card">
             <div class="media">
               <img src="https://picsum.photos/640/360?random=22"
                    srcset="https://picsum.photos/640/360?random=22 640w, https://picsum.photos/960/540?random=22 960w"
-                   sizes="(max-width: 640px) 100vw, 33vw"
-                   width="640" height="360"
-                   alt="Energetic abstract art for the Motivational Challenge quiz"
-                   loading="lazy">
+                   sizes="(max-width: 640px) 100vw, 33vw" width="640" height="360"
+                   alt="Question mark pattern for the Who Said It quiz" loading="lazy">
             </div>
             <div class="card-pad">
-              <h3 style="margin:.25rem 0 0"><a class="link-title" href="/quizzes/motivational-challenge/">Motivational Challenge</a></h3>
-              <p class="muted" style="margin:.4rem 0 0">Can you finish the quote? Turn inspiration into action.</p>
+              <h3 style="margin:.2rem 0 0"><a class="link-title" href="/quizzes/who-said-it/">Who Said It?</a></h3>
+              <p class="muted" style="margin:.4rem 0 0">Read the line. Guess the mind. Can you spot the author?</p>
             </div>
           </article>
 
-          <!-- Quiz 3 -->
           <article class="card">
             <div class="media">
               <img src="https://picsum.photos/640/360?random=23"
                    srcset="https://picsum.photos/640/360?random=23 640w, https://picsum.photos/960/540?random=23 960w"
-                   sizes="(max-width: 640px) 100vw, 33vw"
-                   width="640" height="360"
-                   alt="Question mark pattern for the Who Said It quiz"
-                   loading="lazy">
+                   sizes="(max-width: 640px) 100vw, 33vw" width="640" height="360"
+                   alt="Playful icons for the 10 Fun Quizzes to Spark Your Mind set" loading="lazy">
             </div>
             <div class="card-pad">
-              <h3 style="margin:.25rem 0 0"><a class="link-title" href="/quizzes/who-said-it/">Who Said It?</a></h3>
-              <p class="muted" style="margin:.4rem 0 0">Read the line. Guess the mind. Spot the author!</p>
-            </div>
-          </article>
-
-          <!-- Quiz 4 -->
-          <article class="card">
-            <div class="media">
-              <img src="https://picsum.photos/640/360?random=24"
-                   srcset="https://picsum.photos/640/360?random=24 640w, https://picsum.photos/960/540?random=24 960w"
-                   sizes="(max-width: 640px) 100vw, 33vw"
-                   width="640" height="360"
-                   alt="Sunrise and mountains for the Life Lessons Trivia quiz"
-                   loading="lazy">
-            </div>
-            <div class="card-pad">
-              <h3 style="margin:.25rem 0 0"><a class="link-title" href="/quizzes/life-lessons-trivia/">Life Lessons Trivia</a></h3>
-              <p class="muted" style="margin:.4rem 0 0">Discover wisdom hidden inside everyday sayings.</p>
-            </div>
-          </article>
-
-          <!-- Quiz 5 -->
-          <article class="card">
-            <div class="media">
-              <img src="https://picsum.photos/640/360?random=25"
-                   srcset="https://picsum.photos/640/360?random=25 640w, https://picsum.photos/960/540?random=25 960w"
-                   sizes="(max-width: 640px) 100vw, 33vw"
-                   width="640" height="360"
-                   alt="Books and glasses for the Quote Origins quiz"
-                   loading="lazy">
-            </div>
-            <div class="card-pad">
-              <h3 style="margin:.25rem 0 0"><a class="link-title" href="/quizzes/quote-origins/">Quote Origins</a></h3>
-              <p class="muted" style="margin:.4rem 0 0">Do you know where these famous lines began?</p>
-            </div>
-          </article>
-
-          <!-- Quiz 6 -->
-          <article class="card">
-            <div class="media">
-              <img src="https://picsum.photos/640/360?random=26"
-                   srcset="https://picsum.photos/640/360?random=26 640w, https://picsum.photos/960/540?random=26 960w"
-                   sizes="(max-width: 640px) 100vw, 33vw"
-                   width="640" height="360"
-                   alt="Minimal pattern for the Short & Sweet quiz"
-                   loading="lazy">
-            </div>
-            <div class="card-pad">
-              <h3 style="margin:.25rem 0 0"><a class="link-title" href="/quizzes/short-and-sweet/">Short &amp; Sweet</a></h3>
-              <p class="muted" style="margin:.4rem 0 0">One-liners that pack a punch. Name the author.</p>
+              <h3 style="margin:.2rem 0 0"><a class="link-title" href="/quizzes/10-fun-quizzes-to-spark-your-mind/">10 Fun Quizzes to Spark Your Mind</a></h3>
+              <p class="muted" style="margin:.4rem 0 0">Quick, engaging brain-boosters for your coffee break.</p>
             </div>
           </article>
         </div>
@@ -357,23 +302,77 @@
     </section>
 
     <!-- =========================================================
-         About Preview
+         More Quizzes
     ========================================================== -->
     <section class="section has-tint">
+      <div class="container">
+        <h2>More Quizzes</h2>
+        <div class="grid grid-3">
+          <article class="card">
+            <div class="media">
+              <img src="https://picsum.photos/640/360?random=24"
+                   srcset="https://picsum.photos/640/360?random=24 640w, https://picsum.photos/960/540?random=24 960w"
+                   sizes="(max-width: 640px) 100vw, 33vw" width="640" height="360"
+                   alt="Sunrise and mountains for the Inspirational Lines quiz" loading="lazy">
+            </div>
+            <div class="card-pad">
+              <h3 style="margin:.2rem 0 0"><a class="link-title" href="/quizzes/inspirational-lines/">Inspirational Lines</a></h3>
+              <p class="muted" style="margin:.4rem 0 0">Can you identify the quote that lifts spirits the most?</p>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="media">
+              <img src="https://picsum.photos/640/360?random=25"
+                   srcset="https://picsum.photos/640/360?random=25 640w, https://picsum.photos/960/540?random=25 960w"
+                   sizes="(max-width: 640px) 100vw, 33vw" width="640" height="360"
+                   alt="Typewriter detail for the Literary Legends quiz" loading="lazy">
+            </div>
+            <div class="card-pad">
+              <h3 style="margin:.2rem 0 0"><a class="link-title" href="/quizzes/literary-legends/">Literary Legends</a></h3>
+              <p class="muted" style="margin:.4rem 0 0">A tour of immortal voices — how many can you place?</p>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="media">
+              <img src="https://picsum.photos/640/360?random=26"
+                   srcset="https://picsum.photos/640/360?random=26 640w, https://picsum.photos/960/540?random=26 960w"
+                   sizes="(max-width: 640px) 100vw, 33vw" width="640" height="360"
+                   alt="Puzzle pieces for the Quote Match quiz" loading="lazy">
+            </div>
+            <div class="card-pad">
+              <h3 style="margin:.2rem 0 0"><a class="link-title" href="/quizzes/quote-match/">Quote Match</a></h3>
+              <p class="muted" style="margin:.4rem 0 0">Pair the quote with its source — faster than you think.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         CTA / About Preview (uses scoped padding fix)
+    ========================================================== -->
+    <section class="section cta-cards">
       <div class="container grid grid-2">
-        <div class="card card-pad">
-          <h2>Why Quizzes?</h2>
-          <p class="muted">Quizzes turn inspiration into play. They help you discover new authors, remember powerful lines, and build a daily habit of curiosity.</p>
-          <div class="cta-row" style="display:flex;gap:.75rem;margin-top:.5rem">
-            <a class="btn btn-outline" href="/about/">Learn More</a>
-            <a class="btn btn-primary" href="https://app.quotesn.com/" rel="noopener">Open Quotes App</a>
+        <div class="card">
+          <div class="card-pad">
+            <h2>Why Quizzes?</h2>
+            <p class="muted">Quizzes turn inspiration into play. They help you discover new authors, remember powerful lines, and build a daily habit of curiosity.</p>
+            <div class="cta-row" style="margin-top:1rem">
+              <a class="btn btn-outline" href="/about/">Learn More</a>
+              <a class="btn btn-primary" href="https://app.quotesn.com/" rel="noopener">Open Quotes App</a>
+            </div>
           </div>
         </div>
-        <div class="card card-pad">
-          <h2>Looking for the Blog?</h2>
-          <p class="muted">Read deeper dives on inspirational themes, listicles, and creative prompts to keep your momentum going.</p>
-          <div class="cta-row" style="display:flex;gap:.75rem;margin-top:.5rem">
-            <a class="btn btn-outline" href="/blog/">Browse Blog</a>
+
+        <div class="card">
+          <div class="card-pad">
+            <h2>Looking for the Blog?</h2>
+            <p class="muted">Read deeper dives on inspirational themes, listicles, and creative prompts to keep your momentum going.</p>
+            <div class="cta-row" style="margin-top:1rem">
+              <a class="btn btn-outline" href="/blog/">Browse Blog</a>
+            </div>
           </div>
         </div>
       </div>
@@ -408,9 +407,9 @@
       const btn=document.querySelector('.menu-toggle');
       const menu=document.getElementById('nav-menu');
       if(!btn||!menu) return;
-      btn.addEventListener('click',()=> {
+      btn.addEventListener('click',()=>{
         const open=menu.classList.toggle('show');
-        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+        btn.setAttribute('aria-expanded', open ? 'true':'false');
       });
     })();
 
