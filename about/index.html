@@ -41,8 +41,10 @@
 
   <!-- =========================
        Inline Critical CSS
+       (locked system)
   ========================== -->
   <style>
+    /* Tokens (Light default) */
     :root{
       --bg:#ffffff; --bg-elev-1:#f7f8fb; --bg-elev-2:#eef1f7;
       --text:#0b0d12; --text-muted:#4a556f;
@@ -75,12 +77,14 @@
       --gap-nav: clamp(.6rem, 1.6vw, 1.1rem);
     }
 
-    /* Base */
+    /* Base / layout / a11y */
     *,*::before,*::after{box-sizing:border-box}
-    body{margin:0;font-family:var(--ff-sans);font-size:var(--fs-body);line-height:1.6;color:var(--text);background:var(--bg)}
+    html,body{height:100%}
+    body{margin:0;font-family:var(--ff-sans);font-size:var(--fs-body);line-height:1.6;color:var(--text);background:var(--bg);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
     img{max-width:100%;display:block}
     a{color:var(--primary);text-decoration:none}
     a:hover{color:var(--primary-strong)}
+    ::selection{background:rgba(49,87,255,.18)}
 
     .container{
       width:min(100%,var(--container-max));
@@ -90,57 +94,108 @@
     }
     .section{padding:clamp(2.25rem,4vw,3.25rem) 0}
     .section.has-tint{background:var(--grad-section);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+    .grid{display:grid;gap:var(--space-5)}
+    .grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+    @media (max-width:900px){.grid-2{grid-template-columns:1fr}}
+
+    .skip-link{position:absolute;left:-999px;top:auto;width:1px;height:1px;overflow:hidden}
+    .skip-link:focus{position:fixed;left:var(--space-4);top:var(--space-4);background:var(--bg-elev-2);color:var(--text);padding:.45rem .6rem;border-radius:10px;box-shadow:var(--shadow-1);z-index:10000}
+    :focus-visible{outline:2px solid #FFB000;outline-offset:2px;border-radius:8px}
 
     /* ===== Locked Header / Nav ===== */
-    header.site-header{position:sticky;top:0;z-index:900;background:color-mix(in oklab,var(--bg),transparent 12%);border-bottom:1px solid var(--border)}
-    .nav{display:flex;align-items:center;justify-content:space-between;height:64px;gap:1rem}
-    .brand{display:inline-flex;align-items:center;gap:.6rem}
-    .brand img{width:40px;height:40px;border-radius:10px}
+    header.site-header{position:sticky;top:0;z-index:900;backdrop-filter:saturate(140%) blur(8px);background:color-mix(in oklab,var(--bg),transparent 12%);border-bottom:1px solid var(--border)}
+    .nav{display:flex;align-items:center;justify-content:space-between;height:64px;gap:1rem;flex-wrap:nowrap}
+    .brand{display:inline-flex;align-items:center;gap:.6rem;flex-shrink:0}
+    .brand img{width:40px;height:40px;border-radius:10px;box-shadow:0 6px 18px rgba(0,0,0,.08)}
     .brand span{font-family:var(--ff-display);font-weight:700;color:var(--text)}
-    .nav-links{display:flex;align-items:center;gap:var(--gap-nav)}
-    .btn{display:inline-flex;align-items:center;justify-content:center;height:44px;padding:0 14px;border-radius:10px;font-weight:700;white-space:nowrap}
-    .btn-primary{background:linear-gradient(135deg,#FFD24A 0%,#FFB000 100%);color:#1a1206}
-    .btn-outline{border:1px solid var(--primary);color:var(--text)}
+    .nav-menu{display:flex;align-items:center;gap:var(--gap-nav)}
+    .nav-links{display:flex;align-items:center;gap:var(--gap-nav);flex-wrap:nowrap}
+    .nav-links a{color:var(--text);opacity:.95;font-weight:500;padding:.35rem .45rem;border-radius:8px;transition:background var(--time-2) var(--ease),opacity var(--time-2) var(--ease);white-space:nowrap;flex-shrink:0}
+    .nav-links a:hover{background:var(--bg-elev-2);opacity:1}
 
-    /* Page hero with FIXED left padding */
-    .page-hero{background:var(--grad-hero)}
-    .page-hero > .container{
-      padding-left: calc((var(--container-pad) + 1rem) + env(safe-area-inset-left, 0px));
+    .btn{display:inline-flex;align-items:center;justify-content:center;height:44px;padding:0 14px;border-radius:10px;font-weight:700;white-space:nowrap;line-height:1}
+    .btn-primary{background:linear-gradient(135deg,#FFD24A 0%,#FFB000 100%);color:#1a1206;box-shadow:0 8px 18px rgba(255,178,0,.18);transition:transform var(--time-1) var(--ease),box-shadow var(--time-2) var(--ease)}
+    .btn-primary:hover{transform:translateY(-1px);box-shadow:0 12px 26px rgba(255,178,0,.28)}
+    .btn-outline{border:1px solid color-mix(in oklab,var(--primary),#ffffff 10%);color:var(--text);background:linear-gradient(180deg,rgba(49,87,255,.10),rgba(49,87,255,.05));transition:border-color var(--time-2) var(--ease),transform var(--time-1) var(--ease)}
+    .btn-outline:hover{transform:translateY(-1px);border-color:var(--primary)}
+    .menu-toggle{display:none;background:transparent;border:0;color:var(--text);font-size:1.35rem;line-height:1;padding:.35rem .5rem;border-radius:8px}
+    @media (max-width:980px){
+      .menu-toggle{display:inline-flex}
+      .nav-menu{display:none;position:absolute;left:0;right:0;top:64px;background:var(--bg-elev-1);border-bottom:1px solid var(--border);padding:.8rem var(--container-pad)}
+      .nav-menu.show{display:block}
+      .nav-links{flex-direction:column;align-items:flex-start;gap:.6rem}
+      .btn-primary{margin-top:.6rem}
+    }
+
+    /* ===== Page hero (EXTRA LEFT PADDING FIX) ===== */
+    .page-hero{background:var(--grad-hero); --hero-pad-extra: 12px;}
+    /* Higher specificity to ensure it wins over generic .container rules */
+    .page-hero .container.inner{
+      padding-left: calc(var(--container-pad) + var(--hero-pad-extra) + env(safe-area-inset-left, 0px));
       padding-right: calc(var(--container-pad) + env(safe-area-inset-right, 0px));
     }
+    @media (min-width: 768px){
+      .page-hero{ --hero-pad-extra: 14px; }
+    }
+    @media (min-width: 1024px){
+      .page-hero{ --hero-pad-extra: 16px; }
+    }
     .page-hero .inner{padding:clamp(2rem,6vw,4rem) 0}
-    .page-hero h1{font-family:var(--ff-display);font-weight:700;font-size:var(--fs-hero);margin:0 0 var(--space-3)}
+    .page-hero h1{font-family:var(--ff-display);font-weight:700;letter-spacing:.3px;font-size:var(--fs-hero);line-height:1.08;margin:0 0 var(--space-3)}
     .page-hero p{color:var(--text-muted);max-width:65ch;margin:0}
 
-    /* Cards */
-    .card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);box-shadow:var(--shadow-2);padding:var(--space-5)}
-    .quote-block{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:var(--space-5)}
-    .quote-text{font-family:var(--ff-display);font-weight:700;font-size:1.25rem;line-height:1.4}
+    /* Cards / utilities */
+    .card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);box-shadow:var(--shadow-2);overflow:hidden}
+    .card-pad{padding:var(--space-5)}
+    .section h2{font-family:var(--ff-display);font-size:var(--fs-h2);margin:0 0 var(--space-4)}
+    .quote-block{position:relative;padding:var(--space-5);background:radial-gradient(600px 260px at 20% 0%,rgba(49,87,255,.12),rgba(0,0,0,0)),var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);box-shadow:var(--shadow-2)}
+    .quote-text{font-family:var(--ff-display);font-weight:700;letter-spacing:.25px;font-size:clamp(1.125rem,1.2vw + 1rem,1.5rem);line-height:1.4}
     .quote-author{margin-top:.5rem;color:var(--text-muted);font-weight:600}
+    .muted{color:var(--text-muted)}
+    .chip{display:inline-flex;align-items:center;gap:.35rem;padding:.3rem .6rem;border-radius:999px;border:1px solid var(--border);background:linear-gradient(180deg,rgba(255,255,255,.6),rgba(255,255,255,.35));color:var(--text-muted);font-size:.85rem}
+
+    /* ===== Locked Footer ===== */
+    footer.site-footer{border-top:1px solid var(--border);background:linear-gradient(180deg,rgba(49,87,255,.06),rgba(49,87,255,0));padding:var(--space-6) 0;color:var(--text-muted)}
+    .footer-row{display:flex;flex-wrap:wrap;gap:var(--space-5);align-items:center;justify-content:space-between}
+    .footer-links{display:flex;gap:var(--space-4);flex-wrap:wrap}
+    .footer-links a{color:var(--text-muted);text-decoration:none;font-weight:500}
+    .footer-links a:hover{color:var(--text)}
+    .visually-hidden{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
   </style>
 </head>
 <body>
-  <!-- Header -->
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <!-- =========================
+       LOCKED HEADER / NAV
+  ========================== -->
   <header class="site-header">
     <div class="container nav">
-      <a class="brand" href="/">
+      <a class="brand" href="/" aria-label="Quotesn home">
         <img src="https://app.quotesn.com/images/app_logo.png" width="40" height="40" alt="Quotesn logo">
         <span>Quotesn</span>
       </a>
-      <nav class="nav-links">
-        <a href="https://app.quotesn.com/">Quotes App</a>
-        <a href="/pro-post-generator">Pro Post Generator</a>
-        <a href="/quizzes/">Quizzes</a>
-        <a href="/blog/">Blog</a>
-        <a href="/about/" aria-current="page">About</a>
-        <a href="/contact/">Contact</a>
-        <a class="btn btn-primary" href="https://app.quotesn.com/">Quotes</a>
-      </nav>
+
+      <button class="menu-toggle" aria-label="Toggle menu" aria-controls="nav-menu" aria-expanded="false">☰</button>
+
+      <div class="nav-menu" id="nav-menu">
+        <nav class="nav-links" aria-label="Primary">
+          <a href="https://app.quotesn.com/" rel="noopener">Quotes App</a>
+          <a href="/pro-post-generator">Pro Post Generator</a>
+          <a href="/quizzes/">Quizzes</a>
+          <a href="/blog/">Blog</a>
+          <a href="/about/" aria-current="page">About</a>
+          <a href="/contact/">Contact</a>
+          <a class="btn btn-primary" href="https://app.quotesn.com/" rel="noopener">Quotes</a>
+        </nav>
+      </div>
     </div>
   </header>
 
   <main id="main">
-    <!-- Hero -->
+    <!-- =========================
+         Page Hero (padding fixed)
+    ========================== -->
     <section class="page-hero">
       <div class="container inner">
         <h1>About Quotesn</h1>
@@ -148,44 +203,55 @@
       </div>
     </section>
 
-    <!-- Story -->
+    <!-- =========================
+         Story & Mission
+    ========================== -->
     <section class="section">
       <div class="container grid grid-2">
-        <article class="card">
+        <article class="card card-pad">
           <h2>Our Story &amp; Mission</h2>
-          <p>Quotesn was born from a simple idea: bring inspiring words closer to people’s everyday lives. We curate credible quotes, present them beautifully, and make sharing effortless — so positivity travels faster.</p>
+          <p class="muted">Quotesn was born from a simple idea: bring inspiring words closer to people’s everyday lives. We curate credible quotes, present them beautifully, and make sharing effortless — so positivity travels faster.</p>
         </article>
         <aside class="quote-block">
+          <div class="chip" aria-hidden="true">A note we live by</div>
           <p class="quote-text">“The only limit to our realization of tomorrow is our doubts of today.”</p>
           <div class="quote-author">— Franklin D. Roosevelt</div>
         </aside>
       </div>
     </section>
 
-    <!-- Vision -->
+    <!-- =========================
+         Our Vision (separate)
+    ========================== -->
     <section class="section has-tint">
       <div class="container">
-        <div class="card">
+        <div class="card card-pad">
           <h2>Our Vision</h2>
-          <p>To be the world’s most-loved platform for daily inspiration — where anyone can discover, save, and share uplifting words that spark momentum.</p>
+          <p class="muted">To be the world’s most-loved platform for daily inspiration — where anyone can discover, save, and share uplifting words that spark momentum.</p>
         </div>
       </div>
     </section>
 
-    <!-- Offer & Love -->
+    <!-- =========================
+         What We Offer & Why People Love Us
+    ========================== -->
     <section class="section">
       <div class="container grid grid-2">
-        <article class="card">
+        <article class="card card-pad">
           <h2>What We Offer</h2>
-          <ul>
+          <ul class="muted" style="margin:0;padding-left:1.1rem">
             <li>Beautifully curated quote library with shareable text &amp; image cards.</li>
             <li>Pro Post Generator for polished social media posts in seconds.</li>
             <li>Engaging quizzes to test knowledge and discover new authors.</li>
           </ul>
+          <div class="cta-row" style="display:flex;gap:.75rem;margin-top:1rem">
+            <a class="btn btn-primary" href="https://app.quotesn.com/" rel="noopener">Open Quotes App</a>
+            <a class="btn btn-outline" href="/pro-post-generator">Try Pro Post Generator</a>
+          </div>
         </article>
-        <article class="card">
+        <article class="card card-pad">
           <h2>Why People Love Quotesn</h2>
-          <ul>
+          <ul class="muted" style="margin:0;padding-left:1.1rem">
             <li>Trustworthy curation from reliable sources.</li>
             <li>Fast, distraction-free browsing with mobile-first design.</li>
             <li>Clean, accessible typography and easy sharing.</li>
@@ -194,10 +260,13 @@
       </div>
     </section>
 
-    <!-- Community -->
+    <!-- =========================
+         Community Note
+    ========================== -->
     <section class="section has-tint">
       <div class="container">
         <div class="quote-block">
+          <div class="chip" aria-hidden="true">From the community</div>
           <p class="quote-text">“Quotesn has become my morning ritual — I start the day with a smile and share that joy with friends.”</p>
           <div class="quote-author">— A Happy Reader</div>
         </div>
@@ -205,25 +274,45 @@
     </section>
   </main>
 
-  <!-- Footer -->
+  <!-- =========================
+       LOCKED FOOTER
+  ========================== -->
   <footer class="site-footer">
     <div class="container footer-row">
-      <div class="brand">
+      <div class="brand" aria-label="Quotesn home">
         <img src="https://app.quotesn.com/images/app_logo.png" width="36" height="36" alt="">
         <span>Quotesn</span>
       </div>
-      <nav class="footer-links">
+      <nav class="footer-links" aria-label="Footer">
         <a href="/privacy">Privacy</a>
         <a href="/terms">Terms</a>
         <a href="/sitemap.xml">Sitemap</a>
         <a href="/contact/">Contact</a>
-        <span>© <span id="year"></span></span>
+        <span aria-hidden="true">© <span id="year"></span></span>
       </nav>
     </div>
   </footer>
 
+  <!-- =========================
+       Tiny JS (defer)
+  ========================== -->
   <script defer>
-    document.getElementById('year').textContent=new Date().getFullYear();
+    // Mobile nav toggle (locked behavior)
+    (function(){
+      const btn=document.querySelector('.menu-toggle');
+      const menu=document.getElementById('nav-menu');
+      if(!btn||!menu) return;
+      btn.addEventListener('click',()=>{
+        const open=menu.classList.toggle('show');
+        btn.setAttribute('aria-expanded', open ? 'true':'false');
+      });
+    })();
+
+    // Footer year
+    (function(){
+      const y=document.getElementById('year');
+      if(y) y.textContent=new Date().getFullYear();
+    })();
   </script>
 </body>
 </html>
