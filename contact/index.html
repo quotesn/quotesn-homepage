@@ -7,21 +7,25 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
-  <title>Contact Us — Quotesn</title>
-  <meta name="description" content="Contact Quotesn with questions, feedback, or partnership ideas. We typically reply within 1–2 business days." />
+  <title>Contact — Quotesn</title>
+  <meta name="description" content="Contact Quotesn: questions, feedback, or partnerships. Send us a message — we typically reply within 1–2 business days." />
   <link rel="canonical" href="https://www.quotesn.com/contact/" />
   <link rel="icon" href="/images/favicon.ico" sizes="any" />
 
+  <!-- Preconnects -->
+  <link rel="preconnect" href="https://app.quotesn.com" crossorigin>
+  <link rel="dns-prefetch" href="https://app.quotesn.com">
+
   <!-- Open Graph -->
-  <meta property="og:title" content="Contact Us — Quotesn">
-  <meta property="og:description" content="Questions or ideas? Send us a message. We usually reply within 1–2 business days.">
+  <meta property="og:title" content="Contact — Quotesn">
+  <meta property="og:description" content="Send us a message, partnership inquiry, or feedback. We usually reply within 1–2 business days.">
   <meta property="og:image" content="https://app.quotesn.com/images/app_logo.png">
   <meta property="og:url" content="https://www.quotesn.com/contact/">
   <meta name="twitter:card" content="summary_large_image">
 
   <!-- JSON-LD -->
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"WebPage","name":"Contact Us — Quotesn","url":"https://www.quotesn.com/contact/","description":"Contact Quotesn with questions, feedback, or partnership ideas."}
+  {"@context":"https://schema.org","@type":"WebPage","name":"Contact — Quotesn","url":"https://www.quotesn.com/contact/","description":"Contact Quotesn with questions, feedback, or partnerships."}
   </script>
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"Organization","name":"Quotesn","url":"https://www.quotesn.com/","logo":"https://app.quotesn.com/images/app_logo.png"}
@@ -34,10 +38,10 @@
   </script>
 
   <!-- =========================
-       Inline Critical CSS (locked system)
+       Inline Critical CSS
   ========================== -->
   <style>
-    /* Tokens (Light default) */
+    /* Design tokens (Light by default) */
     :root{
       --bg:#ffffff; --bg-elev-1:#f7f8fb; --bg-elev-2:#eef1f7;
       --text:#0b0d12; --text-muted:#4a556f;
@@ -67,11 +71,8 @@
 
       --ease:cubic-bezier(.2,.8,.2,1);
       --time-1:120ms; --time-2:180ms;
-
       --gap-nav: clamp(.6rem, 1.6vw, 1.1rem);
     }
-
-    /* Optional dark scheme (light paints first) */
     @media (prefers-color-scheme:dark){
       :root{
         --bg:#0b0d12; --bg-elev-1:#11141b; --bg-elev-2:#151927;
@@ -95,6 +96,9 @@
     a{color:var(--primary);text-decoration:none}
     a:hover{color:var(--primary-strong)}
     ::selection{background:rgba(49,87,255,.18)}
+    .skip-link{position:absolute;left:-999px;top:auto;width:1px;height:1px;overflow:hidden}
+    .skip-link:focus{position:fixed;left:var(--space-4);top:var(--space-4);background:var(--bg-elev-2);color:var(--text);padding:.45rem .6rem;border-radius:10px;box-shadow:var(--shadow-1);z-index:10000}
+    :focus-visible{outline:2px solid #FFB000;outline-offset:2px;border-radius:8px}
 
     .container{
       width:min(100%,var(--container-max));
@@ -104,12 +108,8 @@
     }
     .section{padding:clamp(2.25rem,4vw,3.25rem) 0}
     .grid{display:grid;gap:var(--space-5)}
-    .grid-2{grid-template-columns:1.1fr .9fr}
+    .grid-2{grid-template-columns:1.2fr .8fr}
     @media (max-width:900px){.grid-2{grid-template-columns:1fr}}
-
-    .skip-link{position:absolute;left:-999px;top:auto;width:1px;height:1px;overflow:hidden}
-    .skip-link:focus{position:fixed;left:var(--space-4);top:var(--space-4);background:var(--bg-elev-2);color:var(--text);padding:.45rem .6rem;border-radius:10px;box-shadow:var(--shadow-1);z-index:10000}
-    :focus-visible{outline:2px solid #FFB000;outline-offset:2px;border-radius:8px}
 
     /* ===== Locked Header / Nav ===== */
     header.site-header{position:sticky;top:0;z-index:900;backdrop-filter:saturate(140%) blur(8px);background:color-mix(in oklab,var(--bg),transparent 12%);border-bottom:1px solid var(--border)}
@@ -136,23 +136,27 @@
       .btn-primary{margin-top:.6rem}
     }
 
-    /* ===== Page hero (with slight extra left inset) ===== */
+    /* ===== Page hero ===== */
     .page-hero{background:var(--grad-hero)}
-    .page-hero .container{padding-left: calc(var(--container-pad) + 12px + env(safe-area-inset-left, 0px))}
     .page-hero .inner{padding:clamp(2rem,6vw,4rem) 0}
     .page-hero h1{font-family:var(--ff-display);font-weight:700;letter-spacing:.3px;font-size:var(--fs-hero);line-height:1.08;margin:0 0 var(--space-3)}
-    .page-hero p{color:var(--text-muted);max-width:65ch;margin:0}
+    .page-hero p{color:var(--text-muted);max-width:70ch;margin:0}
+    /* Local hero inset — scoped to Contact only */
+    .page-hero > .container{
+      padding-left: calc(var(--container-pad) + 12px + env(safe-area-inset-left, 0px));
+    }
 
-    /* ===== Cards & form ===== */
+    /* Cards & form */
     .card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);box-shadow:var(--shadow-2);overflow:hidden}
     .card-pad{padding:var(--space-6)}
-    form.contact{display:grid;gap:var(--space-4)}
+    form.q-form{display:grid;gap:var(--space-4)}
     .field{display:grid;gap:.5rem}
     .label{font-weight:600}
     .hint{color:var(--text-muted);font-size:.95rem}
     .input,.textarea{width:100%;padding:.85rem .95rem;background:var(--bg-elev-2);border:1px solid var(--border);color:var(--text);border-radius:12px;transition:border-color var(--time-2) var(--ease),box-shadow var(--time-2) var(--ease)}
-    .input:focus,.textarea:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px rgba(49,87,255,.18)}
+    .input:focus,.textarea:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px rgba(49,87,255,.2)}
     .textarea{min-height:180px;resize:vertical}
+    .actions{display:flex;align-items:center;gap:var(--space-4);flex-wrap:wrap}
 
     /* ===== Locked Footer ===== */
     footer.site-footer{border-top:1px solid var(--border);background:linear-gradient(180deg,rgba(49,87,255,.06),rgba(49,87,255,0));padding:var(--space-6) 0;color:var(--text-muted)}
@@ -194,37 +198,37 @@
 
   <main id="main">
     <!-- =========================
-         Hero
+         Page Hero (with local left inset)
     ========================== -->
     <section class="page-hero">
       <div class="container inner">
         <h1>Contact Us</h1>
-        <p>Have feedback, questions, or partnership ideas? Drop us a message — we’d love to hear from you. We typically respond within 1–2 business days.</p>
+        <p>Have feedback, questions, or partnership ideas? Drop us a message — we typically respond within 1–2 business days.</p>
       </div>
     </section>
 
     <!-- =========================
-         Content
+         Contact Content
     ========================== -->
     <section class="section">
       <div class="container grid grid-2">
-        <!-- Form -->
-        <article class="card card-pad" aria-labelledby="contact-title">
-          <h2 id="contact-title" style="margin-top:0">Send a Message</h2>
-          <form class="contact" action="https://formsubmit.co/quotesn.com@gmail.com" method="POST">
-            <!-- FormSubmit options -->
+        <!-- Left: Form -->
+        <article class="card card-pad" aria-labelledby="form-title">
+          <h2 id="form-title" style="margin-top:0">Send a Message</h2>
+          <form class="q-form" action="https://formsubmit.co/quotesn.com@gmail.com" method="POST">
+            <!-- FormSubmit controls -->
             <input type="hidden" name="_captcha" value="false">
-            <input type="hidden" name="_subject" value="New message from Quotesn.com">
+            <input type="hidden" name="_subject" value="New message from Quotesn.com contact form">
             <input type="hidden" name="_next" value="https://www.quotesn.com/contact/thanks/">
 
             <div class="field">
               <label class="label" for="name">Your Name</label>
-              <input class="input" id="name" name="name" type="text" autocomplete="name" placeholder="Your name" required>
+              <input class="input" id="name" name="name" type="text" placeholder="Your name" autocomplete="name" required>
             </div>
 
             <div class="field">
               <label class="label" for="email">Email</label>
-              <input class="input" id="email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required>
+              <input class="input" id="email" name="email" type="email" placeholder="you@example.com" autocomplete="email" required>
             </div>
 
             <div class="field">
@@ -233,22 +237,19 @@
               <p class="hint">Include any relevant links or details to help us assist you faster.</p>
             </div>
 
-            <div style="display:flex;gap:.75rem;align-items:center;flex-wrap:wrap">
+            <div class="actions">
               <button class="btn btn-primary" type="submit">Send Message</button>
-              <a class="btn btn-outline" href="mailto:quotesn.com@gmail.com">Email Instead</a>
+              <p class="hint">We usually respond within <strong>1–2 business days</strong>. Check your spam folder if you don’t see our reply.</p>
             </div>
           </form>
         </article>
 
-        <!-- Alternatives -->
-        <aside class="card card-pad" aria-labelledby="alt-title">
-          <h2 id="alt-title" style="margin-top:0">Other Ways to Reach Us</h2>
-          <p class="hint" style="margin-top:0">Average reply time: 1–2 business days</p>
-          <ul style="margin:0;padding-left:1.1rem">
-            <li>Mail us at <a href="mailto:quotesn.com@gmail.com">quotesn.com@gmail.com</a></li>
-            <li>Open the <a href="https://app.quotesn.com/" rel="noopener">Quotes App</a> for quick access to categories and shareables</li>
-            <li>Read the latest on our <a href="/blog/">Blog</a></li>
-          </ul>
+        <!-- Right: Other ways -->
+        <aside class="card card-pad" aria-labelledby="other-ways">
+          <h2 id="other-ways" style="margin-top:0">Other Ways</h2>
+          <p>Email us directly at <a href="mailto:quotesn.com@gmail.com">quotesn.com@gmail.com</a>.</p>
+          <p>Explore the <a href="https://app.quotesn.com/" rel="noopener">Quotes App</a> or read fresh posts on our <a href="/blog/">Blog</a>.</p>
+          <p class="hint" style="margin-top:.5rem">Average reply time: 1–2 business days</p>
         </aside>
       </div>
     </section>
@@ -277,7 +278,7 @@
        Tiny JS (defer)
   ========================== -->
   <script defer>
-    // Mobile nav toggle
+    // Mobile nav toggle (locked behavior)
     (function(){
       const btn=document.querySelector('.menu-toggle');
       const menu=document.getElementById('nav-menu');
