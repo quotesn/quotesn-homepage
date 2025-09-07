@@ -41,7 +41,8 @@
 
   <!-- =========================
        Inline Critical CSS
-       (locked system)
+       (identical tokens/components
+        to locked homepage)
   ========================== -->
   <style>
     /* Tokens (Light default) */
@@ -75,6 +76,22 @@
       --ease:cubic-bezier(.2,.8,.2,1);
       --time-1:120ms; --time-2:180ms;
       --gap-nav: clamp(.6rem, 1.6vw, 1.1rem);
+    }
+
+    /* Optional dark scheme (light paints first) */
+    @media (prefers-color-scheme:dark){
+      :root{
+        --bg:#0b0d12; --bg-elev-1:#11141b; --bg-elev-2:#151927;
+        --text:#e8eefc; --text-muted:#b7c0d8;
+        --primary:#7aa2ff; --primary-strong:#5a86ff;
+        --card:#0f121a; --border:#1d2333;
+        --grad-hero:radial-gradient(1200px 600px at 10% 10%,#2a2f4a 0%,rgba(17,20,27,0) 55%),
+                     radial-gradient(1200px 600px at 90% 20%,#1b2c52 0%,rgba(17,20,27,0) 60%),
+                     linear-gradient(180deg,#0b0d12 0%,#0e1220 100%);
+        --grad-section:linear-gradient(180deg,rgba(90,134,255,.08),rgba(90,134,255,0));
+        --shadow-1:0 8px 24px rgba(0,0,0,.22);
+        --shadow-2:0 16px 40px rgba(0,0,0,.28), inset 0 1px 0 rgba(255,255,255,.02);
+      }
     }
 
     /* Base / layout / a11y */
@@ -127,22 +144,20 @@
       .btn-primary{margin-top:.6rem}
     }
 
-    /* ===== Page hero (EXTRA LEFT PADDING FIX) ===== */
-    .page-hero{background:var(--grad-hero); --hero-pad-extra: 12px;}
-    /* Higher specificity to ensure it wins over generic .container rules */
-    .page-hero .container.inner{
-      padding-left: calc(var(--container-pad) + var(--hero-pad-extra) + env(safe-area-inset-left, 0px));
-      padding-right: calc(var(--container-pad) + env(safe-area-inset-right, 0px));
-    }
-    @media (min-width: 768px){
-      .page-hero{ --hero-pad-extra: 14px; }
-    }
-    @media (min-width: 1024px){
-      .page-hero{ --hero-pad-extra: 16px; }
-    }
+    /* Page hero (existing styles) */
+    .page-hero{background:var(--grad-hero)}
+    .page-hero > .container{padding-left: calc((var(--container-pad) + 0.5rem) + env(safe-area-inset-left, 0px))}
     .page-hero .inner{padding:clamp(2rem,6vw,4rem) 0}
     .page-hero h1{font-family:var(--ff-display);font-weight:700;letter-spacing:.3px;font-size:var(--fs-hero);line-height:1.08;margin:0 0 var(--space-3)}
     .page-hero p{color:var(--text-muted);max-width:65ch;margin:0}
+
+    /* -----------------------------
+       Local hero inset — scoped fix
+       (added after .container rule)
+    ------------------------------*/
+    .page-hero .container.inner{
+      padding-left: calc(var(--container-pad) + 12px + env(safe-area-inset-left, 0px));
+    }
 
     /* Cards / utilities */
     .card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);box-shadow:var(--shadow-2);overflow:hidden}
@@ -194,7 +209,7 @@
 
   <main id="main">
     <!-- =========================
-         Page Hero (padding fixed)
+         Page Hero
     ========================== -->
     <section class="page-hero">
       <div class="container inner">
