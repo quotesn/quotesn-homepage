@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
   <title>Contact Us — Quotesn</title>
-  <meta name="description" content="Contact Quotesn. Send us a message, partnership inquiry, or feedback. We usually reply within 1–2 business days." />
+  <meta name="description" content="Contact Quotesn with questions, feedback, or partnership ideas. We typically respond within 1–2 business days." />
   <link rel="canonical" href="https://www.quotesn.com/contact/" />
   <link rel="icon" href="/images/favicon.ico" sizes="any" />
 
@@ -20,18 +20,31 @@
 
   <!-- Open Graph -->
   <meta property="og:title" content="Contact Us — Quotesn">
-  <meta property="og:description" content="Questions or ideas? Send us a message. We usually reply within 1–2 business days.">
+  <meta property="og:description" content="Questions or ideas? Send us a message — we usually reply within 1–2 business days.">
   <meta property="og:image" content="https://app.quotesn.com/images/app_logo.png">
   <meta property="og:url" content="https://www.quotesn.com/contact/">
   <meta name="twitter:card" content="summary_large_image">
 
+  <!-- JSON-LD -->
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"WebPage","name":"Contact Quotesn","url":"https://www.quotesn.com/contact/","description":"Contact Quotesn for questions, feedback, or partnerships."}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"Organization","name":"Quotesn","url":"https://www.quotesn.com/","logo":"https://app.quotesn.com/images/app_logo.png"}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+    {"@type":"ListItem","position":1,"name":"Home","item":"https://www.quotesn.com/"},
+    {"@type":"ListItem","position":2,"name":"Contact","item":"https://www.quotesn.com/contact/"}
+  ]}
+  </script>
+
   <!-- =========================
        Inline Critical CSS
+       (light default; optional dark)
   ========================== -->
   <style>
-    /* ------------------------------
-       Tokens (Light default)
-    ------------------------------ */
+    /* Tokens (Light default) */
     :root{
       --bg:#ffffff; --bg-elev-1:#f7f8fb; --bg-elev-2:#eef1f7;
       --text:#0b0d12; --text-muted:#4a556f;
@@ -61,8 +74,11 @@
 
       --ease:cubic-bezier(.2,.8,.2,1);
       --time-1:120ms; --time-2:180ms;
+
       --gap-nav: clamp(.6rem, 1.6vw, 1.1rem);
     }
+
+    /* Optional dark scheme (light paints first) */
     @media (prefers-color-scheme:dark){
       :root{
         --bg:#0b0d12; --bg-elev-1:#11141b; --bg-elev-2:#151927;
@@ -78,12 +94,11 @@
       }
     }
 
-    /* ------------------------------
-       Base / Layout / A11y
-    ------------------------------ */
+    /* Base / layout / a11y */
     *,*::before,*::after{box-sizing:border-box}
     html,body{height:100%}
     body{margin:0;font-family:var(--ff-sans);font-size:var(--fs-body);line-height:1.6;color:var(--text);background:var(--bg);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+    img{max-width:100%;display:block}
     a{color:var(--primary);text-decoration:none}
     a:hover{color:var(--primary-strong)}
     ::selection{background:rgba(49,87,255,.18)}
@@ -94,8 +109,7 @@
       padding-left: calc(var(--container-pad) + env(safe-area-inset-left, 0px));
       padding-right: calc(var(--container-pad) + env(safe-area-inset-right, 0px));
     }
-
-    /* === Scoped fix 1: local hero inset (Contact only) === */
+    /* Local hero inset — Contact only (extra left padding, right unchanged) */
     .page-header > .container{
       padding-left: calc(var(--container-pad) + 12px + env(safe-area-inset-left, 0px));
     }
@@ -110,9 +124,7 @@
     .skip-link:focus{position:fixed;left:var(--space-4);top:var(--space-4);background:var(--bg-elev-2);color:var(--text);padding:.45rem .6rem;border-radius:10px;box-shadow:var(--shadow-1);z-index:10000}
     :focus-visible{outline:2px solid #FFB000;outline-offset:2px;border-radius:8px}
 
-    /* ------------------------------
-       Header / Navigation (locked)
-    ------------------------------ */
+    /* ===== Locked Header / Nav ===== */
     header.site-header{position:sticky;top:0;z-index:900;backdrop-filter:saturate(140%) blur(8px);background:color-mix(in oklab,var(--bg),transparent 12%);border-bottom:1px solid var(--border)}
     .nav{display:flex;align-items:center;justify-content:space-between;height:64px;gap:1rem;flex-wrap:nowrap}
     .brand{display:inline-flex;align-items:center;gap:.6rem;flex-shrink:0}
@@ -122,6 +134,14 @@
     .nav-links{display:flex;align-items:center;gap:var(--gap-nav);flex-wrap:nowrap}
     .nav-links a{color:var(--text);opacity:.95;font-weight:500;padding:.35rem .45rem;border-radius:8px;transition:background var(--time-2) var(--ease),opacity var(--time-2) var(--ease);white-space:nowrap;flex-shrink:0}
     .nav-links a:hover{background:var(--bg-elev-2);opacity:1}
+
+    /* Unified buttons (fixed height) */
+    .btn{display:inline-flex;align-items:center;justify-content:center;height:44px;padding:0 14px;border-radius:10px;font-weight:700;font-size:1rem;white-space:nowrap;line-height:1}
+    .btn-primary{background:linear-gradient(135deg,#FFD24A 0%,#FFB000 100%);color:#1a1206;box-shadow:0 8px 18px rgba(255,178,0,.18);transition:transform var(--time-1) var(--ease),box-shadow var(--time-2) var(--ease)}
+    .btn-primary:hover{transform:translateY(-1px);box-shadow:0 12px 26px rgba(255,178,0,.28)}
+    .btn-outline{border:1px solid color-mix(in oklab,var(--primary),#ffffff 10%);color:var(--text);background:linear-gradient(180deg,rgba(49,87,255,.10),rgba(49,87,255,.05));transition:border-color var(--time-2) var(--ease),transform var(--time-1) var(--ease)}
+    .btn-outline:hover{transform:translateY(-1px);border-color:var(--primary)}
+
     .menu-toggle{display:none;background:transparent;border:0;color:var(--text);font-size:1.35rem;line-height:1;padding:.35rem .5rem;border-radius:8px}
     @media (max-width:980px){
       .menu-toggle{display:inline-flex}
@@ -131,17 +151,13 @@
       .btn-primary{margin-top:.6rem}
     }
 
-    /* ------------------------------
-       Page Hero
-    ------------------------------ */
+    /* Page header (hero) */
     .page-header{background:var(--grad-hero)}
     .page-header .inner{padding:clamp(2rem,6vw,4rem) 0}
     .page-header h1{font-family:var(--ff-display);font-weight:700;letter-spacing:.3px;font-size:var(--fs-hero);line-height:1.08;margin:0 0 var(--space-3)}
     .page-header p{color:var(--text-muted);max-width:70ch;margin:0}
 
-    /* ------------------------------
-       Cards / Inputs
-    ------------------------------ */
+    /* Cards / inputs */
     .card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);box-shadow:var(--shadow-2);overflow:hidden}
     .card-pad{padding:var(--space-6)}
     form.q-form{display:grid;gap:var(--space-4)}
@@ -149,33 +165,18 @@
     .label{font-weight:600;color:var(--text)}
     .hint{color:var(--text-muted);font-size:.95rem}
     .input,.textarea{width:100%;padding:.85rem .95rem;background:var(--bg-elev-2);border:1px solid var(--border);color:var(--text);border-radius:12px;transition:border-color var(--time-2) var(--ease),box-shadow var(--time-2) var(--ease)}
-    .input:focus,.textarea:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px rgba(49,87,255,.18)}
+    .input:focus,.textarea:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px rgba(49,87,255,.25)}
     .textarea{min-height:180px;resize:vertical}
 
-    /* === Scoped fix 2: button baseline sizing & actions alignment === */
-    .btn{
-      display:inline-flex;align-items:center;justify-content:center;
-      height:44px;padding:0 14px;border-radius:10px;
-      font-weight:700;font-size:1rem;line-height:1;white-space:nowrap;
-    }
-    .btn-primary{background:linear-gradient(135deg,#FFD24A 0%,#FFB000 100%);color:#1a1206;box-shadow:0 8px 18px rgba(255,178,0,.18);transition:transform var(--time-1) var(--ease),box-shadow var(--time-2) var(--ease)}
-    .btn-primary:hover{transform:translateY(-1px);box-shadow:0 12px 26px rgba(255,178,0,.28)}
-    .btn-outline{border:1px solid color-mix(in oklab,var(--primary),#ffffff 10%);color:var(--text);background:linear-gradient(180deg,rgba(49,87,255,.10),rgba(49,87,255,.05));transition:border-color var(--time-2) var(--ease),transform var(--time-1) var(--ease)}
-    .btn-outline:hover{transform:translateY(-1px);border-color:var(--primary)}
-
+    /* Actions row — align buttons baseline, equal height */
     .actions{display:flex;align-items:center;gap:var(--space-3);flex-wrap:wrap;margin-top:.5rem}
-    @media (max-width:600px){
-      .actions{align-items:stretch}
-      .actions .btn{width:100%}
-    }
+    @media (max-width:600px){.actions{align-items:stretch}.actions .btn{width:100%}}
 
-    /* === Scoped fix 3: right column breathing room === */
+    /* Right column breathing room */
     .contact-aside .stack > * + *{margin-top:.9rem}
     .contact-aside .hint{margin-top:.75rem}
 
-    /* ------------------------------
-       Footer (locked)
-    ------------------------------ */
+    /* ===== Locked Footer ===== */
     footer.site-footer{border-top:1px solid var(--border);background:linear-gradient(180deg,rgba(49,87,255,.06),rgba(49,87,255,0));padding:var(--space-6) 0;color:var(--text-muted)}
     .footer-row{display:flex;flex-wrap:wrap;gap:var(--space-5);align-items:center;justify-content:space-between}
     .footer-links{display:flex;gap:var(--space-4);flex-wrap:wrap}
@@ -188,7 +189,7 @@
   <a href="#main" class="skip-link">Skip to content</a>
 
   <!-- =========================
-       Header / Nav (locked)
+       LOCKED HEADER / NAV
   ========================== -->
   <header class="site-header">
     <div class="container nav">
@@ -220,7 +221,7 @@
     <section class="page-header">
       <div class="container inner">
         <h1>Contact Us</h1>
-        <p>Have feedback, questions, or partnership ideas? Drop us a message — we’d love to hear from you. We typically respond within 1–2 business days.</p>
+        <p>Have feedback, questions, or partnership ideas? Drop us a message — we typically respond within 1–2 business days.</p>
       </div>
     </section>
 
@@ -231,10 +232,10 @@
       <div class="container grid grid-2">
         <!-- Left: Form -->
         <article class="card card-pad" aria-labelledby="form-title">
-          <h2 id="form-title" style="margin-top:0">Send a Message</h2>
+          <h2 id="form-title" style="margin-top:0;">Send a Message</h2>
 
+          <!-- Keep FormSubmit working exactly as-is -->
           <form class="q-form" action="https://formsubmit.co/quotesn.com@gmail.com" method="POST">
-            <!-- FormSubmit controls (must remain) -->
             <input type="hidden" name="_captcha" value="false">
             <input type="hidden" name="_next" value="https://www.quotesn.com/contact-success">
             <input type="hidden" name="_subject" value="New message from Quotesn.com contact form">
@@ -265,10 +266,10 @@
         <!-- Right: Other ways -->
         <aside class="card card-pad contact-aside" aria-labelledby="other-ways">
           <div class="stack">
-            <h2 id="other-ways" style="margin-top:0">Other Ways to Reach Us</h2>
-            <p>Prefer email? Write to <a href="mailto:quotesn.com@gmail.com">quotesn.com@gmail.com</a> and we’ll get back shortly.</p>
-            <p>You can also explore our <a href="https://app.quotesn.com/" rel="noopener">Quotes App</a> or read the latest on our <a href="/blog/">Blog</a>.</p>
-            <p class="hint">Average reply time: <strong>1–2 business days</strong>.</p>
+            <h2 id="other-ways" style="margin-top:0;">Other Ways to Reach Us</h2>
+            <p>Prefer email? Write to <a href="mailto:quotesn.com@gmail.com">quotesn.com@gmail.com</a>.</p>
+            <p>Explore our <a href="https://app.quotesn.com/" rel="noopener">Quotes App</a> or read fresh ideas on the <a href="/blog/">Blog</a>.</p>
+            <p class="hint">Average reply time: 1–2 business days.</p>
           </div>
         </aside>
       </div>
@@ -276,7 +277,7 @@
   </main>
 
   <!-- =========================
-       Footer (locked)
+       LOCKED FOOTER
   ========================== -->
   <footer class="site-footer">
     <div class="container footer-row">
