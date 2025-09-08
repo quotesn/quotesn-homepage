@@ -142,10 +142,15 @@
     .option:hover{transform:translateY(-1px);border-color:var(--primary)}
     .option input{accent-color:#3157ff}
 
-    /* Button groups: resilient layout */
-    .controls, .share {display:flex;flex-wrap:wrap;gap:.75rem;margin-top:1rem}
-    .controls{align-items:center}
-    .controls .btn, .share .btn{flex:0 1 auto}
+    /* Button groups: resilient layout + slightly larger primary controls */
+    .controls, .share {display:flex;flex-wrap:wrap;gap:1rem;margin-top:1.25rem}
+    .controls{align-items:center;justify-content:flex-start}
+    .controls .btn{
+      height:48px;                 /* slightly taller than global 44px */
+      padding:0 18px;              /* wider touch target */
+      font-size:1rem;
+      flex:0 1 auto;
+    }
 
     /* New green button style for Check Answer (doesn't modify locked classes) */
     .btn-success{
@@ -242,7 +247,8 @@
         <div class="result" id="result" aria-live="polite" hidden></div>
 
         <div class="share" id="share" hidden>
-          <a class="btn btn-outline" id="share-link" href="https://www.quotesn.com/quizzes/famous-quotes/" rel="noopener">Copy Share Link</a>
+          <!-- Use a button for reliable clipboard access -->
+          <button type="button" class="btn btn-outline" id="share-link">Copy Share Link</button>
           <a class="btn btn-outline" href="/quizzes/" aria-label="Back to all quizzes">All Quizzes</a>
         </div>
       </div>
@@ -420,26 +426,28 @@
           resultEl.innerHTML = `<strong>Your final score:</strong> ${score}/${QUESTIONS.length} (${percent}%).`;
           shareWrap.hidden = false;
 
-          // SHARE: always use the canonical quiz URL
+          // SHARE: reliably copy canonical URL on click
           const url = 'https://www.quotesn.com/quizzes/famous-quotes/';
-          shareLink.href = url;
-          shareLink.onclick = (e)=>{
-            e.preventDefault();
-            const text = `${url}`;
-            if(navigator.clipboard && navigator.clipboard.writeText){
-              navigator.clipboard.writeText(text).then(()=>{
-                const prev = shareLink.textContent;
-                shareLink.textContent = 'Link Copied!';
-                setTimeout(()=>shareLink.textContent = prev, 1300);
-              });
-            }else{
-              // Fallback
-              const ta = document.createElement('textarea');
-              ta.value = text; document.body.appendChild(ta);
-              ta.select(); document.execCommand('copy'); document.body.removeChild(ta);
+          shareLink.onclick = ()=>{
+            const text = url;
+            const afterCopy = ()=>{
               const prev = shareLink.textContent;
               shareLink.textContent = 'Link Copied!';
               setTimeout(()=>shareLink.textContent = prev, 1300);
+            };
+            if(navigator.clipboard && navigator.clipboard.writeText){
+              navigator.clipboard.writeText(text).then(afterCopy).catch(()=>{
+                // Fallback if permission denied
+                const ta = document.createElement('textarea');
+                ta.value = text; document.body.appendChild(ta);
+                ta.select(); document.execCommand('copy'); document.body.removeChild(ta);
+                afterCopy();
+              });
+            }else{
+              const ta = document.createElement('textarea');
+              ta.value = text; document.body.appendChild(ta);
+              ta.select(); document.execCommand('copy'); document.body.removeChild(ta);
+              afterCopy();
             }
           };
 
