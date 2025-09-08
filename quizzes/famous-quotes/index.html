@@ -141,12 +141,24 @@
     }
     .option:hover{transform:translateY(-1px);border-color:var(--primary)}
     .option input{accent-color:#3157ff}
-    .controls{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:1rem}
-    .pill{display:inline-flex;align-items:center;gap:.4rem;padding:.35rem .6rem;border-radius:999px;border:1px solid var(--border);background:linear-gradient(180deg,rgba(255,255,255,.6),rgba(255,255,255,.35));color:var(--text-muted);font-size:.9rem}
+
+    /* Button groups: resilient layout */
+    .controls, .share {display:flex;flex-wrap:wrap;gap:.75rem;margin-top:1rem}
+    .controls{align-items:center}
+    .controls .btn, .share .btn{flex:0 1 auto}
+
+    /* New green button style for Check Answer (doesn't modify locked classes) */
+    .btn-success{
+      background:linear-gradient(135deg,#3CCB8C 0%,#21A87A 100%);
+      color:#062a1f;
+      box-shadow:0 8px 18px rgba(33,168,122,.18);
+      transition:transform var(--time-1) var(--ease),box-shadow var(--time-2) var(--ease);
+      border:0;
+    }
+    .btn-success:hover{transform:translateY(-1px);box-shadow:0 12px 26px rgba(33,168,122,.28)}
 
     .result{margin-top:1rem;padding:1rem;border:1px solid var(--border);border-radius:12px;background:linear-gradient(180deg,rgba(49,87,255,.06),rgba(49,87,255,.03))}
     .result strong{font-size:1.05rem}
-    .share{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:.75rem}
 
     /* ---------- Footer (LOCKED) ---------- */
     footer.site-footer{border-top:1px solid var(--border);background:linear-gradient(180deg,rgba(49,87,255,.06),rgba(49,87,255,0));padding:var(--space-6) 0;color:var(--text-muted)}
@@ -218,19 +230,19 @@
             <legend class="visually-hidden">Choose the author</legend>
             <div class="options" id="options"></div>
           </fieldset>
-
           <p id="help" class="visually-hidden">Use arrow keys to move between options. Press space or enter to select.</p>
 
           <div class="controls">
-            <button type="button" class="btn btn-outline" id="check">Check Answer</button>
+            <button type="button" class="btn btn-success" id="check">Check Answer</button>
             <button type="button" class="btn btn-primary" id="next" disabled>Next</button>
             <button type="button" class="btn btn-outline" id="restart">Restart</button>
           </div>
         </form>
 
         <div class="result" id="result" aria-live="polite" hidden></div>
+
         <div class="share" id="share" hidden>
-          <a class="btn btn-outline" id="share-link" href="#" rel="noopener">Copy Share Link</a>
+          <a class="btn btn-outline" id="share-link" href="https://www.quotesn.com/quizzes/famous-quotes/" rel="noopener">Copy Share Link</a>
           <a class="btn btn-outline" href="/quizzes/" aria-label="Back to all quizzes">All Quizzes</a>
         </div>
       </div>
@@ -279,7 +291,6 @@
   ========================== -->
   <script defer>
     (function(){
-      /** Data: 10 “top” famous lines (succinct; authors used as options). */
       const QUESTIONS = [
         { q: "The only way to do great work is to love what you do.", a: "Steve Jobs",
           choices: ["Steve Jobs","Maya Angelou","Walt Disney","Albert Einstein"] },
@@ -334,7 +345,6 @@
         counterEl.textContent = `Question ${i+1} of ${QUESTIONS.length}`;
         barEl.style.width = `${pct()}%`;
 
-        // Build options (radio group)
         optionsEl.innerHTML = '';
         const name = `q${i}`;
         shuffle(choices).forEach((label, idx) => {
@@ -358,7 +368,6 @@
           optionsEl.appendChild(wrap);
         });
 
-        // Focus first option for keyboard flow
         const first = optionsEl.querySelector('input');
         if(first) first.focus();
       }
@@ -366,20 +375,14 @@
       function checkAnswer(){
         if(answered) return;
         const sel = optionsEl.querySelector('input:checked');
-        if(!sel){ // nudge focus
-          const first = optionsEl.querySelector('input'); if(first) first.focus();
-          return;
-        }
+        if(!sel){ const first = optionsEl.querySelector('input'); if(first) first.focus(); return; }
         answered = true;
 
         const correct = QUESTIONS[i].a;
         const ok = sel.value === correct;
-
         if(ok) score++;
         scoreEl.textContent = `Score: ${score}`;
 
-        // Visual feedback
-        // Mark all options; correct = bold, chosen wrong = strike
         optionsEl.querySelectorAll('label').forEach(lab=>{
           const val = lab.querySelector('input').value;
           if(val === correct){
@@ -416,16 +419,30 @@
           resultEl.hidden = false;
           resultEl.innerHTML = `<strong>Your final score:</strong> ${score}/${QUESTIONS.length} (${percent}%).`;
           shareWrap.hidden = false;
-          // Build shareable link with score param
-          const url = new URL(window.location.href);
-          url.searchParams.set('s', `${score}`);
-          shareLink.href = url.toString();
+
+          // SHARE: always use the canonical quiz URL
+          const url = 'https://www.quotesn.com/quizzes/famous-quotes/';
+          shareLink.href = url;
           shareLink.onclick = (e)=>{
             e.preventDefault();
-            navigator.clipboard?.writeText(url.toString());
-            shareLink.textContent = 'Link Copied!';
-            setTimeout(()=>shareLink.textContent='Copy Share Link',1200);
+            const text = `${url}`;
+            if(navigator.clipboard && navigator.clipboard.writeText){
+              navigator.clipboard.writeText(text).then(()=>{
+                const prev = shareLink.textContent;
+                shareLink.textContent = 'Link Copied!';
+                setTimeout(()=>shareLink.textContent = prev, 1300);
+              });
+            }else{
+              // Fallback
+              const ta = document.createElement('textarea');
+              ta.value = text; document.body.appendChild(ta);
+              ta.select(); document.execCommand('copy'); document.body.removeChild(ta);
+              const prev = shareLink.textContent;
+              shareLink.textContent = 'Link Copied!';
+              setTimeout(()=>shareLink.textContent = prev, 1300);
+            }
           };
+
           // Lock UI
           optionsEl.innerHTML = '';
           quoteEl.textContent = 'Thanks for playing!';
@@ -451,16 +468,6 @@
 
       // Start
       renderQuestion();
-
-      // If a shared score is present, show a banner (non-blocking)
-      const shared = new URLSearchParams(location.search).get('s');
-      if(shared){
-        const div = document.createElement('div');
-        div.className = 'pill';
-        div.style.margin = '0 0 .75rem 0';
-        div.textContent = `A friend scored ${shared}/${QUESTIONS.length}. Can you beat it?`;
-        document.querySelector('.quiz-card').insertBefore(div, document.querySelector('.quiz-meta').nextSibling);
-      }
     })();
   </script>
 </body>
