@@ -8,15 +8,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
   <title>Contact Us — Quotesn</title>
-  <meta name="description" content="Contact Quotesn. Send us a message, partnership inquiry, or feedback. We usually reply within 1–2 business days." />
+  <meta name="description" content="Questions or ideas? Send us a message. We usually reply within 1–2 business days." />
   <link rel="canonical" href="https://www.quotesn.com/contact/" />
   <link rel="icon" href="/images/favicon.ico" sizes="any" />
 
   <!-- Preconnects -->
   <link rel="preconnect" href="https://app.quotesn.com" crossorigin>
   <link rel="dns-prefetch" href="https://app.quotesn.com">
-  <link rel="preconnect" href="https://picsum.photos" crossorigin>
-  <link rel="dns-prefetch" href="https://picsum.photos">
 
   <!-- Open Graph -->
   <meta property="og:title" content="Contact Us — Quotesn">
@@ -27,7 +25,7 @@
 
   <!-- JSON-LD -->
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"WebPage","name":"Contact Quotesn","url":"https://www.quotesn.com/contact/","description":"Send us a message, partnership inquiry, or feedback. We usually reply within 1–2 business days."}
+  {"@context":"https://schema.org","@type":"WebPage","name":"Contact Us","url":"https://www.quotesn.com/contact/","description":"Contact Quotesn. Send us a message, partnership inquiry, or feedback."}
   </script>
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
@@ -40,9 +38,10 @@
   </script>
 
   <!-- =========================
-       Inline Critical CSS
+       Inline Critical CSS (locked system)
   ========================== -->
   <style>
+    /* Tokens (light default) */
     :root{
       --bg:#ffffff; --bg-elev-1:#f7f8fb; --bg-elev-2:#eef1f7;
       --text:#0b0d12; --text-muted:#4a556f;
@@ -72,13 +71,33 @@
 
       --ease:cubic-bezier(.2,.8,.2,1);
       --time-1:120ms; --time-2:180ms;
+      --gap-nav: clamp(.6rem, 1.6vw, 1.1rem);
     }
 
+    /* Optional dark scheme */
+    @media (prefers-color-scheme:dark){
+      :root{
+        --bg:#0b0d12; --bg-elev-1:#11141b; --bg-elev-2:#151927;
+        --text:#e8eefc; --text-muted:#b7c0d8;
+        --primary:#7aa2ff; --primary-strong:#5a86ff;
+        --card:#0f121a; --border:#1d2333;
+        --grad-hero:radial-gradient(1200px 600px at 10% 10%,#2a2f4a 0%,rgba(17,20,27,0) 55%),
+                     radial-gradient(1200px 600px at 90% 20%,#1b2c52 0%,rgba(17,20,27,0) 60%),
+                     linear-gradient(180deg,#0b0d12 0%,#0e1220 100%);
+        --grad-section:linear-gradient(180deg,rgba(90,134,255,.08),rgba(90,134,255,0));
+        --shadow-1:0 8px 24px rgba(0,0,0,.22);
+        --shadow-2:0 16px 40px rgba(0,0,0,.28), inset 0 1px 0 rgba(255,255,255,.02);
+      }
+    }
+
+    /* Base / layout / a11y */
     *,*::before,*::after{box-sizing:border-box}
+    html,body{height:100%}
     body{margin:0;font-family:var(--ff-sans);font-size:var(--fs-body);line-height:1.6;color:var(--text);background:var(--bg);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
     img{max-width:100%;display:block}
     a{color:var(--primary);text-decoration:none}
     a:hover{color:var(--primary-strong)}
+    ::selection{background:rgba(49,87,255,.18)}
 
     .container{
       width:min(100%,var(--container-max));
@@ -91,91 +110,151 @@
     .grid-2{grid-template-columns:1.2fr .8fr}
     @media (max-width:900px){.grid-2{grid-template-columns:1fr}}
 
-    /* ===== Locked Header ===== */
+    /* Skip link (hidden until focused) */
+    .skip-link{position:absolute;left:-999px;top:auto;width:1px;height:1px;overflow:hidden}
+    .skip-link:focus{position:fixed;left:var(--space-4);top:var(--space-4);background:var(--bg-elev-2);color:var(--text);padding:.45rem .6rem;border-radius:10px;box-shadow:var(--shadow-1);z-index:10000}
+    :focus-visible{outline:2px solid #FFB000;outline-offset:2px;border-radius:8px}
+
+    /* ===== Locked Header / Nav ===== */
     header.site-header{position:sticky;top:0;z-index:900;backdrop-filter:saturate(140%) blur(8px);background:color-mix(in oklab,var(--bg),transparent 12%);border-bottom:1px solid var(--border)}
-    .nav{display:flex;align-items:center;justify-content:space-between;height:64px;gap:1rem}
-    .brand{display:inline-flex;align-items:center;gap:.6rem;flex-shrink:0}
-    .brand img{width:40px;height:40px;border-radius:10px}
+    .nav{display:flex;align-items:center;justify-content:space-between;height:64px;gap:1rem;flex-wrap:nowrap}
+    .brand{display:inline-flex;align-items:center;gap:.6rem;flex-shrink:0;text-decoration:none}
+    .brand img{width:40px;height:40px;border-radius:10px;box-shadow:0 6px 18px rgba(0,0,0,.08)}
     .brand span{font-family:var(--ff-display);font-weight:700;color:var(--text)}
-    .nav-menu{display:flex;align-items:center;gap:clamp(.6rem,1.6vw,1.1rem)}
-    .nav-links{display:flex;align-items:center;gap:clamp(.6rem,1.6vw,1.1rem);flex-wrap:nowrap}
-    .nav-links a{color:var(--text);opacity:.95;font-weight:500;padding:.35rem .45rem;border-radius:8px;white-space:nowrap}
+    .nav-menu{display:flex;align-items:center;gap:var(--gap-nav)}
+    .nav-links{display:flex;align-items:center;gap:var(--gap-nav);flex-wrap:nowrap}
+    .nav-links a{color:var(--text);opacity:.95;font-weight:500;padding:.35rem .45rem;border-radius:8px;transition:background var(--time-2) var(--ease),opacity var(--time-2) var(--ease);white-space:nowrap;flex-shrink:0}
     .nav-links a:hover{background:var(--bg-elev-2);opacity:1}
 
+    /* Unified buttons (site standard) */
     .btn{display:inline-flex;align-items:center;justify-content:center;height:44px;padding:0 14px;border-radius:10px;font-weight:700;font-size:1rem;line-height:1;white-space:nowrap}
-    .btn-primary{background:linear-gradient(135deg,#FFD24A 0%,#FFB000 100%);color:#1a1206;box-shadow:0 8px 18px rgba(255,178,0,.18)}
-    .btn-outline{border:1px solid color-mix(in oklab,var(--primary),#ffffff 10%);color:var(--text);background:linear-gradient(180deg,rgba(49,87,255,.10),rgba(49,87,255,.05))}
+    .btn-primary{background:linear-gradient(135deg,#FFD24A 0%,#FFB000 100%);color:#1a1206;box-shadow:0 8px 18px rgba(255,178,0,.18);transition:transform var(--time-1) var(--ease),box-shadow var(--time-2) var(--ease)}
+    .btn-primary:hover{transform:translateY(-1px);box-shadow:0 12px 26px rgba(255,178,0,.28)}
+    .btn-outline{border:1px solid color-mix(in oklab,var(--primary),#ffffff 10%);color:var(--text);background:linear-gradient(180deg,rgba(49,87,255,.10),rgba(49,87,255,.05));transition:border-color var(--time-2) var(--ease),transform var(--time-1) var(--ease)}
+    .btn-outline:hover{transform:translateY(-1px);border-color:var(--primary)}
 
-    /* ===== Hero ===== */
+    .menu-toggle{display:none;background:transparent;border:0;color:var(--text);font-size:1.35rem;line-height:1;padding:.35rem .5rem;border-radius:8px}
+    @media (max-width:980px){
+      .menu-toggle{display:inline-flex}
+      .nav-menu{display:none;position:absolute;left:0;right:0;top:64px;background:var(--bg-elev-1);border-bottom:1px solid var(--border);padding:.8rem var(--container-pad)}
+      .nav-menu.show{display:block}
+      .nav-links{flex-direction:column;align-items:flex-start;gap:.6rem}
+      .btn-primary{margin-top:.6rem}
+    }
+
+    /* ===== Page Hero ===== */
     .page-header{background:var(--grad-hero)}
-    .page-header .container.inner{padding-left: calc(var(--container-pad) + 12px + env(safe-area-inset-left, 0px))}
-    .page-header .inner{padding:clamp(2rem,6vw,4rem) 0}
-    .page-header h1{font-family:var(--ff-display);font-weight:700;font-size:var(--fs-hero);margin:0 0 var(--space-3)}
-    .page-header p{color:var(--text-muted);max-width:65ch;margin:0}
+    .page-header .container.inner{padding:clamp(2rem,6vw,4rem) 0}
+    .page-header h1{font-family:var(--ff-display);font-weight:700;letter-spacing:.3px;font-size:var(--fs-hero);line-height:1.08;margin:0 0 var(--space-3)}
+    .page-header p{color:var(--text-muted);max-width:70ch;margin:0}
 
-    /* ===== Form / Aside ===== */
-    .card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);box-shadow:var(--shadow-2)}
-    .card-pad{padding:var(--space-5)}
+    /* Local hero inset — Contact only (scoped left padding) */
+    .page-header .container.inner{
+      padding-left: calc(var(--container-pad) + 12px + env(safe-area-inset-left, 0px));
+    }
+
+    /* Cards / utilities */
+    .card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);box-shadow:var(--shadow-2);overflow:hidden}
+    .card-pad{padding:var(--space-6)}
+    .section h2{font-family:var(--ff-display);font-size:var(--fs-h2);margin:0 0 var(--space-4)}
+    .muted{color:var(--text-muted)}
+
+    /* Form fields */
+    form.q-form{display:grid;gap:var(--space-4)}
     .field{display:grid;gap:.5rem}
-    .input,.textarea{width:100%;padding:.85rem .95rem;background:var(--bg-elev-2);border:1px solid var(--border);border-radius:12px}
+    .label{font-weight:600}
+    .hint{color:var(--text-muted);font-size:.95rem}
+    .input,.textarea{width:100%;padding:.85rem .95rem;background:var(--bg-elev-2);border:1px solid var(--border);color:var(--text);border-radius:12px;transition:border-color var(--time-2) var(--ease),box-shadow var(--time-2) var(--ease)}
+    .input:focus,.textarea:focus{outline:0;border-color:var(--primary);box-shadow:0 0 0 3px rgba(49,87,255,.22)}
     .textarea{min-height:180px;resize:vertical}
 
+    /* Actions row (buttons aligned & responsive) */
     .actions{display:flex;align-items:center;gap:var(--space-3);flex-wrap:wrap;margin-top:.5rem}
     @media (max-width:600px){.actions{align-items:stretch}.actions .btn{width:100%}}
 
+    /* Right column breathing room */
     .contact-aside .stack > * + *{margin-top:.9rem}
     .contact-aside .hint{margin-top:.75rem}
 
-    /* ===== Footer ===== */
+    /* ===== Locked Footer ===== */
     footer.site-footer{border-top:1px solid var(--border);background:linear-gradient(180deg,rgba(49,87,255,.06),rgba(49,87,255,0));padding:var(--space-6) 0;color:var(--text-muted)}
     .footer-row{display:flex;flex-wrap:wrap;gap:var(--space-5);align-items:center;justify-content:space-between}
     .footer-links{display:flex;gap:var(--space-4);flex-wrap:wrap}
+    .footer-links a{color:var(--text-muted);text-decoration:none;font-weight:500}
+    .footer-links a:hover{color:var(--text)}
+    .visually-hidden{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
   </style>
 </head>
 <body>
   <a href="#main" class="skip-link">Skip to content</a>
 
-  <!-- ===== HEADER ===== -->
+  <!-- =========================
+       LOCKED HEADER / NAV
+  ========================== -->
   <header class="site-header">
     <div class="container nav">
-      <a class="brand" href="/"><img src="https://app.quotesn.com/images/app_logo.png" width="40" height="40" alt=""><span>Quotesn</span></a>
+      <a class="brand" href="/" aria-label="Quotesn home">
+        <img src="https://app.quotesn.com/images/app_logo.png" width="40" height="40" alt="Quotesn logo">
+        <span>Quotesn</span>
+      </a>
+
       <button class="menu-toggle" aria-label="Toggle menu" aria-controls="nav-menu" aria-expanded="false">☰</button>
+
       <div class="nav-menu" id="nav-menu">
-        <nav class="nav-links">
-          <a href="https://app.quotesn.com/">Quotes App</a>
+        <nav class="nav-links" aria-label="Primary">
+          <a href="https://app.quotesn.com/" rel="noopener">Quotes App</a>
           <a href="/pro-post-generator">Pro Post Generator</a>
           <a href="/quizzes/">Quizzes</a>
           <a href="/blog/">Blog</a>
           <a href="/about/">About</a>
           <a href="/contact/" aria-current="page">Contact</a>
-          <a class="btn btn-primary" href="https://app.quotesn.com/">Quotes</a>
+          <a class="btn btn-primary" href="https://app.quotesn.com/" rel="noopener">Quotes</a>
         </nav>
       </div>
     </div>
   </header>
 
   <main id="main">
-    <!-- ===== HERO ===== -->
+    <!-- =========================
+         Page Hero (with local left inset)
+    ========================== -->
     <section class="page-header">
       <div class="container inner">
         <h1>Contact Us</h1>
-        <p>Have feedback, questions, or partnership ideas? Drop us a message — we’d love to hear from you. We typically respond within 1–2 business days.</p>
+        <p class="muted">Have feedback, questions, or partnership ideas? Drop us a message — we’d love to hear from you. We typically respond within 1–2 business days.</p>
       </div>
     </section>
 
-    <!-- ===== FORM / ASIDE ===== -->
+    <!-- =========================
+         Contact Content
+    ========================== -->
     <section class="section">
       <div class="container grid grid-2">
-        <article class="card card-pad">
-          <h2>Send a Message</h2>
+        <!-- Left: Form -->
+        <article class="card card-pad" aria-labelledby="form-title">
+          <h2 id="form-title" style="margin-top:0;">Send a Message</h2>
+
           <form class="q-form" action="https://formsubmit.co/quotesn.com@gmail.com" method="POST">
+            <!-- FormSubmit controls (must remain) -->
             <input type="hidden" name="_captcha" value="false">
             <input type="hidden" name="_next" value="https://www.quotesn.com/contact-success">
             <input type="hidden" name="_subject" value="New message from Quotesn.com contact form">
 
-            <div class="field"><label for="name">Your Name</label><input class="input" id="name" name="name" type="text" placeholder="Your name" required></div>
-            <div class="field"><label for="email">Your Email</label><input class="input" id="email" name="email" type="email" placeholder="you@example.com" required></div>
-            <div class="field"><label for="message">Message</label><textarea class="textarea" id="message" name="message" placeholder="How can we help?" required></textarea></div>
+            <div class="field">
+              <label class="label" for="name">Your Name</label>
+              <input class="input" id="name" name="name" type="text" placeholder="Your name" autocomplete="name" required>
+            </div>
+
+            <div class="field">
+              <label class="label" for="email">Your Email</label>
+              <input class="input" id="email" name="email" type="email" placeholder="you@example.com" autocomplete="email" required>
+            </div>
+
+            <div class="field">
+              <label class="label" for="message">Message</label>
+              <textarea class="textarea" id="message" name="message" placeholder="How can we help?" required></textarea>
+              <p class="hint">Include any relevant links or details to help us assist you faster.</p>
+            </div>
 
             <div class="actions">
               <button type="submit" class="btn btn-primary">Send Message</button>
@@ -184,11 +263,12 @@
           </form>
         </article>
 
-        <aside class="card card-pad contact-aside">
+        <!-- Right: Other Ways -->
+        <aside class="card card-pad contact-aside" aria-labelledby="other-ways">
           <div class="stack">
-            <h2>Other Ways to Reach Us</h2>
+            <h2 id="other-ways" style="margin-top:0;">Other Ways to Reach Us</h2>
             <p>Prefer email? Write to us directly at <a href="mailto:quotesn.com@gmail.com">quotesn.com@gmail.com</a>.</p>
-            <p>You can also explore our <a href="https://app.quotesn.com/">Quotes App</a> or read the latest on our <a href="/blog/">Blog</a>.</p>
+            <p>You can also explore our <a href="https://app.quotesn.com/" rel="noopener">Quotes App</a> or read the latest on our <a href="/blog/">Blog</a>.</p>
             <p class="hint">Average reply: 1–2 business days</p>
           </div>
         </aside>
@@ -196,32 +276,40 @@
     </section>
   </main>
 
-  <!-- ===== FOOTER ===== -->
+  <!-- =========================
+       LOCKED FOOTER
+  ========================== -->
   <footer class="site-footer">
     <div class="container footer-row">
-      <div class="brand"><img src="https://app.quotesn.com/images/app_logo.png" width="36" height="36" alt=""><span>Quotesn</span></div>
-      <nav class="footer-links">
+      <div class="brand" aria-label="Quotesn home">
+        <img src="https://app.quotesn.com/images/app_logo.png" width="36" height="36" alt="">
+        <span>Quotesn</span>
+      </div>
+      <nav class="footer-links" aria-label="Footer">
         <a href="/privacy">Privacy</a>
         <a href="/terms">Terms</a>
         <a href="/sitemap.xml">Sitemap</a>
         <a href="/contact/">Contact</a>
-        <span>© <span id="year"></span></span>
+        <span aria-hidden="true">© <span id="year"></span></span>
       </nav>
     </div>
   </footer>
 
-  <!-- ===== JS ===== -->
+  <!-- =========================
+       Tiny JS (defer)
+  ========================== -->
   <script defer>
-    // Mobile nav toggle
+    // Mobile nav toggle (locked behavior)
     (function(){
       const btn=document.querySelector('.menu-toggle');
       const menu=document.getElementById('nav-menu');
-      if(!btn||!menu)return;
-      btn.addEventListener('click',()=>{
+      if(!btn||!menu) return;
+      btn.addEventListener('click',()=> {
         const open=menu.classList.toggle('show');
-        btn.setAttribute('aria-expanded',open?'true':'false');
+        btn.setAttribute('aria-expanded', open ? 'true':'false');
       });
     })();
+
     // Footer year
     (function(){
       const y=document.getElementById('year');
