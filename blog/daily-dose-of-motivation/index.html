@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- =========================
+       Meta / SEO
+  ========================== -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
+  <title>Daily Dose of Motivation — Quotesn</title>
+  <meta name="description" content="Turn inspiration into momentum with a 3-part daily routine: a cue, a micro-move, and a two-line reflection. Practical templates, micro-move ideas, and weekly resets." />
+  <link rel="canonical" href="https://www.quotesn.com/blog/daily-dose-of-motivation/" />
+  <link rel="icon" href="/images/favicon.ico" sizes="any" />
+
+  <!-- Preconnects -->
+  <link rel="preconnect" href="https://app.quotesn.com" crossorigin>
+  <link rel="dns-prefetch" href="https://app.quotesn.com">
+  <link rel="preconnect" href="https://images.unsplash.com" crossorigin>
+  <link rel="dns-prefetch" href="https://images.unsplash.com">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Daily Dose of Motivation">
+  <meta property="og:description" content="A simple, repeatable routine to turn quotes into action: cue → micro-move → reflection. Includes templates and troubleshooting tips.">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=1280&q=80">
+  <meta property="og:url" content="https://www.quotesn.com/blog/daily-dose-of-motivation/">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- JSON-LD -->
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+    {"@type":"ListItem","position":1,"name":"Home","item":"https://www.quotesn.com/"},
+    {"@type":"ListItem","position":2,"name":"Blog","item":"https://www.quotesn.com/blog/"},
+    {"@type":"ListItem","position":3,"name":"Daily Dose of Motivation","item":"https://www.quotesn.com/blog/daily-dose-of-motivation/"}
+  ]}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BlogPosting",
+   "headline":"Daily Dose of Motivation",
+   "description":"Turn inspiration into momentum with a 3-part daily routine: a cue, a micro-move, and a two-line reflection. Practical templates, micro-move ideas, and weekly resets.",
+   "image":"https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=1280&q=80",
+   "datePublished":"2025-01-02",
+   "dateModified":"2025-01-02",
+   "author":{"@type":"Organization","name":"Team Quotesn"},
+   "publisher":{"@type":"Organization","name":"Quotesn","logo":{"@type":"ImageObject","url":"https://app.quotesn.com/images/app_logo.png"}},
+   "mainEntityOfPage":{"@type":"WebPage","@id":"https://www.quotesn.com/blog/daily-dose-of-motivation/"}}
+  </script>
+
+  <!-- =========================
+       Inline Critical CSS (Locked tokens + base from canonical)
+  ========================== -->
+  <style>
+    /* ------------------------------
+       Tokens (locked)
+    ------------------------------ */
+    :root{
+      --bg:#ffffff; --bg-elev-1:#f7f8fb; --bg-elev-2:#eef1f7;
+      --text:#0b0d12; --text-muted:#4a556f;
+      --primary:#3157ff; --primary-strong:#2647db;
+      --card:#ffffff; --border:#e7eaf2;
+
+      --grad-hero:radial-gradient(1200px 600px at 15% 15%,#e9edff 0%,rgba(255,255,255,0) 55%),
+                   radial-gradient(1200px 600px at 90% 20%,#e4f0ff 0%,rgba(255,255,255,0) 60%),
+                   linear-gradient(180deg,#ffffff 0%,#f9fbff 100%);
+      --grad-section:linear-gradient(180deg,rgba(49,87,255,.08),rgba(49,87,255,0));
+
+      --ff-sans: system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans";
+      --ff-display: ui-sans-serif,"Inter",var(--ff-sans);
+
+      --fs-hero:clamp(2rem,4vw + 1rem,3rem);
+      --fs-h2:clamp(1.25rem,1.2vw + 1rem,1.75rem);
+      --fs-body:clamp(1rem,.4vw + .9rem,1.125rem);
+
+      --space-1:.25rem; --space-2:.5rem; --space-3:.75rem; --space-4:1rem; --space-5:1.5rem; --space-6:2rem; --space-7:3rem;
+
+      --radius-sm:12px; --radius-md:14px; --radius-lg:16px;
+      --shadow-1:0 8px 24px rgba(10,22,70,.08);
+      --shadow-2:0 18px 44px rgba(10,22,70,.10), inset 0 1px 0 rgba(255,255,255,.65);
+
+      --container-max:1200px;
+      --container-pad: clamp(1.25rem, 4vw, 2.25rem);
+
+      --ease:cubic-bezier(.2,.8,.2,1);
+      --time-1:120ms; --time-2:180ms;
+
+      --gap-nav: clamp(.6rem, 1.6vw, 1.1rem);
+    }
+
+    /* Dark scheme (locked) */
+    @media (prefers-color-scheme:dark){
+      :root{
+        --bg:#0b0d12; --bg-elev-1:#11141b; --bg-elev-2:#151927;
+        --text:#e8eefc; --text-muted:#b7c0d8;
+        --primary:#7aa2ff; --primary-strong:#5a86ff;
+        --card:#0f121a; --border:#1d2333;
+        --grad-hero:radial-gradient(1200px 600px at 10% 10%,#2a2f4a 0%,rgba(17,20,27,0) 55%),
+                     radial-gradient(1200px 600px at 90% 20%,#1b2c52 0%,rgba(17,20,27,0) 60%),
+                     linear-gradient(180deg,#0b0d12 0%,#0e1220 100%);
+        --grad-section:linear-gradient(180deg,rgba(90,134,255,.08),rgba(90,134,255,0));
+        --shadow-1:0 8px 24px rgba(0,0,0,.22);
+        --shadow-2:0 16px 40px rgba(0,0,0,.28), inset 0 1px 0 rgba(255,255,255,.02);
+      }
+    }
+
+    /* ------------------------------
+       Base / Layout / A11y (locked)
+    ------------------------------ */
+    *,*::before,*::after{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family:var(--ff-sans); font-size:var(--fs-body); line-height:1.6;
+      color:var(--text); background:var(--bg);
+      -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+    }
+    img{max-width:100%; display:block}
+    a{color:var(--primary); text-decoration:none}
+    a:hover{color:var(--primary-strong)}
+    ::selection{background:rgba(49,87,255,.18)}
+
+    .container{
+      width:min(100%,var(--container-max));
+      margin-inline:auto;
+      padding-left: calc(var(--container-pad) + env(safe-area-inset-left, 0px));
+      padding-right: calc(var(--container-pad) + env(safe-area-inset-right, 0px));
+    }
+    .section{padding:clamp(2.25rem,4vw,3.25rem) 0}
+    .section.has-tint{background:var(--grad-section);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+    .grid{display:grid;gap:var(--space-5)}
+    .grid-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+    @media (max-width:1024px){.grid-3{grid-template-columns:repeat(2,minmax(0,1fr))}}
+    @media (max-width:640px){.grid-3{grid-template-columns:1fr}}
+
+    .skip-link{position:absolute;left:-999px;top:auto;width:1px;height:1px;overflow:hidden}
+    .skip-link:focus{position:fixed;left:var(--space-4);top:var(--space-4);background:var(--bg-elev-2);color:var(--text);padding:.45rem .6rem;border-radius:10px;box-shadow:var(--shadow-1);z-index:10000}
+    :focus-visible{outline:2px solid #FFB000; outline-offset:2px; border-radius:8px}
+
+    /* ------------------------------
+       Header / Navigation (LOCKED)
+    ------------------------------ */
+    header.site-header{
+      position:sticky; top:0; z-index:900;
+      backdrop-filter:saturate(140%) blur(8px);
+      background:color-mix(in oklab,var(--bg),transparent 12%);
+      border-bottom:1px solid var(--border);
+    }
+    .nav{display:flex; align-items:center; justify-content:space-between; height:64px; gap:1rem; flex-wrap:nowrap}
+    .brand{display:inline-flex; align-items:center; gap:.6rem; flex-shrink:0}
+    .brand img{width:40px; height:40px; border-radius:10px; box-shadow:0 6px 18px rgba(0,0,0,.08)}
+    .brand span{font-family:var(--ff-display); font-weight:700; color:var(--text)}
+    .nav-menu{display:flex; align-items:center; gap:var(--gap-nav)}
+    .nav-links{display:flex; align-items:center; gap:var(--gap-nav); flex-wrap:nowrap}
+    .nav-links a{color:var(--text); opacity:.95; font-weight:500; padding:.35rem .45rem; border-radius:8px; transition:background var(--time-2) var(--ease),opacity var(--time-2) var(--ease); white-space:nowrap; flex-shrink:0}
+    .nav-links a:hover{background:var(--bg-elev-2); opacity:1}
+
+    /* Unified buttons (fixed height) */
+    .btn{display:inline-flex; align-items:center; justify-content:center; height:44px; padding:0 14px; border-radius:10px; font-weight:700; white-space:nowrap; line-height:1}
+    .btn-primary{
+      background: linear-gradient(135deg, #FFD24A 0%, #FFB000 100%);
+      color:#1a1206;
+      box-shadow:0 8px 18px rgba(255,178,0,.18);
+      transition:transform var(--time-1) var(--ease), box-shadow var(--time-2) var(--ease);
+    }
+    .btn-primary:hover{transform:translateY(-1px); box-shadow:0 12px 26px rgba(255,178,0,.28)}
+    .btn-outline{
+      border:1px solid color-mix(in oklab, var(--primary), #ffffff 10%);
+      color:var(--text);
+      background: linear-gradient(180deg, rgba(49,87,255,.10), rgba(49,87,255,.05));
+      transition:border-color var(--time-2) var(--ease), transform var(--time-1) var(--ease);
+    }
+    .btn-outline:hover{transform:translateY(-1px); border-color:var(--primary)}
+
+    .menu-toggle{display:none; background:transparent; border:0; color:var(--text); font-size:1.35rem; line-height:1; padding:.35rem .5rem; border-radius:8px}
+    @media (max-width:980px){
+      .menu-toggle{display:inline-flex}
+      .nav-menu{display:none; position:absolute; left:0; right:0; top:64px; background:var(--bg-elev-1);
+        border-bottom:1px solid var(--border); padding:.8rem var(--container-pad)}
+      .nav-menu.show{display:block}
+      .nav-links{flex-direction:column; align-items:flex-start; gap:.6rem}
+      .btn-primary{margin-top:.6rem}
+    }
+
+    /* ------------------------------
+       Hero (scoped to this page)
+    ------------------------------ */
+    .hero{background:var(--grad-hero)}
+    .hero > .container{
+      padding-left: calc((var(--container-pad) + 0.5rem) + env(safe-area-inset-left, 0px));
+    }
+    .hero-inner{padding:clamp(2rem,6vw,4rem) 0}
+    .hero h1{font-family:var(--ff-display); font-weight:700; letter-spacing:.3px; font-size:var(--fs-hero); line-height:1.08; margin:0 0 .35rem}
+    .hero p{color:var(--text-muted); max-width:70ch; margin:0}
+
+    /* ------------------------------
+       Article (scoped)
+    ------------------------------ */
+    .prose{max-width:760px; margin:0 auto; padding:clamp(1.25rem,4vw,2rem)}
+    .meta{color:var(--text-muted); font-size:.95rem; margin:.25rem 0 1rem}
+    .hero-img{width:100%; height:auto; border-radius:16px; margin:12px 0 24px; background:var(--bg-elev-2)}
+    .media{position:relative}
+    h2{font-family:var(--ff-display); font-size:var(--fs-h2); margin:var(--space-6) 0 var(--space-3)}
+    blockquote{margin:1rem 0; padding:.75rem 1rem; border-left:4px solid var(--border); background:rgba(49,87,255,.06); border-radius:8px}
+    .tip{border:1px solid var(--border); border-radius:12px; padding:1rem; background:linear-gradient(180deg,rgba(49,87,255,.05),rgba(49,87,255,.02)); margin:1rem 0}
+
+    /* ------------------------------
+       Footer (LOCKED)
+    ------------------------------ */
+    footer.site-footer{border-top:1px solid var(--border); background:linear-gradient(180deg, rgba(49,87,255,.06), rgba(49,87,255,0)); padding:var(--space-6) 0; color:var(--text-muted)}
+    .footer-row{display:flex; flex-wrap:wrap; gap:var(--space-5); align-items:center; justify-content:space-between}
+    .footer-links{display:flex; gap:var(--space-4); flex-wrap:wrap}
+    .footer-links a{color:var(--text-muted); text-decoration:none; font-weight:500}
+    .footer-links a:hover{color:var(--text)}
+    .visually-hidden{position:absolute!important; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0}
+  </style>
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <!-- =========================================================
+       Header / Navigation (LOCKED — copied exactly)
+  ========================================================== -->
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="/" aria-label="Quotesn home">
+        <img src="https://app.quotesn.com/images/app_logo.png" width="40" height="40" alt="Quotesn logo">
+        <span>Quotesn</span>
+      </a>
+
+      <button class="menu-toggle" aria-label="Toggle menu" aria-controls="nav-menu" aria-expanded="false">☰</button>
+
+      <div class="nav-menu" id="nav-menu">
+        <nav class="nav-links" aria-label="Primary">
+          <a href="https://app.quotesn.com/" rel="noopener">Quotes App</a>
+          <a href="/pro-post-generator">Pro Post Generator</a>
+          <a href="/quizzes/">Quizzes</a>
+          <a href="/blog/">Blog</a>
+          <a href="/about/">About</a>
+          <a href="/contact/">Contact</a>
+          <a class="btn btn-primary" href="https://app.quotesn.com/" rel="noopener" aria-label="Open the Quotes app">Quotes</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- =========================================================
+         Hero
+    ========================================================== -->
+    <section class="hero">
+      <div class="container hero-inner">
+        <div>
+          <h1>Daily Dose of Motivation</h1>
+          <p>Turn quotes into consistent momentum with a 3-part routine you can finish in 10 minutes a day.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         Article Body (≥ 500 words)
+    ========================================================== -->
+    <article class="prose" itemscope itemtype="https://schema.org/BlogPosting">
+      <p class="meta">
+        <span itemprop="author" itemscope itemtype="https://schema.org/Organization">By <span itemprop="name">Team Quotesn</span></span> •
+        <time itemprop="datePublished" datetime="2025-01-02">January 2, 2025</time> • 7 min read
+      </p>
+
+      <!-- Featured Image (direct Unsplash with srcset + fallback) -->
+      <picture class="media">
+        <source srcset="
+          https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=640&q=80 640w,
+          https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=960&q=80 960w,
+          https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=1280&q=80 1280w"
+          sizes="(max-width:640px) 100vw, (max-width:1024px) 90vw, 760px">
+        <img class="hero-img"
+             src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=1280&q=80"
+             width="1280" height="720"
+             alt="Morning coffee, journal, and pen on a wooden table representing a daily motivation ritual"
+             loading="eager" fetchpriority="high" referrerpolicy="no-referrer"
+             onerror="this.onerror=null;this.src='https://picsum.photos/1280/720?blur=1';">
+      </picture>
+
+      <p itemprop="articleBody">
+        Motivation isn’t magic; it’s a rhythm. The most dependable way to feel inspired is to design a small
+        routine that makes action easier than hesitation. Quotes are ideal fuel because they compress meaning
+        into a line you can carry in your pocket. This article gives you a simple 3-part framework—<strong>cue → micro-move → reflection</strong>—that turns great lines into repeatable progress, even on busy days.
+      </p>
+
+      <h2>1) Pick a cue that always happens</h2>
+      <p>
+        A cue is the starter pistol for your routine. Choose something that <em>already</em> happens every day:
+        your first sip of coffee, unlocking your phone, opening your laptop, or sitting down at your desk.
+        Pair the cue with one quote. Read it out loud and let it color the next hour. The point isn’t to find
+        the “perfect” line; it’s to <em>choose</em> a line and give it a job.
+      </p>
+      <blockquote>“Start where you are. Use what you have. Do what you can.” — Arthur Ashe</blockquote>
+      <div class="tip"><strong>Tip:</strong> Set a recurring 8:00 AM calendar event titled “Quote of the Day” with the text in the description. The notification becomes your cue.</div>
+
+      <h2>2) Translate the quote into a micro-move</h2>
+      <p>
+        A micro-move is a tiny action you can finish in 5–10 minutes. It lowers the bar so momentum can begin.
+        If the quote is about courage, your micro-move might be “send the draft for feedback.” If it’s about
+        clarity, try “write three bullet points for the proposal.” You’re not trying to finish the project—you’re
+        trying to puncture inertia. Once movement starts, bigger steps feel natural.
+      </p>
+
+      <h2>3) Close the loop with a two-line reflection</h2>
+      <p>
+        At day’s end, write two lines: <em>What did the quote help me notice or do?</em> and <em>What will I try tomorrow?</em>
+        This small reflection transforms experience into insight. It also gives you a record of patterns:
+        which themes unlock your best work, which times of day suit deep focus, and which micro-moves tend to
+        cascade into bigger wins.
+      </p>
+
+      <h2>Micro-move menu (steal these)</h2>
+      <ul>
+        <li><strong>Clarity:</strong> Draft a one-paragraph problem statement.</li>
+        <li><strong>Courage:</strong> Ask for a gut-check from a trusted peer.</li>
+        <li><strong>Progress:</strong> Ship a “version 0.3” to gather feedback.</li>
+        <li><strong>Learning:</strong> Read one page and capture one sentence.</li>
+        <li><strong>Health:</strong> Walk outside for eight minutes.</li>
+        <li><strong>Relationships:</strong> Send a genuine thank-you note.</li>
+      </ul>
+
+      <h2>Templates you can copy</h2>
+      <p><strong>Morning deck (30–60 seconds)</strong></p>
+      <ul>
+        <li>Today’s quote: “__________” — ________</li>
+        <li>Micro-move I will complete before noon: __________</li>
+      </ul>
+      <p><strong>Evening reflection (60–90 seconds)</strong></p>
+      <ul>
+        <li>What the quote nudged me to notice or do: __________</li>
+        <li>One thing I’ll try tomorrow: __________</li>
+      </ul>
+
+      <h2>Troubleshooting common snags</h2>
+      <p>
+        <strong>No time?</strong> Shrink the micro-move until it fits in five minutes.  
+        <strong>Forgot the quote?</strong> Make it your lock-screen or put a sticky note on your mug.  
+        <strong>Feeling flat?</strong> Switch to a theme that fits your energy—calm over hype, focus over speed.  
+        <strong>All or nothing?</strong> Commit to “one imperfect rep.” Consistency beats heroics.
+      </p>
+
+      <h2>Do a weekly reset</h2>
+      <p>
+        Once a week, scan your reflections. Pick two or three quotes that worked especially well and save them
+        in a themed library—courage, calm, craft, compassion. This library becomes your personal pharmacy:
+        the right line for the right day, prescribed by your own experience.
+      </p>
+
+      <h2>Start your dose today</h2>
+      <p>
+        Choose one quote. Speak it once. Define one micro-move. Then do it. The dose is tiny by design, but
+        the compound effect is real. In a month you’ll have a trail of finished steps, a stronger habit, and a
+        clearer sense of what inspires <em>you</em>.
+      </p>
+
+      <hr>
+      <p><a href="/blog/">← Back to Blog</a></p>
+    </article>
+  </main>
+
+  <!-- =========================================================
+       Footer (LOCKED — copied exactly)
+  ========================================================== -->
+  <footer class="site-footer">
+    <div class="container footer-row">
+      <div class="brand" aria-label="Quotesn home">
+        <img src="https://app.quotesn.com/images/app_logo.png" width="36" height="36" alt="">
+        <span>Quotesn</span>
+      </div>
+      <nav class="footer-links" aria-label="Footer">
+        <a href="/privacy">Privacy</a>
+        <a href="/terms">Terms</a>
+        <a href="/sitemap.xml">Sitemap</a>
+        <a href="/contact/">Contact</a>
+        <span aria-hidden="true">© <span id="year"></span></span>
+      </nav>
+    </div>
+  </footer>
+
+  <!-- =========================================================
+       Tiny Vanilla JS (defer) — locked behavior
+  ========================================================== -->
+  <script defer>
+    // Mobile nav toggler (locked)
+    (function(){
+      const btn=document.querySelector('.menu-toggle');
+      const menu=document.getElementById('nav-menu');
+      if(!btn||!menu) return;
+      btn.addEventListener('click',()=>{
+        const open=menu.classList.toggle('show');
+        btn.setAttribute('aria-expanded', open ? 'true':'false');
+      });
+    })();
+
+    // Footer year (locked)
+    (function(){
+      const y=document.getElementById('year');
+      if(y) y.textContent=new Date().getFullYear();
+    })();
+  </script>
+</body>
+</html>
