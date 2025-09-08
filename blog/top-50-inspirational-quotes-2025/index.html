@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
   <title>Top 50 Inspirational Quotes for 2025 — Quotesn</title>
-  <meta name="description" content="A carefully curated list of the 50 most powerful inspirational quotes to carry you through 2025 with clarity, courage, and creativity." />
+  <meta name="description" content="A carefully curated list of the 50 most powerful inspirational quotes to carry you through 2025 with clarity, courage, and creativity. Plus guidance on how to use them daily." />
   <link rel="canonical" href="https://www.quotesn.com/blog/top-50-inspirational-quotes-2025/" />
   <link rel="icon" href="/images/favicon.ico" sizes="any" />
 
@@ -20,7 +20,7 @@
 
   <!-- Open Graph -->
   <meta property="og:title" content="Top 50 Inspirational Quotes for 2025">
-  <meta property="og:description" content="A handpicked collection of timeless and modern lines to keep you motivated throughout the year.">
+  <meta property="og:description" content="A handpicked collection of timeless and modern lines to keep you motivated throughout the year—and exactly how to put them into action.">
   <meta property="og:image" content="https://images.unsplash.com/photo-1506784365847-bbad939e9335?auto=format&fit=crop&w=1280&q=80">
   <meta property="og:url" content="https://www.quotesn.com/blog/top-50-inspirational-quotes-2025/">
   <meta name="twitter:card" content="summary_large_image">
@@ -36,7 +36,7 @@
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"BlogPosting",
    "headline":"Top 50 Inspirational Quotes for 2025",
-   "description":"A carefully curated list of the 50 most powerful inspirational quotes to carry you through 2025 with clarity, courage, and creativity.",
+   "description":"A carefully curated list of the 50 most powerful inspirational quotes to carry you through 2025 with clarity, courage, and creativity—plus usage tips.",
    "image":"https://images.unsplash.com/photo-1506784365847-bbad939e9335?auto=format&fit=crop&w=1280&q=80",
    "datePublished":"2025-01-08",
    "dateModified":"2025-01-08",
@@ -46,56 +46,191 @@
   </script>
 
   <!-- =========================
-       Inline Critical CSS
-       (use same tokens & header/footer styles as previous)
+       Inline Critical CSS (Locked tokens + base from canonical)
   ========================== -->
   <style>
-    /* keep same tokens + base from previous file */
+    /* ------------------------------
+       Tokens
+    ------------------------------ */
     :root{
+      /* Light (default) */
       --bg:#ffffff; --bg-elev-1:#f7f8fb; --bg-elev-2:#eef1f7;
       --text:#0b0d12; --text-muted:#4a556f;
       --primary:#3157ff; --primary-strong:#2647db;
       --card:#ffffff; --border:#e7eaf2;
+
       --grad-hero:radial-gradient(1200px 600px at 15% 15%,#e9edff 0%,rgba(255,255,255,0) 55%),
                    radial-gradient(1200px 600px at 90% 20%,#e4f0ff 0%,rgba(255,255,255,0) 60%),
                    linear-gradient(180deg,#ffffff 0%,#f9fbff 100%);
+      --grad-section:linear-gradient(180deg,rgba(49,87,255,.08),rgba(49,87,255,0));
+
       --ff-sans: system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans";
       --ff-display: ui-sans-serif,"Inter",var(--ff-sans);
+
       --fs-hero:clamp(2rem,4vw + 1rem,3rem);
       --fs-h2:clamp(1.25rem,1.2vw + 1rem,1.75rem);
       --fs-body:clamp(1rem,.4vw + .9rem,1.125rem);
-      --space-4:1rem; --space-5:1.5rem; --space-6:2rem; --space-7:3rem;
-      --radius-lg:16px; --container-max:1200px;
+
+      --space-1:.25rem; --space-2:.5rem; --space-3:.75rem; --space-4:1rem; --space-5:1.5rem; --space-6:2rem; --space-7:3rem;
+
+      --radius-sm:12px; --radius-md:14px; --radius-lg:16px;
+      --shadow-1:0 8px 24px rgba(10,22,70,.08);
+      --shadow-2:0 18px 44px rgba(10,22,70,.10), inset 0 1px 0 rgba(255,255,255,.65);
+
+      --container-max:1200px;
       --container-pad: clamp(1.25rem, 4vw, 2.25rem);
+
+      --ease:cubic-bezier(.2,.8,.2,1);
+      --time-1:120ms; --time-2:180ms;
+
+      --gap-nav: clamp(.6rem, 1.6vw, 1.1rem);
     }
-    body{margin:0;font-family:var(--ff-sans);font-size:var(--fs-body);line-height:1.6;color:var(--text);background:var(--bg)}
-    .container{width:min(100%,var(--container-max));margin-inline:auto;
+
+    /* Optional dark scheme */
+    @media (prefers-color-scheme:dark){
+      :root{
+        --bg:#0b0d12; --bg-elev-1:#11141b; --bg-elev-2:#151927;
+        --text:#e8eefc; --text-muted:#b7c0d8;
+        --primary:#7aa2ff; --primary-strong:#5a86ff;
+        --card:#0f121a; --border:#1d2333;
+        --grad-hero:radial-gradient(1200px 600px at 10% 10%,#2a2f4a 0%,rgba(17,20,27,0) 55%),
+                     radial-gradient(1200px 600px at 90% 20%,#1b2c52 0%,rgba(17,20,27,0) 60%),
+                     linear-gradient(180deg,#0b0d12 0%,#0e1220 100%);
+        --grad-section:linear-gradient(180deg,rgba(90,134,255,.08),rgba(90,134,255,0));
+        --shadow-1:0 8px 24px rgba(0,0,0,.22);
+        --shadow-2:0 16px 40px rgba(0,0,0,.28), inset 0 1px 0 rgba(255,255,255,.02);
+      }
+    }
+
+    /* ------------------------------
+       Base / Layout / A11y
+    ------------------------------ */
+    *,*::before,*::after{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family:var(--ff-sans); font-size:var(--fs-body); line-height:1.6;
+      color:var(--text); background:var(--bg);
+      -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+    }
+    img{max-width:100%; display:block}
+    a{color:var(--primary); text-decoration:none}
+    a:hover{color:var(--primary-strong)}
+    ::selection{background:rgba(49,87,255,.18)}
+
+    .container{
+      width:min(100%,var(--container-max));
+      margin-inline:auto;
       padding-left: calc(var(--container-pad) + env(safe-area-inset-left, 0px));
       padding-right: calc(var(--container-pad) + env(safe-area-inset-right, 0px));
     }
+    .section{padding:clamp(2.25rem,4vw,3.25rem) 0}
+    .section.has-tint{background:var(--grad-section);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+    .grid{display:grid;gap:var(--space-5)}
+    .grid-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+    @media (max-width:1024px){.grid-3{grid-template-columns:repeat(2,minmax(0,1fr))}}
+    @media (max-width:640px){.grid-3{grid-template-columns:1fr}}
+
+    .skip-link{position:absolute;left:-999px;top:auto;width:1px;height:1px;overflow:hidden}
+    .skip-link:focus{position:fixed;left:var(--space-4);top:var(--space-4);background:var(--bg-elev-2);color:var(--text);padding:.45rem .6rem;border-radius:10px;box-shadow:var(--shadow-1);z-index:10000}
+    :focus-visible{outline:2px solid #FFB000; outline-offset:2px; border-radius:8px}
+
+    /* ------------------------------
+       Header / Navigation (LOCKED)
+    ------------------------------ */
+    header.site-header{
+      position:sticky; top:0; z-index:900;
+      backdrop-filter:saturate(140%) blur(8px);
+      background:color-mix(in oklab,var(--bg),transparent 12%);
+      border-bottom:1px solid var(--border);
+    }
+    .nav{display:flex; align-items:center; justify-content:space-between; height:64px; gap:1rem; flex-wrap:nowrap}
+    .brand{display:inline-flex; align-items:center; gap:.6rem; flex-shrink:0}
+    .brand img{width:40px; height:40px; border-radius:10px; box-shadow:0 6px 18px rgba(0,0,0,.08)}
+    .brand span{font-family:var(--ff-display); font-weight:700; color:var(--text)}
+    .nav-menu{display:flex; align-items:center; gap:var(--gap-nav)}
+    .nav-links{display:flex; align-items:center; gap:var(--gap-nav); flex-wrap:nowrap}
+    .nav-links a{color:var(--text); opacity:.95; font-weight:500; padding:.35rem .45rem; border-radius:8px; transition:background var(--time-2) var(--ease),opacity var(--time-2) var(--ease); white-space:nowrap; flex-shrink:0}
+    .nav-links a:hover{background:var(--bg-elev-2); opacity:1}
+
+    /* Unified buttons (fixed height) */
+    .btn{display:inline-flex; align-items:center; justify-content:center; height:44px; padding:0 14px; border-radius:10px; font-weight:700; white-space:nowrap; line-height:1}
+    /* GOLD gradient exactly as requested */
+    .btn-primary{
+      background: linear-gradient(135deg, #FFD24A 0%, #FFB000 100%);
+      color:#1a1206;
+      box-shadow:0 8px 18px rgba(255,178,0,.18);
+      transition:transform var(--time-1) var(--ease), box-shadow var(--time-2) var(--ease);
+    }
+    .btn-primary:hover{transform:translateY(-1px); box-shadow:0 12px 26px rgba(255,178,0,.28)}
+    .btn-outline{
+      border:1px solid color-mix(in oklab, var(--primary), #ffffff 10%);
+      color:var(--text);
+      background: linear-gradient(180deg, rgba(49,87,255,.10), rgba(49,87,255,.05));
+      transition:border-color var(--time-2) var(--ease), transform var(--time-1) var(--ease);
+    }
+    .btn-outline:hover{transform:translateY(-1px); border-color:var(--primary)}
+
+    .menu-toggle{display:none; background:transparent; border:0; color:var(--text); font-size:1.35rem; line-height:1; padding:.35rem .5rem; border-radius:8px}
+
+    /* earlier hamburger to guarantee no wrap */
+    @media (max-width:980px){
+      .menu-toggle{display:inline-flex}
+      .nav-menu{display:none; position:absolute; left:0; right:0; top:64px; background:var(--bg-elev-1);
+        border-bottom:1px solid var(--border); padding:.8rem var(--container-pad)}
+      .nav-menu.show{display:block}
+      .nav-links{flex-direction:column; align-items:flex-start; gap:.6rem}
+      .btn-primary{margin-top:.6rem}
+    }
+
+    /* ------------------------------
+       Hero (scoped to this page)
+    ------------------------------ */
     .hero{background:var(--grad-hero)}
-    .hero > .container{padding-left:calc((var(--container-pad)+.5rem)+env(safe-area-inset-left,0px))}
+    .hero > .container{
+      /* slight extra left spacing for hero only (matches canonical pattern) */
+      padding-left: calc((var(--container-pad) + 0.5rem) + env(safe-area-inset-left, 0px));
+    }
     .hero-inner{padding:clamp(2rem,6vw,4rem) 0}
-    .hero h1{font-family:var(--ff-display);font-weight:700;font-size:var(--fs-hero);margin:0 0 .35rem}
-    .hero p{color:var(--text-muted);max-width:70ch}
-    .prose{max-width:760px;margin:0 auto;padding:clamp(1.25rem,4vw,2rem)}
-    .meta{color:var(--text-muted);font-size:.95rem;margin:.25rem 0 1rem}
-    .hero-img{width:100%;border-radius:16px;margin:12px 0 24px}
-    h2{font-family:var(--ff-display);font-size:var(--fs-h2);margin:var(--space-6) 0 var(--space-3)}
-    blockquote{margin:1rem 0;padding:.75rem 1rem;border-left:4px solid var(--border);background:rgba(49,87,255,.06);border-radius:8px}
+    .hero h1{font-family:var(--ff-display); font-weight:700; letter-spacing:.3px; font-size:var(--fs-hero); line-height:1.08; margin:0 0 .35rem}
+    .hero p{color:var(--text-muted); max-width:70ch; margin:0}
+
+    /* ------------------------------
+       Article (scoped)
+    ------------------------------ */
+    .prose{max-width:760px; margin:0 auto; padding:clamp(1.25rem,4vw,2rem)}
+    .meta{color:var(--text-muted); font-size:.95rem; margin:.25rem 0 1rem}
+    .hero-img{width:100%; height:auto; border-radius:16px; margin:12px 0 24px; background:var(--bg-elev-2)}
+    .media{position:relative}
+    h2{font-family:var(--ff-display); font-size:var(--fs-h2); margin:var(--space-6) 0 var(--space-3)}
+    blockquote{margin:1rem 0; padding:.75rem 1rem; border-left:4px solid var(--border); background:rgba(49,87,255,.06); border-radius:8px}
+    .tip{border:1px solid var(--border); border-radius:12px; padding:1rem; background:linear-gradient(180deg,rgba(49,87,255,.05),rgba(49,87,255,.02)); margin:1rem 0}
+
+    /* ------------------------------
+       Footer (LOCKED)
+    ------------------------------ */
+    footer.site-footer{border-top:1px solid var(--border); background:linear-gradient(180deg, rgba(49,87,255,.06), rgba(49,87,255,0)); padding:var(--space-6) 0; color:var(--text-muted)}
+    .footer-row{display:flex; flex-wrap:wrap; gap:var(--space-5); align-items:center; justify-content:space-between}
+    .footer-links{display:flex; gap:var(--space-4); flex-wrap:wrap}
+    .footer-links a{color:var(--text-muted); text-decoration:none; font-weight:500}
+    .footer-links a:hover{color:var(--text)}
+    .visually-hidden{position:absolute!important; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0}
   </style>
 </head>
 <body>
   <a href="#main" class="skip-link">Skip to content</a>
 
-  <!-- Header (LOCKED) -->
+  <!-- =========================================================
+       Header / Navigation (LOCKED — copied exactly)
+  ========================================================== -->
   <header class="site-header">
     <div class="container nav">
       <a class="brand" href="/" aria-label="Quotesn home">
         <img src="https://app.quotesn.com/images/app_logo.png" width="40" height="40" alt="Quotesn logo">
         <span>Quotesn</span>
       </a>
+
       <button class="menu-toggle" aria-label="Toggle menu" aria-controls="nav-menu" aria-expanded="false">☰</button>
+
       <div class="nav-menu" id="nav-menu">
         <nav class="nav-links" aria-label="Primary">
           <a href="https://app.quotesn.com/" rel="noopener">Quotes App</a>
@@ -111,70 +246,131 @@
   </header>
 
   <main id="main">
-    <!-- Hero -->
+    <!-- =========================================================
+         Hero
+    ========================================================== -->
     <section class="hero">
       <div class="container hero-inner">
-        <h1>Top 50 Inspirational Quotes for 2025</h1>
-        <p>A handpicked list of timeless lines to carry you through the year with clarity, courage, and joy.</p>
+        <div>
+          <h1>Top 50 Inspirational Quotes for 2025</h1>
+          <p>Fifty potent lines—classic and contemporary—to set your compass for the year ahead.</p>
+        </div>
       </div>
     </section>
 
-    <!-- Article -->
-    <article class="prose">
-      <p class="meta">By Team Quotesn • <time datetime="2025-01-08">January 8, 2025</time> • 10 min read</p>
-
-      <img class="hero-img"
-           src="https://images.unsplash.com/photo-1506784365847-bbad939e9335?auto=format&fit=crop&w=1280&q=80"
-           width="1280" height="720"
-           alt="Open book with light shining on pages symbolizing inspiration">
-
-      <p>
-        Every new year brings both challenges and opportunities. Words—when chosen wisely—act like anchors and sails,
-        steadying us when life gets rough and propelling us forward when energy is high. Below you’ll find fifty
-        carefully selected inspirational quotes for 2025. These are a mix of timeless classics and fresh voices,
-        covering themes of courage, creativity, resilience, and gratitude. Save the list, return often, and allow
-        one line a day to set your compass.
+    <!-- =========================================================
+         Article Body (≥ 500 words)
+    ========================================================== -->
+    <article class="prose" itemscope itemtype="https://schema.org/BlogPosting">
+      <p class="meta">
+        <span itemprop="author" itemscope itemtype="https://schema.org/Organization">By <span itemprop="name">Team Quotesn</span></span> •
+        <time itemprop="datePublished" datetime="2025-01-08">January 8, 2025</time> • 10 min read
       </p>
 
-      <h2>How to Use This List</h2>
-      <p>
-        Instead of reading through all 50 in one sitting, try selecting one quote each morning and making it your
-        theme for the day. Write it down, set it as your phone wallpaper, or share it with a friend. At the end of
-        the day, reflect briefly: How did this line shape my choices? In just a few weeks, you’ll notice recurring
-        patterns of growth.
+      <!-- Featured Image (direct Unsplash with srcset + fallback) -->
+      <picture class="media">
+        <source srcset="
+          https://images.unsplash.com/photo-1506784365847-bbad939e9335?auto=format&fit=crop&w=640&q=80 640w,
+          https://images.unsplash.com/photo-1506784365847-bbad939e9335?auto=format&fit=crop&w=960&q=80 960w,
+          https://images.unsplash.com/photo-1506784365847-bbad939e9335?auto=format&fit=crop&w=1280&q=80 1280w"
+          sizes="(max-width:640px) 100vw, (max-width:1024px) 90vw, 760px">
+        <img class="hero-img"
+             src="https://images.unsplash.com/photo-1506784365847-bbad939e9335?auto=format&fit=crop&w=1280&q=80"
+             width="1280" height="720"
+             alt="Open book bathed in warm light symbolizing inspiration for the new year"
+             loading="eager" fetchpriority="high" referrerpolicy="no-referrer"
+             onerror="this.onerror=null;this.src='https://picsum.photos/1280/720?blur=1';">
+      </picture>
+
+      <p itemprop="articleBody">
+        A single sentence can tilt a day. The right line, read at the right moment, has a way of clearing fog,
+        steadying nerves, or nudging us into a braver posture. This curated collection of fifty quotes for 2025
+        spans themes of resilience, focus, kindness, craft, and courage. Use them as morning cues, meeting
+        primers, or evening reflections. You’ll get more from these words if you pair them with action:
+        choose one quote each day, speak it aloud, and decide on one micro-step it inspires. Over time,
+        you’ll build a personal anthology that reflects your values and amplifies your momentum.
       </p>
 
-      <h2>The Quotes</h2>
+      <h2>How to get the most from this list</h2>
+      <ul>
+        <li><strong>One-a-day method:</strong> Pick a single quote each morning and make it your theme.</li>
+        <li><strong>Habit pairing:</strong> Attach the quote to a routine (coffee, commute, first login).</li>
+        <li><strong>Micro-move:</strong> Translate the quote into one concrete action before noon.</li>
+        <li><strong>Two-line reflection:</strong> At night, note what changed and what to try tomorrow.</li>
+      </ul>
+
+      <h2>The 50 quotes</h2>
       <ol>
         <li>“The best way to predict the future is to create it.” — Peter Drucker</li>
         <li>“Success is not final, failure is not fatal: it is the courage to continue that counts.” — Winston Churchill</li>
         <li>“Do what you can, with what you have, where you are.” — Theodore Roosevelt</li>
         <li>“Happiness is not something ready made. It comes from your own actions.” — Dalai Lama</li>
         <li>“Act as if what you do makes a difference. It does.” — William James</li>
-        <!-- continue list up to 50 -->
+        <li>“What you do speaks so loudly that I cannot hear what you say.” — Ralph Waldo Emerson</li>
+        <li>“It always seems impossible until it’s done.” — Nelson Mandela</li>
+        <li>“If you’re going through hell, keep going.” — Winston Churchill</li>
+        <li>“Whether you think you can, or you think you can’t—you’re right.” — Henry Ford</li>
+        <li>“The only way to do great work is to love what you do.” — Steve Jobs</li>
+        <li>“Start where you are. Use what you have. Do what you can.” — Arthur Ashe</li>
+        <li>“You miss 100% of the shots you don’t take.” — Wayne Gretzky</li>
+        <li>“We are what we repeatedly do. Excellence, then, is not an act but a habit.” — (Attributed to Aristotle)</li>
+        <li>“Courage is grace under pressure.” — Ernest Hemingway</li>
+        <li>“Little by little, one travels far.” — J.R.R. Tolkien</li>
+        <li>“Be kind, for everyone you meet is fighting a hard battle.” — (Often attributed to Plato)</li>
+        <li>“If I cannot do great things, I can do small things in a great way.” — Martin Luther King Jr.</li>
+        <li>“Well done is better than well said.” — Benjamin Franklin</li>
+        <li>“What we fear doing most is usually what we most need to do.” — Tim Ferriss</li>
+        <li>“If opportunity doesn’t knock, build a door.” — Milton Berle</li>
+        <li>“I am not a product of my circumstances. I am a product of my decisions.” — Stephen R. Covey</li>
+        <li>“Discipline equals freedom.” — Jocko Willink</li>
+        <li>“Make it simple, but significant.” — Don Draper (fictional)</li>
+        <li>“Simplicity is the ultimate sophistication.” — (Attributed to Leonardo da Vinci)</li>
+        <li>“The secret of getting ahead is getting started.” — Mark Twain</li>
+        <li>“If you can dream it, you can do it.” — Walt Disney</li>
+        <li>“Dream big. Start small. Act now.” — Robin Sharma</li>
+        <li>“Doubt kills more dreams than failure ever will.” — Suzy Kassem</li>
+        <li>“Be the change that you wish to see in the world.” — (Attributed to Mahatma Gandhi)</li>
+        <li>“A year from now you may wish you had started today.” — Karen Lamb</li>
+        <li>“Quality is not an act, it is a habit.” — (Attributed to Aristotle)</li>
+        <li>“No pressure, no diamonds.” — Thomas Carlyle</li>
+        <li>“Ships are safe in harbor, but that’s not what ships are for.” — John A. Shedd</li>
+        <li>“The man who moves a mountain begins by carrying away small stones.” — Confucius</li>
+        <li>“Genius is 1% inspiration and 99% perspiration.” — Thomas Edison</li>
+        <li>“Everything you’ve ever wanted is on the other side of fear.” — George Addair</li>
+        <li>“What lies behind us and what lies before us are tiny matters compared to what lies within us.” — (Attributed to Emerson)</li>
+        <li>“The journey of a thousand miles begins with a single step.” — Lao Tzu</li>
+        <li>“Either you run the day or the day runs you.” — Jim Rohn</li>
+        <li>“Don’t watch the clock; do what it does. Keep going.” — Sam Levenson</li>
+        <li>“The only limit to our realization of tomorrow is our doubts of today.” — Franklin D. Roosevelt</li>
+        <li>“Patience is bitter, but its fruit is sweet.” — Jean-Jacques Rousseau</li>
+        <li>“If you want to lift yourself up, lift up someone else.” — Booker T. Washington</li>
+        <li>“In the middle of every difficulty lies opportunity.” — (Attributed to Albert Einstein)</li>
+        <li>“What you get by achieving your goals is not as important as what you become by achieving your goals.” — Zig Ziglar</li>
+        <li>“To have what you want, deserve what you want.” — Charles H. Spurgeon</li>
+        <li>“Gratitude turns what we have into enough.” — Anonymous</li>
+        <li>“Adopt the pace of nature: her secret is patience.” — Ralph Waldo Emerson</li>
+        <li>“If not now, when?” — Hillel the Elder</li>
+        <li>“Leave the world better than you found it.” — Anonymous</li>
+        <li>“Make progress, not excuses.” — Anonymous</li>
       </ol>
 
-      <h2>Why Quotes Still Matter in 2025</h2>
+      <h2>Put a quote to work today</h2>
       <p>
-        In an age of endless feeds and scrolling headlines, quotes cut through the noise. Their brevity is not a
-        weakness but a strength. Each one condenses a lifetime of experience into a handful of words that can be
-        remembered, repeated, and lived out. Neuroscience shows that emotionally charged words create stronger
-        memory traces, which explains why a single line from a mentor or author can echo for decades.
+        Pick one line that resonates. Speak it once. Then define the smallest step it suggests—send the email,
+        write the paragraph, ask for the meeting, or take the five-minute walk. Wisdom becomes momentum the
+        moment it meets action.
       </p>
 
-      <h2>Final Word</h2>
-      <p>
-        Don’t just collect quotes—practice them. If one line sparks action, it has already done its work. Choose
-        courage over comfort, kindness over cynicism, progress over perfection. Let 2025 be the year your daily
-        choices align with timeless wisdom.
-      </p>
+      <blockquote>“Well done is better than well said.” — Benjamin Franklin</blockquote>
 
       <hr>
       <p><a href="/blog/">← Back to Blog</a></p>
     </article>
   </main>
 
-  <!-- Footer (LOCKED) -->
+  <!-- =========================================================
+       Footer (LOCKED — copied exactly)
+  ========================================================== -->
   <footer class="site-footer">
     <div class="container footer-row">
       <div class="brand" aria-label="Quotesn home">
@@ -191,8 +387,11 @@
     </div>
   </footer>
 
-  <!-- JS -->
+  <!-- =========================================================
+       Tiny Vanilla JS (defer) — locked behavior
+  ========================================================== -->
   <script defer>
+    // Mobile nav toggler (locked)
     (function(){
       const btn=document.querySelector('.menu-toggle');
       const menu=document.getElementById('nav-menu');
@@ -202,7 +401,12 @@
         btn.setAttribute('aria-expanded', open ? 'true':'false');
       });
     })();
-    (function(){const y=document.getElementById('year'); if(y) y.textContent=new Date().getFullYear();})();
+
+    // Footer year (locked)
+    (function(){
+      const y=document.getElementById('year');
+      if(y) y.textContent=new Date().getFullYear();
+    })();
   </script>
 </body>
 </html>
