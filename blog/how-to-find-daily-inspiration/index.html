@@ -15,13 +15,14 @@
   <!-- Preconnects -->
   <link rel="preconnect" href="https://app.quotesn.com" crossorigin>
   <link rel="dns-prefetch" href="https://app.quotesn.com">
-  <link rel="preconnect" href="https://source.unsplash.com" crossorigin>
-  <link rel="dns-prefetch" href="https://source.unsplash.com">
+  <!-- added for reliability -->
+  <link rel="preconnect" href="https://images.unsplash.com" crossorigin>
+  <link rel="dns-prefetch" href="https://images.unsplash.com">
 
   <!-- Open Graph -->
   <meta property="og:title" content="How to Find Daily Inspiration">
   <meta property="og:description" content="Design tiny cues around quotes so your motivation is always within reach. A step-by-step routine with examples and reflection prompts.">
-  <meta property="og:image" content="https://source.unsplash.com/1280x720/?sunrise,inspiration,notebook">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1280&q=80">
   <meta property="og:url" content="https://www.quotesn.com/blog/how-to-find-daily-inspiration/">
   <meta name="twitter:card" content="summary_large_image">
 
@@ -37,7 +38,7 @@
   {"@context":"https://schema.org","@type":"BlogPosting",
    "headline":"How to Find Daily Inspiration",
    "description":"Design tiny cues around quotes so your motivation is always within reach. A step-by-step routine with examples and reflection prompts.",
-   "image":"https://source.unsplash.com/1280x720/?sunrise,inspiration,notebook",
+   "image":"https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1280&q=80",
    "datePublished":"2025-09-08",
    "dateModified":"2025-09-08",
    "author":{"@type":"Organization","name":"Team Quotesn"},
@@ -225,7 +226,7 @@
     </section>
 
     <!-- =========================================================
-         Article Body (≥ 500 words)
+         Article Body
     ========================================================== -->
     <article class="prose" itemscope itemtype="https://schema.org/BlogPosting">
       <p class="meta">
@@ -235,13 +236,22 @@
         <time itemprop="datePublished" datetime="2025-09-08">September 8, 2025</time> • 6 min read
       </p>
 
-      <!-- Featured Image (Unsplash) -->
-      <img class="hero-img"
-           src="https://source.unsplash.com/1280x720/?sunrise,inspiration,notebook"
-           width="1280" height="720"
-           alt="Notebook and sunlit coffee on a desk, suggesting a fresh start for daily inspiration"
-           loading="eager" fetchpriority="high" itemprop="image">
+      <!-- Featured Image (direct Unsplash image + fallback) -->
+      <picture>
+        <source srcset="
+          https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1280&q=80 1280w,
+          https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=960&q=80 960w,
+          https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=640&q=80 640w"
+          sizes="(max-width:640px) 100vw, (max-width:1024px) 90vw, 760px">
+        <img class="hero-img"
+             src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1280&q=80"
+             width="1280" height="720"
+             alt="Notebook and sunlit coffee on a desk, suggesting a fresh start for daily inspiration"
+             loading="eager" fetchpriority="high" referrerpolicy="no-referrer"
+             onerror="this.onerror=null;this.src='https://picsum.photos/1280/720?blur=1';">
+      </picture>
 
+      <!-- (rest of your 500+ word article content remains the same) -->
       <p itemprop="articleBody">
         When people say they’re “waiting for inspiration,” they often imagine a dramatic flash of insight.
         In reality, the most reliable inspiration is built from small design choices that lower the friction
