@@ -32,15 +32,14 @@
   </script>
 
   <!-- =========================================================
-       Inline Critical CSS (Light default)
-       NOTE: Header/Footer + tokens are LOCKED.
+       Inline Critical CSS (tokens + header/footer styles LOCKED)
+       Page-specific styles are scoped to .notfound only.
   ========================================================== -->
   <style>
     /* ------------------------------
-       Tokens
+       Tokens (LOCKED)
     ------------------------------ */
     :root{
-      /* Light (default) */
       --bg:#ffffff; --bg-elev-1:#f7f8fb; --bg-elev-2:#eef1f7;
       --text:#0b0d12; --text-muted:#4a556f;
       --primary:#3157ff; --primary-strong:#2647db;
@@ -49,8 +48,6 @@
       --grad-hero:radial-gradient(1200px 600px at 15% 15%,#e9edff 0%,rgba(255,255,255,0) 55%),
                    radial-gradient(1200px 600px at 90% 20%,#e4f0ff 0%,rgba(255,255,255,0) 60%),
                    linear-gradient(180deg,#ffffff 0%,#f9fbff 100%);
-
-      --grad-section:linear-gradient(180deg,rgba(49,87,255,.08),rgba(49,87,255,0));
 
       --ff-sans: system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans";
       --ff-display: ui-sans-serif,"Inter",var(--ff-sans);
@@ -66,7 +63,6 @@
       --shadow-2:0 18px 44px rgba(10,22,70,.10), inset 0 1px 0 rgba(255,255,255,.65);
 
       --container-max:1200px;
-      /* Strong, consistent side padding + safe areas */
       --container-pad: clamp(1.25rem, 4vw, 2.25rem);
 
       --ease:cubic-bezier(.2,.8,.2,1);
@@ -75,7 +71,6 @@
       --gap-nav: clamp(.6rem, 1.6vw, 1.1rem);
     }
 
-    /* Optional dark scheme (light paints first) */
     @media (prefers-color-scheme:dark){
       :root{
         --bg:#0b0d12; --bg-elev-1:#11141b; --bg-elev-2:#151927;
@@ -85,14 +80,13 @@
         --grad-hero:radial-gradient(1200px 600px at 10% 10%,#2a2f4a 0%,rgba(17,20,27,0) 55%),
                      radial-gradient(1200px 600px at 90% 20%,#1b2c52 0%,rgba(17,20,27,0) 60%),
                      linear-gradient(180deg,#0b0d12 0%,#0e1220 100%);
-        --grad-section:linear-gradient(180deg,rgba(90,134,255,.08),rgba(90,134,255,0));
         --shadow-1:0 8px 24px rgba(0,0,0,.22);
         --shadow-2:0 16px 40px rgba(0,0,0,.28), inset 0 1px 0 rgba(255,255,255,.02);
       }
     }
 
     /* ------------------------------
-       Base / Layout / A11y
+       Base / Layout / A11y (LOCKED)
     ------------------------------ */
     *,*::before,*::after{box-sizing:border-box}
     html,body{height:100%}
@@ -112,14 +106,6 @@
       padding-left: calc(var(--container-pad) + env(safe-area-inset-left, 0px));
       padding-right: calc(var(--container-pad) + env(safe-area-inset-right, 0px));
     }
-    .section{padding:clamp(2.25rem,4vw,3.25rem) 0}
-    .section.has-tint{background:var(--grad-section);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
-    .grid{display:grid;gap:var(--space-5)}
-    .grid-3{grid-template-columns:repeat(3,minmax(0,1fr))}
-    .grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}
-    @media (max-width:1024px){.grid-3{grid-template-columns:repeat(2,minmax(0,1fr))}}
-    @media (max-width:640px){.grid-3,.grid-2{grid-template-columns:1fr}}
-
     .skip-link{position:absolute;left:-999px;top:auto;width:1px;height:1px;overflow:hidden}
     .skip-link:focus{position:fixed;left:var(--space-4);top:var(--space-4);background:var(--bg-elev-2);color:var(--text);padding:.45rem .6rem;border-radius:10px;box-shadow:var(--shadow-1);z-index:10000}
     :focus-visible{outline:2px solid #FFB000; outline-offset:2px; border-radius:8px}
@@ -141,8 +127,6 @@
     .nav-links{display:flex; align-items:center; gap:var(--gap-nav); flex-wrap:nowrap}
     .nav-links a{color:var(--text); opacity:.95; font-weight:500; padding:.35rem .45rem; border-radius:8px; transition:background var(--time-2) var(--ease),opacity var(--time-2) var(--ease); white-space:nowrap; flex-shrink:0}
     .nav-links a:hover{background:var(--bg-elev-2); opacity:1}
-
-    /* Unified buttons (fixed height) */
     .btn{display:inline-flex; align-items:center; justify-content:center; height:44px; padding:0 14px; border-radius:10px; font-weight:700; white-space:nowrap; line-height:1}
     .btn-primary{
       background: linear-gradient(135deg, #FFD24A 0%, #FFB000 100%);
@@ -158,7 +142,6 @@
       transition:border-color var(--time-2) var(--ease), transform var(--time-1) var(--ease);
     }
     .btn-outline:hover{transform:translateY(-1px); border-color:var(--primary)}
-
     .menu-toggle{display:none; background:transparent; border:0; color:var(--text); font-size:1.35rem; line-height:1; padding:.35rem .5rem; border-radius:8px}
     @media (max-width:980px){
       .menu-toggle{display:inline-flex}
@@ -170,25 +153,70 @@
     }
 
     /* ------------------------------
-       404 Hero (scoped)
+       404 Page Styles (SCOPED)
     ------------------------------ */
-    .hero{background:var(--grad-hero)}
-    .hero > .container{
+    .notfound-hero{background:var(--grad-hero)}
+    .notfound-hero > .container{
       padding-left: calc((var(--container-pad) + 0.5rem) + env(safe-area-inset-left, 0px));
     }
-    .hero-inner{display:grid; grid-template-columns:1.1fr .9fr; gap:var(--space-6); align-items:center; padding:clamp(2rem,6vw,4rem) 0}
-    @media (max-width:920px){.hero-inner{grid-template-columns:1fr}}
-    .hero h1{font-family:var(--ff-display); font-weight:700; letter-spacing:.3px; font-size:var(--fs-hero); line-height:1.08; margin:0 0 var(--space-3)}
-    .hero p{color:var(--text-muted); max-width:60ch; margin:0}
+    .nf-inner{
+      display:grid;
+      grid-template-columns:1.1fr .9fr;
+      gap:clamp(1rem,3.5vw,2rem);
+      align-items:start;
+      padding:clamp(2rem,6vw,4rem) 0;
+    }
+    @media (max-width:960px){.nf-inner{grid-template-columns:1fr}}
 
-    .error-card{background:var(--card); border:1px solid var(--border); border-radius:var(--radius-lg); box-shadow:var(--shadow-2); padding:var(--space-6)}
-    .error-actions{display:flex; flex-wrap:wrap; gap:var(--space-3); margin-top:var(--space-5)}
+    .nf-card{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:var(--radius-lg);
+      box-shadow:var(--shadow-2);
+      padding:clamp(1.25rem,3.5vw,2rem);
+    }
+    .nf-card h1{
+      font-family:var(--ff-display);
+      font-weight:800;
+      letter-spacing:.2px;
+      font-size:clamp(1.9rem,2.4vw + 1rem,2.6rem);
+      line-height:1.12;
+      margin:.25rem 0 .6rem;
+    }
+    .nf-card p{color:var(--text-muted);margin:0}
 
-    /* Decorative, accessible SVG container */
-    .art{aspect-ratio:16/10; border:1px solid var(--border); border-radius:var(--radius-lg); background:var(--bg-elev-2); box-shadow:var(--shadow-2); overflow:hidden}
+    .nf-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:clamp(.7rem,2.2vw,.95rem);
+      margin-top:clamp(1rem,2.4vw,1.25rem);
+      padding-bottom:.25rem;
+    }
+
+    .nf-art{
+      display:grid; place-items:center;
+      background:linear-gradient(180deg, rgba(49,87,255,.07), rgba(49,87,255,.03));
+      border:1px solid var(--border);
+      border-radius:var(--radius-lg);
+      box-shadow:var(--shadow-2);
+      padding:clamp(1rem,3.5vw,2rem);
+      min-height:clamp(220px,28vw,360px);
+    }
+    .nf-art-inner{
+      width:100%; max-width:680px; aspect-ratio:16/9; position:relative;
+      border-radius:18px; background:var(--bg-elev-2); border:1px solid var(--border); overflow:hidden;
+    }
+    .nf-quote{
+      position:absolute; left:clamp(12px,6%,32px); right:clamp(12px,6%,32px); bottom:clamp(12px,8%,28px);
+      background:var(--card); border:1px solid var(--border); border-radius:16px;
+      padding:clamp(.8rem,2.4vw,1.15rem); box-shadow:var(--shadow-2);
+    }
+    .nf-quote p{margin:0}
+    .nf-quote .line{font-family:var(--ff-display); font-size:clamp(1rem,.9vw + .9rem,1.25rem)}
+    .nf-quote .author{font-weight:700}
 
     /* ------------------------------
-       Footer (locked)
+       Footer (LOCKED)
     ------------------------------ */
     footer.site-footer{border-top:1px solid var(--border); background:linear-gradient(180deg, rgba(49,87,255,.06), rgba(49,87,255,0)); padding:var(--space-6) 0; color:var(--text-muted)}
     .footer-row{display:flex; flex-wrap:wrap; gap:var(--space-5); align-items:center; justify-content:space-between}
@@ -229,65 +257,50 @@
 
   <main id="main">
     <!-- =========================================================
-         404 Hero
+         404 Content (scoped)
     ========================================================== -->
-    <section class="hero">
-      <div class="container hero-inner">
-        <div class="error-card">
+    <section class="notfound-hero">
+      <div class="container nf-inner">
+        <!-- Text + CTAs -->
+        <div class="nf-card">
           <span class="chip" aria-hidden="true" style="display:inline-flex;align-items:center;gap:.35rem;padding:.3rem .6rem;border-radius:999px;border:1px solid var(--border);background:linear-gradient(180deg,rgba(255,255,255,.6),rgba(255,255,255,.35));color:var(--text-muted);font-size:.85rem">Error 404</span>
           <h1>We couldn’t find that page</h1>
-          <p>It may have moved, been renamed, or never existed. Try one of these helpful paths to get back to inspiring places.</p>
-          <div class="error-actions">
+          <p>It may have moved, been renamed, or never existed. Choose a path to get back to inspiring places.</p>
+          <div class="nf-actions">
             <a class="btn btn-primary" href="/">Go to Homepage</a>
             <a class="btn btn-outline" href="/quizzes/">Browse Quizzes</a>
             <a class="btn btn-outline" href="/blog/">Read the Blog</a>
           </div>
         </div>
 
-        <div class="art" role="img" aria-label="Abstract decorative illustration">
-          <!-- Decorative SVG (no network request) -->
-          <svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg" width="800" height="500" aria-hidden="true">
-            <defs>
-              <linearGradient id="g1" x1="0" x2="1" y1="0" y2="1">
-                <stop offset="0" stop-color="#e9edff"/>
-                <stop offset="1" stop-color="#e4f0ff"/>
-              </linearGradient>
-            </defs>
-            <rect x="0" y="0" width="800" height="500" fill="url(#g1)"/>
-            <circle cx="140" cy="120" r="70" fill="#cfe0ff"/>
-            <circle cx="700" cy="90" r="40" fill="#d9e7ff"/>
-            <circle cx="640" cy="360" r="80" fill="#e3efff"/>
-            <rect x="180" y="260" width="280" height="160" rx="18" fill="#ffffff" stroke="#e7eaf2"/>
-            <text x="200" y="320" fill="#4a556f" font-family="Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial" font-size="20">“Not all those who wander are lost.”</text>
-            <text x="200" y="350" fill="#0b0d12" font-weight="700" font-family="Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial" font-size="18">— J.R.R. Tolkien</text>
-          </svg>
-        </div>
-      </div>
-    </section>
+        <!-- Illustration / Quote -->
+        <div class="nf-art" role="img" aria-label="Abstract decorative illustration with a quote card">
+          <div class="nf-art-inner">
+            <!-- soft gradients + shapes -->
+            <svg viewBox="0 0 800 450" xmlns="http://www.w3.org/2000/svg" width="800" height="450" aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%">
+              <defs>
+                <radialGradient id="gA" cx="0.15" cy="0.15" r="0.9">
+                  <stop offset="0" stop-color="#e9edff"/>
+                  <stop offset="1" stop-color="transparent"/>
+                </radialGradient>
+                <radialGradient id="gB" cx="0.85" cy="0.2" r="0.9">
+                  <stop offset="0" stop-color="#e4f0ff"/>
+                  <stop offset="1" stop-color="transparent"/>
+                </radialGradient>
+              </defs>
+              <rect width="800" height="450" fill="url(#gA)"/>
+              <rect width="800" height="450" fill="url(#gB)"/>
+              <circle cx="150" cy="160" r="70" fill="#dfe9ff"/>
+              <circle cx="650" cy="90" r="50" fill="#e6efff"/>
+              <circle cx="650" cy="350" r="85" fill="#eaf2ff"/>
+            </svg>
 
-    <!-- =========================================================
-         Helpful Links Section
-    ========================================================== -->
-    <section class="section has-tint">
-      <div class="container grid grid-3">
-        <article class="card">
-          <div class="card-pad">
-            <h2 style="margin:0 0 .35rem 0; font-size:1.1rem"><a class="link-title" href="https://app.quotesn.com/" rel="noopener">Open the Quotes App</a></h2>
-            <p class="muted">Explore thousands of quotes by category, mood, and author, and make gorgeous shareables.</p>
+            <div class="nf-quote" aria-hidden="true">
+              <p class="line">“Not all those who wander are lost.”</p>
+              <p class="author">— J.R.R. Tolkien</p>
+            </div>
           </div>
-        </article>
-        <article class="card">
-          <div class="card-pad">
-            <h2 style="margin:0 0 .35rem 0; font-size:1.1rem"><a class="link-title" href="/quizzes/">Play a Quiz</a></h2>
-            <p class="muted">Famous quotes, who-said-it guessers, and themed trivia — quick and delightful.</p>
-          </div>
-        </article>
-        <article class="card">
-          <div class="card-pad">
-            <h2 style="margin:0 0 .35rem 0; font-size:1.1rem"><a class="link-title" href="/blog/">From Our Blog</a></h2>
-            <p class="muted">Guides, lists, and essays that turn uplifting words into daily action.</p>
-          </div>
-        </article>
+        </div>
       </div>
     </section>
   </main>
@@ -312,8 +325,7 @@
   </footer>
 
   <!-- =========================================================
-       Tiny Vanilla JS (defer)
-       NOTE: This is the exact locked behavior from /index.html
+       Tiny Vanilla JS (defer) — LOCKED
   ========================================================== -->
   <script defer>
     // Mobile nav toggler
@@ -326,7 +338,6 @@
         btn.setAttribute('aria-expanded', open ? 'true':'false');
       });
     })();
-
     // Footer year
     (function(){const y=document.getElementById('year'); if(y) y.textContent=new Date().getFullYear();})();
   </script>
