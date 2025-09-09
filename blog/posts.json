@@ -1,36 +1,49 @@
 {
-  "version": 1,
-  "updated": "2025-08-15",
   "posts": [
+    {
+      "slug": "top-50-inspirational-quotes-2025",
+      "title": "Top 50 Inspirational Quotes for 2025",
+      "description": "A handpicked list of timeless lines to carry you through the year with clarity, courage, and joy.",
+      "date": "2025-01-08",
+      "category": "list",
+      "url": "https://www.quotesn.com/blog/top-50-inspirational-quotes-2025/",
+      "image": "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1280&q=80"
+    },
+    {
+      "slug": "daily-dose-of-motivation",
+      "title": "Daily Dose of Motivation",
+      "description": "Small, practical ways to turn uplifting quotes into consistent, meaningful action.",
+      "date": "2025-01-02",
+      "category": "guide",
+      "url": "https://www.quotesn.com/blog/daily-dose-of-motivation/",
+      "image": "https://images.unsplash.com/photo-1496307042754-b4aa456c4a2d?auto=format&fit=crop&w=1280&q=80"
+    },
+    {
+      "slug": "power-of-words",
+      "title": "The Power of Words: Why Quotes Matter",
+      "description": "How short lines become long-lasting fuel for reflection, creativity, and momentum.",
+      "date": "2024-12-18",
+      "category": "essay",
+      "url": "https://www.quotesn.com/blog/power-of-words/",
+      "image": "https://images.unsplash.com/photo-1522881451255-f59ad836fdfb?auto=format&fit=crop&w=1280&q=80"
+    },
     {
       "slug": "how-to-find-daily-inspiration",
       "title": "How to Find Daily Inspiration",
-      "excerpt": "Simple daily rituals to spark motivation and keep you consistent.",
-      "author": "Quotesn Editorial",
-      "date": "2025-08-12",
-      "cover": "https://picsum.photos/id/1025/1200/630",
-      "tags": ["inspiration", "habits"],
-      "url": "blog/how-to-find-daily-inspiration/"
+      "description": "Simple habits and sources to keep your spark alive—every single day.",
+      "date": "2024-12-10",
+      "category": "tips",
+      "url": "https://www.quotesn.com/blog/how-to-find-daily-inspiration/",
+      "image": "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?auto=format&fit=crop&w=1280&q=80"
     },
     {
-      "slug": "quotes-that-shift-your-mindset",
-      "title": "12 Quotes That Shift Your Mindset",
-      "excerpt": "A curated set of lines that help you reframe challenges.",
-      "author": "Quotesn Editorial",
-      "date": "2025-08-10",
-      "cover": "https://picsum.photos/id/1043/1200/630",
-      "tags": ["mindset", "growth"],
-      "url": "blog/quotes-that-shift-your-mindset/"
-    },
-    {
-      "slug": "author-spotlight-maya-angelou",
-      "title": "Author Spotlight: Maya Angelou",
-      "excerpt": "Exploring the timeless voice and lessons of Maya Angelou.",
-      "author": "Quotesn Editorial",
-      "date": "2025-08-08",
-      "cover": "https://picsum.photos/id/1035/1200/630",
-      "tags": ["authors", "spotlight"],
-      "url": "blog/author-spotlight-maya-angelou/"
+      "slug": "motivational-quotes-challenge",
+      "title": "Motivational Quotes Challenge",
+      "description": "Turn your favorite lines into action with a 7-day challenge you can start today.",
+      "date": "2024-11-28",
+      "category": "challenge",
+      "url": "https://www.quotesn.com/blog/motivational-quotes-challenge/",
+      "image": "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1280&q=80"
     }
   ]
 }
