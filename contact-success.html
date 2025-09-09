@@ -31,8 +31,8 @@
   </script>
 
   <!-- =========================================================
-       Inline Critical CSS (LOCKED tokens + header/footer styles)
-       Page-specific styles are scoped to .success-*
+       Inline Critical CSS (tokens + locked header/footer)
+       Page styles scoped to .success-*; layout fix on body/main only.
   ========================================================== -->
   <style>
     /* ------------------------------
@@ -85,7 +85,7 @@
     }
 
     /* ------------------------------
-       Base / Layout / A11y (locked)
+       Base / Layout / A11y (locked + layout fix)
     ------------------------------ */
     *,*::before,*::after{box-sizing:border-box}
     html,body{height:100%}
@@ -93,7 +93,13 @@
       margin:0; font-family:var(--ff-sans); font-size:var(--fs-body); line-height:1.6;
       color:var(--text); background:var(--bg);
       -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+
+      /* Layout fix: keep footer at the bottom with minimal empty space */
+      min-height:100svh;            /* safe viewport height on mobile */
+      display:flex; flex-direction:column;
     }
+    main{flex:1}                     /* lets footer naturally sit at bottom */
+
     img{max-width:100%; display:block}
     a{color:var(--primary); text-decoration:none}
     a:hover{color:var(--primary-strong)}
@@ -163,8 +169,8 @@
     .success-inner{
       padding:clamp(2rem,6vw,4rem) 0;
       display:grid;
-      grid-template-columns: 1fr;
-      gap: var(--space-5);
+      grid-template-columns:1fr;
+      gap:var(--space-5);
     }
     .success-card{
       background:var(--card);
@@ -172,7 +178,7 @@
       border-radius:var(--radius-lg);
       box-shadow:var(--shadow-2);
       padding:clamp(1.25rem,3.5vw,2rem);
-      max-width: 780px;
+      max-width:780px;
     }
     .success-eyebrow{
       display:inline-flex; align-items:center; gap:.35rem;
@@ -206,7 +212,7 @@
   <a href="#main" class="skip-link">Skip to content</a>
 
   <!-- =========================================================
-       Header / Navigation (LOCKED — copied verbatim)
+       Header / Navigation (LOCKED — verbatim)
   ========================================================== -->
   <header class="site-header">
     <div class="container nav">
@@ -253,7 +259,7 @@
   </main>
 
   <!-- =========================================================
-       Footer (LOCKED — copied verbatim)
+       Footer (LOCKED — verbatim)
   ========================================================== -->
   <footer class="site-footer">
     <div class="container footer-row">
