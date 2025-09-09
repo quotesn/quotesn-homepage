@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Quotesn sitemap: minimal, stable, crawl-friendly -->
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset
+  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <!-- Canonical sections -->
   <url>
     <loc>https://www.quotesn.com/</loc>
     <lastmod>2025-09-10</lastmod>
@@ -10,15 +12,73 @@
   <url>
     <loc>https://www.quotesn.com/about/</loc>
     <lastmod>2025-09-10</lastmod>
-    <changefreq>monthly</changefreq>
+    <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>https://www.quotesn.com/contact/</loc>
+    <lastmod>2025-09-10</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://www.quotesn.com/contact-success.html</loc>
+    <lastmod>2025-09-10</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  <url>
+    <loc>https://www.quotesn.com/privacy/</loc>
+    <lastmod>2025-09-10</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://www.quotesn.com/terms/</loc>
+    <lastmod>2025-09-10</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <!-- Blog index + posts -->
+  <url>
     <loc>https://www.quotesn.com/blog/</loc>
     <lastmod>2025-09-10</lastmod>
-    <changefreq>daily</changefreq>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
+  <url>
+    <loc>https://www.quotesn.com/blog/top-50-inspirational-quotes-2025/</loc>
+    <lastmod>2025-01-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.quotesn.com/blog/daily-dose-of-motivation/</loc>
+    <lastmod>2025-01-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.quotesn.com/blog/power-of-words/</loc>
+    <lastmod>2024-12-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.quotesn.com/blog/how-to-find-daily-inspiration/</loc>
+    <lastmod>2024-12-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.quotesn.com/blog/motivational-quotes-challenge/</loc>
+    <lastmod>2024-11-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- Quizzes index + quiz pages -->
   <url>
     <loc>https://www.quotesn.com/quizzes/</loc>
     <lastmod>2025-09-10</lastmod>
@@ -26,10 +86,39 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.quotesn.com/contact/</loc>
+    <loc>https://www.quotesn.com/quizzes/famous-quotes/</loc>
     <lastmod>2025-09-10</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
-  <!-- Optional: add individual blog/quiz slugs here as you publish -->
+  <url>
+    <loc>https://www.quotesn.com/quizzes/who-said-it/</loc>
+    <lastmod>2025-09-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.quotesn.com/quizzes/10-fun-quizzes-to-spark-your-mind/</loc>
+    <lastmod>2025-09-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.quotesn.com/quizzes/inspirational-lines/</loc>
+    <lastmod>2025-09-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.quotesn.com/quizzes/literary-legends/</loc>
+    <lastmod>2025-09-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.quotesn.com/quizzes/quote-match/</loc>
+    <lastmod>2025-09-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
 </urlset>
