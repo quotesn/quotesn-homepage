@@ -463,5 +463,11 @@
     // Footer year
     (function(){const y=document.getElementById('year'); if(y) y.textContent=new Date().getFullYear();})();
   </script>
+  <script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/sw.js', { scope: '/' });
+  }
+</script>
 </body>
 </html>
+
