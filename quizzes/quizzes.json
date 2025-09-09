@@ -1,0 +1,76 @@
+{
+  "quizzes": [
+    {
+      "slug": "famous-quotes",
+      "title": "Famous Quotes Quiz",
+      "description": "Match legendary lines to their authors in this classic challenge.",
+      "date": "2025-01-20",
+      "category": "trivia",
+      "url": "https://www.quotesn.com/quizzes/famous-quotes/",
+      "image": "https://images.unsplash.com/photo-1520975916090-3105956dac38?auto=format&fit=crop&w=1280&q=80",
+      "questions": 10,
+      "estimatedTimeMinutes": 4,
+      "tags": ["quotes", "authors", "classic"]
+    },
+    {
+      "slug": "who-said-it",
+      "title": "Who Said It?",
+      "description": "Read the line. Guess the mind. Can you spot the author?",
+      "date": "2025-01-19",
+      "category": "guess-the-author",
+      "url": "https://www.quotesn.com/quizzes/who-said-it/",
+      "image": "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=1280&q=80",
+      "questions": 12,
+      "estimatedTimeMinutes": 5,
+      "tags": ["authors", "literature", "challenge"]
+    },
+    {
+      "slug": "10-fun-quizzes-to-spark-your-mind",
+      "title": "10 Fun Quizzes to Spark Your Mind",
+      "description": "Quick, engaging brain-boosters for your coffee break.",
+      "date": "2025-01-18",
+      "category": "collection",
+      "url": "https://www.quotesn.com/quizzes/10-fun-quizzes-to-spark-your-mind/",
+      "image": "https://images.unsplash.com/photo-1523246191893-54d2a75fc9c7?auto=format&fit=crop&w=1280&q=80",
+      "quizzesIncluded": 10,
+      "estimatedTimeMinutes": 8,
+      "tags": ["mix", "fast", "fun"]
+    },
+    {
+      "slug": "inspirational-lines",
+      "title": "Inspirational Lines",
+      "description": "Identify the quote that lifts spirits the most.",
+      "date": "2025-01-17",
+      "category": "inspiration",
+      "url": "https://www.quotesn.com/quizzes/inspirational-lines/",
+      "image": "https://images.unsplash.com/photo-1508614999368-9260051292e9?auto=format&fit=crop&w=1280&q=80",
+      "questions": 8,
+      "estimatedTimeMinutes": 4,
+      "tags": ["motivation", "mindset", "positivity"]
+    },
+    {
+      "slug": "literary-legends",
+      "title": "Literary Legends",
+      "description": "A tour of immortal voices — how many can you place?",
+      "date": "2025-01-16",
+      "category": "literature",
+      "url": "https://www.quotesn.com/quizzes/literary-legends/",
+      "image": "https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1280&q=80",
+      "questions": 10,
+      "estimatedTimeMinutes": 5,
+      "tags": ["books", "classics", "authors"]
+    },
+    {
+      "slug": "quote-match",
+      "title": "Quote Match",
+      "description": "Pair the quote with its source — faster than you think.",
+      "date": "2025-01-15",
+      "category": "matching",
+      "url": "https://www.quotesn.com/quizzes/quote-match/",
+      "image": "https://images.unsplash.com/photo-1501594907352-04cda38ebc29?auto=format&fit=crop&w=1280&q=80",
+      "questions": 12,
+      "estimatedTimeMinutes": 5,
+      "tags": ["matching", "memory", "speed"]
+    }
+  ]
+}
