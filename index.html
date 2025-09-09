@@ -465,13 +465,42 @@
     // Footer year
     (function(){const y=document.getElementById('year'); if(y) y.textContent=new Date().getFullYear();})();
   </script>
-  <script>
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/sw.js', { scope: '/' });
-  }
-</script>
+  <!-- =========================================================
+       Tiny Vanilla JS (defer)
+  ========================================================== -->
+  <script defer>
+    // Mobile nav toggler (already in your pages)
+    (function(){
+      const btn=document.querySelector('.menu-toggle');
+      const menu=document.getElementById('nav-menu');
+      if(!btn||!menu) return;
+      btn.addEventListener('click',()=>{
+        const open=menu.classList.toggle('show');
+        btn.setAttribute('aria-expanded', open ? 'true':'false');
+      });
+    })();
+
+    // Quote of the Day or footer year logic is here in some pages...
+    (function(){
+      const y=document.getElementById('year');
+      if(y) y.textContent=new Date().getFullYear();
+    })();
+  </script>
+
+  <!-- =========================================================
+       Service Worker Registration
+  ========================================================== -->
+  <script defer>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js').catch(()=>{});
+      });
+    }
+  </script>
 </body>
 </html>
+
+
 
 
 
