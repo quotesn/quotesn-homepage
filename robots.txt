@@ -1,0 +1,11 @@
+# robots.txt for https://www.quotesn.com/
+# Default: allow crawling
+User-agent: *
+Allow: /
+
+# Helpful hints
+Sitemap: https://www.quotesn.com/sitemap.xml
+
+# Optional areas to keep lightweight (uncomment if applicable)
+# Disallow: /api/
+# Disallow: /admin/
