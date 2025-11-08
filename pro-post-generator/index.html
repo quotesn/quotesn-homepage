@@ -104,29 +104,58 @@ body{font-family:Inter,ui-sans-serif,system-ui;color:#0f172a;background:linear-g
   pointer-events: none;
 }
 .align.active{outline:2px solid #6366f1;outline-offset:2px}
-/* .valign.active removed */
 .ap-pos.active{outline:2px solid #6366f1;outline-offset:2px}
 
-/* Secondary action buttons */
+/* Secondary action buttons (used in panels) */
 .btn-action{display:flex;align-items:center;justify-content:center;gap:.6rem;font-weight:600;border-radius:14px;padding:.7rem 1.1rem;border:1px solid #e5e7eb;transition:all .2s ease}
 .btn-action:hover{background:#eef2ff;box-shadow:0 6px 20px rgba(99,102,241,.22)}
 .btn-action svg{width:18px;height:18px}
-/* Specific style for logo upload buttons */
 .btn-action svg.w-5.h-5 { width: 20px; height: 20px; }
+
+/* NEW: Primary action buttons (below poster) */
+.btn-primary-action {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem; /* 12px */
+  font-weight: 600;
+  border-radius: 16px; /* xl */
+  padding: 0.875rem 1.5rem; /* 14px 24px */
+  transition: all 0.25s ease;
+  transform: translateZ(0); /* For GPU acceleration */
+  box-shadow: 0 4px 12px rgba(0,0,0,.08), 0 1px 3px rgba(0,0,0,.05);
+}
+.btn-primary-action:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(99,102,241,.25), 0 4px 8px rgba(0,0,0,.08);
+}
+.btn-primary-action:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 12px rgba(0,0,0,.08), 0 1px 3px rgba(0,0,0,.05);
+}
+.btn-primary-action svg {
+  width: 20px; /* 5 */
+  height: 20px; /* 5 */
+}
 
 
 /* Focus ring */
 :focus-visible{outline:3px solid #6366f1;outline-offset:2px}
 
-/* Custom Select Arrow */
+/* Custom Select Arrow (FIXED) */
 select.field {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='currentColor' class='w-5 h-5'%3E%3Cpath fill-rule='evenodd' d='M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.25 4.25a.75.75 0 01-1.06 0L5.23 8.29a.75.75 0 01.02-1.06z' clip-rule='evenodd' /%3E%3C/svg%3E");
-  background-position: right 0.5rem center;
+  background-position: right 0.75rem center; /* Adjusted position */
   background-repeat: no-repeat;
   background-size: 1.25em;
+  
+  /* Consolidate padding (from Tailwind's px-3, py-2) */
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 0.75rem;
   padding-right: 2.5rem; /* Make space for arrow */
 }
 
@@ -163,24 +192,25 @@ select.field {
 }
 
 
-/* ======= UI POLISH PATCH v3.6 (Applied) ======= */
+/* ======= UI POLISH PATCH v3.7 (ENHANCED ICONS) ======= */
 
-/* --- Header icons refinement --- */
+/* --- Header icons refinement (ENHANCED) --- */
 .icon-btn {
   position: relative;
   display:flex;align-items:center;justify-content:center;
   width:44px;height:44px;border-radius:14px;
   border:1px solid var(--panel-border);background:#fff;
   transition:all .2s ease;
-  box-shadow:0 0 0 rgba(79,70,229,0);
+  box-shadow:0 1px 3px rgba(0,0,0,.04); /* NEW subtle shadow */
 }
 .icon-btn:hover {
-  transform:translateY(-1px) scale(1.05);
-  box-shadow:0 0 12px rgba(79,70,229,.25);
+  transform:translateY(-2px); /* Increased lift */
+  box-shadow:0 6px 14px rgba(79,70,229,.20); /* Brighter hover shadow */
 }
 .icon-btn.active {
   background:linear-gradient(135deg,#eef2ff,#e0e7ff);
-  box-shadow:0 0 16px rgba(79,70,229,.35);
+  box-shadow:0 2px 8px rgba(79,70,229,.30); /* Tighter active shadow */
+  transform: translateY(-1px);
 }
 .icon-btn svg {
   width:22px;height:22px;stroke-width:2;transition:transform .2s;
@@ -202,7 +232,7 @@ select.field {
 }
 @keyframes fadeIn {from{opacity:0;transform:translateY(-6px);}to{opacity:1;transform:none;}}
 
-/* --- Watermark position buttons --- */
+/* --- Watermark position buttons (IMPROVED) --- */
 .wm-choices {
   display:grid;
   grid-template-columns:repeat(3,1fr);
@@ -212,7 +242,7 @@ select.field {
   border:1px solid #e2e8f0;
   border-radius:14px;
   background:#fff;
-  padding:.7rem .9rem;
+  padding:.7rem .9rem; /* Kept padding */
   transition:all .18s ease;
   display:flex;align-items:center;justify-content:center;
 }
@@ -225,23 +255,34 @@ select.field {
   background:#eef2ff;
   box-shadow:0 0 0 2px #4f46e5 inset;
 }
-.wm-choices .dot {
-  width:8px;height:8px;border-radius:9999px;
-  background:#6366f1;
-  opacity:.6;transition:opacity .2s;
+/* Removed old .dot and .bar styles */
+.wm-choices .dot { display: none; }
+.wm-choices .bar { display: none; }
+
+/* NEW Visual Watermark Styles */
+.wm-preview {
+  width: 64px;
+  height: 48px; /* 4:3 aspect ratio */
+  border: 2px solid #cbd5e1; /* slate-300 */
+  border-radius: 6px;
+  position: relative;
+  background: #f8fafc; /* slate-50 */
 }
-.wm-choices .bar{ /* This style was in the original, retained for inner layout */
-  display:flex;align-items:center;justify-content:space-between;gap:.75rem;
-  background:transparent; /* bg moves to parent */
-  border-radius:10px;
-  padding:0; /* padding moves to parent */
-  border:0; /* border moves to parent */
-  width:64px;
+.wm-preview div {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #a5b4fc; /* indigo-300 */
+  transition: background-color 0.2s ease;
 }
-/* === FIX: This rule now correctly targets ONLY the active dot === */
-.wm-choices button.active .dot:not(.opacity-30) {
-  opacity: 1;
+.wm-choices button.active .wm-preview div {
+  background: #4f46e5; /* indigo-700 */
 }
+.dot-bl { bottom: 4px; left: 4px; }
+.dot-bc { bottom: 4px; left: 50%; transform: translateX(-50%); }
+.dot-br { bottom: 4px; right: 4px; }
+/* === END Watermark --- */
 
 /* --- Optional visual accent --- */
 .icon-btn.active::after {
@@ -262,27 +303,41 @@ select.field {
       <img src="https://www.quotesn.com/images/quotesn-logo.svg" alt="Quotesn Logo" class="w-8 h-8" loading="lazy"/>
       <span class="font-semibold text-[15px]">Pro Post Generator</span>
     </div>
-    <div class="flex items-center gap-3">
+    <div class="flex items-center gap-2 sm:gap-3">
       
-      <!-- New Home Link -->
+      <!-- Home Link -->
       <a href="https://www.quotesn.com/" class="icon-btn" aria-label="Back to Quotesn Home" title="Back to Quotesn Home">
         <svg class="icon-purple" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
           <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
           <polyline points="9 22 9 12 15 12 15 22"></polyline>
         </svg>
       </a>
+      
+      <!-- "New Post" Button -->
+      <button id="newPostBtn" class="icon-btn" aria-label="New Post (Reset)" title="New Post (Reset)">
+        <svg class="icon-purple" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+          <polyline points="14 2 14 8 20 8"></polyline>
+          <line x1="12" y1="18" x2="12" y2="12"></line>
+          <line x1="9" y1="15" x2="15" y2="15"></line>
+        </svg>
+      </button>
 
       <!-- Sparkle Shuffle = Next Theme (T) --><button id="toggleTheme" class="icon-btn" aria-label="Change Theme (T)" title="Change Theme (T)">
-        <svg class="icon-purple" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+        <!-- CORRECTED SPARKLE ICON (FROM SCREENSHOT) -->
+        <svg class="icon-purple" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true" stroke-width="2">
           <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 4.5l.6 2.1a4 4 0 0 0 2.3 2.7L12 10l-1.6.7a4 4 0 0 0-2.3 2.7L7.5 15.5l-.6-2.1a4 4 0 0 0-2.7-2.3L2 10l2.2-.6a4 4 0 0 0 2.7-2.7L7.5 4.5Z"/>
-          <path stroke-linecap="round" d="M16.5 3.5l.3 1.2a3 3 0 0 0 2 2l1.2.3-1.2.3a3 3 0 0 0-2 2l-.3 1.2-.3-1.2a3 3 0 0 0-2-2l-1.2-.3 1.2-.3a3 3 0 0 0 2-2l.3-1.2Z"/>
+          <path stroke-linecap="round" stroke-width="2" d="M16.5 3.5l.3 1.2a3 3 0 0 0 2 2l1.2.3-1.2.3a3 3 0 0 0-2 2l-.3 1.2-.3-1.2a3 3 0 0 0-2-2l-1.2-.3 1.2-.3a3 3 0 0 0 2-2l.3-1.2Z"/>
         </svg>
       </button>
 
       <!-- Download menu (D) --><div class="relative">
         <button id="exportBtn" class="icon-btn" aria-haspopup="menu" aria-expanded="false" aria-controls="exportMenu" aria-label="Download (D)" title="Download (D)">
-          <svg class="icon-purple" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v9m0 0-3-3m3 3 3-3M5 18.5h14" />
+          <!-- NEW ENHANCED DOWNLOAD ICON -->
+          <svg class="icon-purple" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="7 10 12 15 17 10"></polyline>
+            <line x1="12" y1="15" x2="12" y2="3"></line>
           </svg>
         </button>
         <div id="exportMenu" class="hidden absolute right-0 mt-2 w-44 panel p-2" role="menu">
@@ -293,7 +348,8 @@ select.field {
       </div>
 
       <!-- Share (S) - Corrected Icon --><button id="shareBtn" class="icon-btn" aria-label="Share (S)" title="Share (S)">
-        <svg class="icon-purple" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <!-- NEW ENHANCED SHARE ICON -->
+        <svg class="icon-purple" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <circle cx="18" cy="5" r="3"></circle>
           <circle cx="6" cy="12" r="3"></circle>
           <circle cx="18" cy="19" r="3"></circle>
@@ -304,6 +360,56 @@ select.field {
     </div>
   </div>
 </header>
+
+<!-- Poster --><main class="max-w-7xl mx-auto px-4 py-8 sm:py-12">
+  <div class="ratio-box">
+    <div id="ratioSpacer" class="ratio-spacer" style="padding-top:125%"></div>
+    <div class="abs">
+      <div id="poster" style="background:linear-gradient(135deg,#22d3ee,#6366f1 60%,#a855f7);color:#fff;">
+        <div id="content">
+          <h1 id="headline" style="font-size:56px;">Stay focused. Ship value. Repeat.</h1>
+          <p id="author">— Quotesn</p>
+        </div>
+        <div id="wmark">quotesn.com</div>
+        <img id="wmarkLogo" class="hidden"/>
+      </div>
+    </div>
+  </div>
+  <p id="status" class="text-center text-sm text-indigo-600 mt-4 h-6" aria-live="polite"></p>
+</main>
+
+<!-- NEW: Primary Action Buttons -->
+<section class="max-w-7xl mx-auto px-4 pb-4 sm:pb-8 -mt-4 sm:-mt-8">
+  <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+    
+    <button id="themeNextBtn" class="btn-primary-action w-full sm:w-auto bg-white text-indigo-700 border border-gray-200 hover:bg-indigo-50" aria-label="Change Theme">
+      <!-- CORRECTED SPARKLE ICON (FROM SCREENSHOT) -->
+      <svg class="text-indigo-700" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 4.5l.6 2.1a4 4 0 0 0 2.3 2.7L12 10l-1.6.7a4 4 0 0 0-2.3 2.7L7.5 15.5l-.6-2.1a4 4 0 0 0-2.7-2.3L2 10l2.2-.6a4 4 0 0 0 2.7-2.7L7.5 4.5Z"/>
+        <path stroke-linecap="round" stroke-width="2" d="M16.5 3.5l.3 1.2a3 3 0 0 0 2 2l1.2.3-1.2.3a3 3 0 0 0-2 2l-.3 1.2-.3-1.2a3 3 0 0 0-2-2l-1.2-.3 1.2-.3a3 3 0 0 0 2-2l.3-1.2Z"/>
+      </svg>
+      Change Theme
+    </button>
+    
+    <div class="relative w-full sm:w-auto">
+      <button id="downloadBtn" class="btn-primary-action w-full bg-indigo-600 text-white hover:bg-indigo-700" aria-haspopup="menu" aria-expanded="false" aria-controls="exportMenu2" aria-label="Download">
+        <!-- NEW ENHANCED DOWNLOAD ICON -->
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+          <polyline points="7 10 12 15 17 10"></polyline>
+          <line x1="12" y1="15" x2="12" y2="3"></line>
+        </svg>
+        Download Image
+      </button>
+      <div id="exportMenu2" class="hidden absolute left-0 mt-2 w-full panel p-2" role="menu">
+        <button data-type="png" class="w-full text-left px-3 py-2 rounded-md hover:bg-gray-50" role="menuitem">PNG (transparent)</button>
+        <button data-type="jpeg" class="w-full text-left px-3 py-2 rounded-md hover:bg-gray-50" role="menuitem">JPG (solid)</button>
+        <button data-type="webp" class="w-full text-left px-3 py-2 rounded-md hover:bg-gray-50" role="menuitem">WEBP</button>
+      </div>
+    </div>
+    
+  </div>
+</section>
 
 <!-- Panels --><section class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-6 p-4">
 
@@ -353,7 +459,7 @@ select.field {
       <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
         <label>
           <span class="subtle text-sm mb-1 block">Aspect Ratio</span>
-          <select id="ratioSelect" class="field w-full px-3 py-2 h-10" aria-label="Aspect Ratio">
+          <select id="ratioSelect" class="field w-full h-10" aria-label="Aspect Ratio">
             <option value="1:1">Square 1 : 1</option>
             <option value="4:5" selected>Portrait 4 : 5</option>
             <option value="9:16">Story 9 : 16</option>
@@ -413,7 +519,7 @@ select.field {
 
       <label class="block">
         <span class="subtle text-sm mb-1 block">Theme</span>
-        <select id="themeSelect" class="field w-full px-3 py-2 h-10" aria-label="Theme"></select>
+        <select id="themeSelect" class="field w-full h-10" aria-label="Theme"></select>
       </label>
 
       <div id="themeGrid" class="grid grid-cols-3 gap-3" aria-label="Theme Grid"></div>
@@ -444,27 +550,16 @@ select.field {
 
         <div>
           <span class="subtle text-sm mb-1 block">Watermark Position (Bottom)</span>
+          <!-- IMPROVED Watermark Position HTML -->
           <div class="wm-choices" role="group" aria-label="Watermark Position">
             <button class="wm-pos" data-pos="bl" aria-pressed="false">
-              <div class="bar">
-                <span class="dot"></span>
-                <span class="dot opacity-30"></span>
-                <span class="dot opacity-30"></span>
-              </div>
+              <div class="wm-preview"><div class="dot-bl"></div></div>
             </button>
             <button class="wm-pos" data-pos="bc" aria-pressed="false">
-              <div class="bar">
-                <span class="dot opacity-30"></span>
-                <span class="dot"></span>
-                <span class="dot opacity-30"></span>
-              </div>
+              <div class="wm-preview"><div class="dot-bc"></div></div>
             </button>
             <button class="wm-pos active" data-pos="br" aria-pressed="true">
-              <div class="bar">
-                <span class="dot opacity-30"></span>
-                <span class="dot opacity-30"></span>
-                <span class="dot"></span>
-              </div>
+              <div class="wm-preview"><div class="dot-br"></div></div>
             </button>
           </div>
         </div>
@@ -480,43 +575,9 @@ select.field {
         </label>
       </div>
 
-      <!-- Secondary Action Buttons --><div class="flex flex-col sm:flex-row gap-3 pt-2">
-        <button id="themeNextBtn" class="btn-action flex-1 text-indigo-700" aria-label="Change Theme">
-          <svg class="text-indigo-700" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7.5 4.5l.6 2.1a4 4 0 0 0 2.3 2.7L12 10l-1.6.7a4 4 0 0 0-2.3 2.7L7.5 15.5l-.6-2.1a4 4 0 0 0-2.7-2.3L2 10l2.2-.6a4 4 0 0 0 2.7-2.7L7.5 4.5Z"/></svg>
-          Change Theme
-        </button>
-        <div class="relative flex-1">
-          <button id="downloadBtn" class="btn-action w-full bg-indigo-600 text-white hover:bg-indigo-700" aria-haspopup="menu" aria-expanded="false" aria-controls="exportMenu2" aria-label="Download">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v9m0 0-3-3m3 3 3-3M5 18.5h14"/></svg>
-            Download Image
-          </button>
-          <div id="exportMenu2" class="hidden absolute left-0 mt-2 w-full panel p-2" role="menu">
-            <button data-type="png" class="w-full text-left px-3 py-2 rounded-md hover:bg-gray-50" role="menuitem">PNG (transparent)</button>
-            <button data-type="jpeg" class="w-full text-left px-3 py-2 rounded-md hover:bg-gray-50" role="menuitem">JPG (solid)</button>
-            <button data-type="webp" class="w-full text-left px-3 py-2 rounded-md hover:bg-gray-50" role="menuitem">WEBP</button>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
 </section>
-
-<!-- Poster --><main class="max-w-7xl mx-auto px-4 pb-16">
-  <div class="ratio-box">
-    <div id="ratioSpacer" class="ratio-spacer" style="padding-top:125%"></div>
-    <div class="abs">
-      <div id="poster" style="background:linear-gradient(135deg,#22d3ee,#6366f1 60%,#a855f7);color:#fff;">
-        <div id="content">
-          <h1 id="headline" style="font-size:56px;">Stay focused. Ship value. Repeat.</h1>
-          <p id="author">— Quotesn</p>
-        </div>
-        <div id="wmark">quotesn.com</div>
-        <img id="wmarkLogo" class="hidden"/>
-      </div>
-    </div>
-  </div>
-  <p id="status" class="text-center text-sm text-indigo-600 mt-4 h-6" aria-live="polite"></p>
-</main>
 
 <!-- New Enhanced Footer -->
 <footer class="bg-white border-t border-gray-200">
@@ -539,11 +600,10 @@ const $ = id => document.getElementById(id);
 const els = {
   quoteInput: $('quoteInput'), authorInput: $('authorInput'),
   sizeInput: $('sizeInput'),
-  citationSizeInput: $('citationSizeInput'), // Renamed
+  citationSizeInput: $('citationSizeInput'),
   lineHeightInput: $('lineHeightInput'),
   padInput: $('padInput'),
   alignBtns: document.querySelectorAll('.align'),
-  // vAlignBtns removed
   authorPosBtns: document.querySelectorAll('.ap-pos'),
   ratioSelect: $('ratioSelect'), 
   fgPicker: $('fgPicker'), bgPicker: $('bgPicker'),
@@ -551,17 +611,19 @@ const els = {
   themeSelect: $('themeSelect'), themeGrid: $('themeGrid'),
   wmText: $('wmText'), wmToggle: $('wmToggle'),
   wmChoices: document.querySelectorAll('.wm-pos'),
-  logoUpload: $('logoUpload'), // New
-  logoUploadBtn: $('logoUploadBtn'), // New
-  logoClearBtn: $('logoClearBtn'), // New
+  logoUpload: $('logoUpload'),
+  logoUploadBtn: $('logoUploadBtn'),
+  logoClearBtn: $('logoClearBtn'),
   retinaToggle: $('retinaToggle'),
-  themeNextBtn: $('themeNextBtn'),
+  themeNextBtn: $('themeNextBtn'), // Now below poster
   ratioSpacer: $('ratioSpacer'), poster: $('poster'),
   content: $('content'), headline: $('headline'), author: $('author'),
   wmark: $('wmark'),
-  wmarkLogo: $('wmarkLogo'), // New
+  wmarkLogo: $('wmarkLogo'),
+  newPostBtn: $('newPostBtn'),
   toggleTheme: $('toggleTheme'), exportBtn: $('exportBtn'), exportMenu: $('exportMenu'),
-  downloadBtn: $('downloadBtn'), exportMenu2: $('exportMenu2'),
+  downloadBtn: $('downloadBtn'), // Now below poster
+  exportMenu2: $('exportMenu2'), // Now below poster
   shareBtn: $('shareBtn'),
   status: $('status')
 };
@@ -635,16 +697,22 @@ const THEMES = [
   }
 ];
 
-
-let state = {
+// Hardcoded defaults to reset to
+const DEFAULTS = {
   theme: 0, align: 'center', size: 56, pad: 56, ratio: '4:5',
   wmPos: 'br',
-  citationSize: 17, // Renamed
+  citationSize: 17,
   lineHeight: 1.15,
-  // vAlign removed
   authorPos: 'bottom',
-  logoDataBase64: null // New
+  logoDataBase64: null,
+  quote: 'Stay focused. Ship value. Repeat.',
+  author: '— Quotesn',
+  wmText: 'quotesn.com',
+  wmToggle: true,
+  retina: true,
 };
+
+let state = { ...DEFAULTS }; // Start with defaults, will be overridden by restore()
 
 /* ------ Helpers ------ */
 const say = m => { els.status.textContent = m; clearTimeout(say._t); say._t = setTimeout(()=>els.status.textContent='',1800); };
@@ -669,6 +737,7 @@ function applyTheme(i){
   const t = THEMES[i];
   if (!t) return; // Safety check
   
+  state.theme = i; // Set theme index in state
   els.poster.style.background = t.bg;
   els.poster.style.color = t.fg;
   
@@ -717,8 +786,8 @@ function applyTheme(i){
   const newFgHex = rgbToHex(getComputedStyle(els.poster).color);
   els.fgPicker.value = newFgHex;
   els.fgHex.textContent = newFgHex;
-  // Cannot set gradient to bg picker, so set a fallback color
-  const fallbackBg = t.bg.split(',')[1].trim(); // Get first color from gradient
+  
+  const fallbackBg = t.bg.split(',')[1].trim(); 
   if (fallbackBg.startsWith('#')) {
     els.bgPicker.value = fallbackBg;
     els.bgHex.textContent = fallbackBg;
@@ -739,8 +808,6 @@ function applyAlign(a){
   els.poster.style.textAlign = a;
   persist();
 }
-// applyVAlign function removed
-// New function for Author Position
 function applyAuthorPos(p){
   state.authorPos = p;
   els.authorPosBtns.forEach(b=>{
@@ -767,6 +834,7 @@ function applyColors(){
 
   // When user picks a custom color, deselect theme and reset fonts
   els.themeSelect.value = ""; 
+  state.theme = ""; // Set state theme to custom
   
   // Reset to neutral defaults
   const hs = els.headline.style;
@@ -796,7 +864,6 @@ function applyColors(){
 }
 
 /* ------ Watermark ------ */
-// New: Handle logo file upload
 function handleLogoUpload(event) {
   const file = event.target.files[0];
   if (file && file.type.startsWith('image/')) {
@@ -815,7 +882,6 @@ function handleLogoUpload(event) {
   els.logoUpload.value = null; // Reset file input
 }
 
-// New: Clear uploaded logo
 function clearLogo() {
   state.logoDataBase64 = null;
   els.wmarkLogo.src = '';
@@ -835,17 +901,15 @@ function setWmPos(pos){
 }
 function positionWatermark(){
   const pad = getComputedStyle(document.documentElement).getPropertyValue('--pad').trim();
-  // Decide which watermark element to use
   const wmarkEl = state.logoDataBase64 ? els.wmarkLogo : els.wmark;
   const otherEl = state.logoDataBase64 ? els.wmark : els.wmarkLogo;
 
-  // Toggle visibility
   wmarkEl.classList.toggle('hidden', !els.wmToggle.checked);
   otherEl.classList.add('hidden');
   
   const style = wmarkEl.style;
   style.top = 'auto'; style.left='auto'; style.right='auto'; style.bottom='var(--pad)';
-  style.transform = 'none'; // Reset transform
+  style.transform = 'none';
   
   if(state.wmPos==='bl'){ style.left = pad; }
   if(state.wmPos==='bc'){ style.left = '50%'; style.transform='translateX(-50%)'; }
@@ -854,45 +918,35 @@ function positionWatermark(){
 
 /* ------ Auto-fit (Polished) ------ */
 function autoFit(){
-  // Ensure poster is visible before measuring
   if (els.poster.clientHeight === 0) {
-    requestAnimationFrame(autoFit); // Try again on next frame
+    requestAnimationFrame(autoFit); 
     return;
   }
   
   const H = els.poster.clientHeight, pad = parseFloat(getComputedStyle(els.poster).paddingTop);
-  // Re-reads author height every time, accounting for theme changes
   const authorH = els.author.offsetHeight||20, reserve = els.wmToggle.checked?22:0;
-  // Calculate available vertical space with a small buffer
   const available = H - (pad * 2) - authorH - reserve - 12; // 12px buffer
 
-  // Start with the user's *preferred* size from state
   let size = clamp(state.size, 24, 200);
   els.headline.style.fontSize = size+'px';
 
-  let guard = 200; // Max iterations
-
-  // 1. If it's too big, shrink it down
+  let guard = 200; 
   while(els.headline.scrollHeight > available && size > 24 && guard--){
     size -= 1;
     els.headline.style.fontSize = size+'px';
   }
 
-  // 2. If it's too small (and *smaller* than user's pref), grow it
-  guard = 100; // Reset guard
-  // Grow *only* up to the user's preferred state.size
+  guard = 100;
   while(els.headline.scrollHeight <= available && size < state.size && size < 200 && guard--) {
       size += 1;
       els.headline.style.fontSize = size+'px';
   }
 
-  // 3. After growing, it might be one step too large. Check and step back.
   if (els.headline.scrollHeight > available && size > 24) {
        size -= 1;
        els.headline.style.fontSize = size+'px';
   }
 
-  // 4. Update the slider knob to reflect the *actual* rendered size.
   els.sizeInput.value = size;
 }
 
@@ -903,17 +957,18 @@ function persist(){ try{ localStorage.setItem(KEY, JSON.stringify(state)); }catc
 function restore(){
   try{
     const s = JSON.parse(localStorage.getItem(KEY)||'{}');
-    // Ensure defaults for new state properties if they don't exist
     const defaults = {
         citationSize: 17,
         lineHeight: 1.15,
-        // vAlign removed
         authorPos: 'bottom',
-        logoDataBase64: null
+        logoDataBase64: null,
+        quote: s.quote || DEFAULTS.quote, 
+        author: s.author || DEFAULTS.author,
+        wmText: s.wmText || DEFAULTS.wmText,
     };
-    Object.assign(state, defaults, s);
+    Object.assign(state, DEFAULTS, s, defaults); 
   }catch(e){
-    // If restore fails, state will use the hardcoded defaults
+    Object.assign(state, DEFAULTS);
   }
 }
 
@@ -923,10 +978,8 @@ async function exportImg(type='png'){
     say('Rendering…'); 
     await document.fonts.ready;
     
-    // Ensure watermark font/logo is loaded
     els.wmark.style.fontFamily = "'Inter', sans-serif"; 
     if (state.logoDataBase64 && els.wmarkLogo.src) {
-        // Wait for the logo image to be loaded by the browser if it's not already
         await new Promise((resolve, reject) => {
             if (els.wmarkLogo.complete && els.wmarkLogo.naturalHeight !== 0) {
                 resolve();
@@ -963,10 +1016,8 @@ async function shareImg(){
     say('Preparing share…'); 
     await document.fonts.ready;
     
-    // Ensure watermark font/logo is loaded
     els.wmark.style.fontFamily = "'Inter', sans-serif"; 
     if (state.logoDataBase64 && els.wmarkLogo.src) {
-        // Wait for the logo image to be loaded by the browser if it's not already
         await new Promise((resolve, reject) => {
             if (els.wmarkLogo.complete && els.wmarkLogo.naturalHeight !== 0) {
                 resolve();
@@ -990,88 +1041,160 @@ async function shareImg(){
     if(navigator.canShare && navigator.canShare({files:[file]})){
       await navigator.share({files:[file],title:'Quote Poster',text:'Made with Quotesn'});
     }else{
-      // Fallback for desktop/unsupported browsers
       exportImg('png');
     }
   }catch(e){ console.error("Share failed:", e); say('Share not supported'); }
 }
 
+// NEW: Function to reset all settings to default
+function applyDefaults() {
+  Object.assign(state, DEFAULTS);
+  
+  try { localStorage.removeItem(KEY); } catch(e) {}
+  
+  els.quoteInput.value = DEFAULTS.quote;
+  els.authorInput.value = DEFAULTS.author;
+  els.wmText.value = DEFAULTS.wmText;
+  els.wmToggle.checked = DEFAULTS.wmToggle;
+  els.retinaToggle.checked = DEFAULTS.retina;
+
+  clearLogo(); 
+  
+  applyTheme(DEFAULTS.theme); 
+  applyAlign(DEFAULTS.align);
+  applyAuthorPos(DEFAULTS.authorPos);
+  
+  els.padInput.value = DEFAULTS.pad;
+  applyPad(); 
+  
+  els.ratioSelect.value = DEFAULTS.ratio;
+  applyRatio(DEFAULTS.ratio); 
+  
+  els.sizeInput.value = DEFAULTS.size;
+  
+  setWmPos(DEFAULTS.wmPos);
+  positionWatermark(); 
+  
+  els.quoteInput.dispatchEvent(new Event('input')); 
+  
+  say('New post created');
+}
+
 /* ------ Events ------ */
 els.quoteInput.addEventListener('input',()=>{
   els.headline.textContent = els.quoteInput.value;
-  // Auto detect RTL for Arabic/Urdu/Hebrew
+  state.quote = els.quoteInput.value; 
   const rtl = isRTL(els.quoteInput.value);
   els.headline.dir = rtl ? 'rtl' : 'ltr';
   els.author.dir = rtl ? 'rtl' : 'ltr';
   autoFit();
+  persist(); 
 });
-els.authorInput.addEventListener('input',()=>{ els.author.textContent = els.authorInput.value; autoFit(); });
+els.authorInput.addEventListener('input',()=>{ 
+  els.author.textContent = els.authorInput.value; 
+  state.author = els.authorInput.value; 
+  autoFit(); 
+  persist(); 
+});
+
+els.newPostBtn.addEventListener('click', () => {
+  setActiveIcon(els.newPostBtn);
+  applyDefaults();
+});
 
 els.sizeInput.addEventListener('input',e=>{ state.size=+e.target.value; persist(); autoFit(); });
 els.padInput.addEventListener('input',e=>{ state.pad=+e.target.value; applyPad(); });
 
-// Updated Listeners
 els.citationSizeInput.addEventListener('input',e=>{ 
   state.citationSize=+e.target.value; 
   els.author.style.fontSize = state.citationSize + 'px';
-  els.themeSelect.value = ""; // Deselect theme
+  els.themeSelect.value = ""; 
+  state.theme = "";
   persist(); 
-  autoFit(); // Refit
+  autoFit(); 
 });
 els.lineHeightInput.addEventListener('input',e=>{ 
   state.lineHeight=+e.target.value; 
   els.headline.style.lineHeight = state.lineHeight;
-  els.themeSelect.value = ""; // Deselect theme
+  els.themeSelect.value = ""; 
+  state.theme = "";
   persist(); 
-  autoFit(); // Refit
+  autoFit(); 
 });
 
 els.alignBtns.forEach(b=>b.addEventListener('click',()=>{ applyAlign(b.dataset.align); }));
-// vAlign listener removed
 els.authorPosBtns.forEach(b=>b.addEventListener('click',()=>{ applyAuthorPos(b.dataset.pos); })); 
 
 els.themeSelect.addEventListener('change',e=>{ 
-  if (e.target.value === "") return; // Do nothing if "custom"
-  state.theme=+e.target.value; 
-  applyTheme(state.theme); 
+  if (e.target.value === "") {
+    state.theme = "";
+    persist(); 
+    return;
+  }
+  applyTheme(+e.target.value); 
 });
 
-/* --- Patched Listeners --- */
 els.toggleTheme.addEventListener('click', () => {
   setActiveIcon(els.toggleTheme);
-  state.theme = (state.theme + 1) % THEMES.length;
-  applyTheme(state.theme);
+  let nextIndex = 0;
+  if (state.theme !== "") {
+    nextIndex = (state.theme + 1) % THEMES.length;
+  }
+  applyTheme(nextIndex);
 });
-els.themeNextBtn.addEventListener('click',()=>{ state.theme=(state.theme + 1) % THEMES.length; applyTheme(state.theme); });
+els.themeNextBtn.addEventListener('click',()=>{ 
+  let nextIndex = 0;
+  if (state.theme !== "") {
+    nextIndex = (state.theme + 1) % THEMES.length;
+  }
+  applyTheme(nextIndex); 
+});
 
 els.bgPicker.addEventListener('input',applyColors);
 els.fgPicker.addEventListener('input',applyColors);
 
-els.wmText.addEventListener('input',()=>{ els.wmark.textContent = els.wmText.value; });
-els.wmToggle.addEventListener('change',positionWatermark);
+els.wmText.addEventListener('input',()=>{ 
+  els.wmark.textContent = els.wmText.value;
+  state.wmText = els.wmText.value; 
+  persist();
+});
+els.wmToggle.addEventListener('change',() => {
+  state.wmToggle = els.wmToggle.checked;
+  positionWatermark();
+  persist();
+});
 els.wmChoices.forEach(btn=>btn.addEventListener('click',()=>setWmPos(btn.dataset.pos)));
 
-// New Logo Listeners
 els.logoUploadBtn.addEventListener('click', () => els.logoUpload.click());
 els.logoClearBtn.addEventListener('click', clearLogo);
 els.logoUpload.addEventListener('change', handleLogoUpload);
 
 els.ratioSelect.addEventListener('change',e=>{ state.ratio=e.target.value; applyRatio(state.ratio); }); 
+els.retinaToggle.addEventListener('change',() => {
+  state.retina = els.retinaToggle.checked;
+  persist();
+});
 
-/* --- Patched Listeners --- */
+
 els.exportBtn.addEventListener('click', () => {
   setActiveIcon(els.exportBtn);
   els.exportMenu.classList.toggle('hidden');
 });
+// Main document click listener to close dropdowns
 document.addEventListener('click',e=>{
-  if(!els.exportBtn.contains(e.target) && !els.exportMenu.contains(e.target)) els.exportMenu.classList.add('hidden');
-  if(!els.downloadBtn.contains(e.target) && !els.exportMenu2.contains(e.target)) els.exportMenu2.classList.add('hidden');
+  // Close header dropdown
+  if(!els.exportBtn.contains(e.target) && !els.exportMenu.contains(e.target)) {
+    els.exportMenu.classList.add('hidden');
+  }
+  // Close main download dropdown
+  if(!els.downloadBtn.contains(e.target) && !els.exportMenu2.contains(e.target)) {
+    els.exportMenu2.classList.add('hidden');
+  }
 });
 els.exportMenu.addEventListener('click',e=>{ const t=e.target.dataset.type; if(t){ els.exportMenu.classList.add('hidden'); exportImg(t);} });
 els.downloadBtn.addEventListener('click',()=>els.exportMenu2.classList.toggle('hidden'));
 els.exportMenu2.addEventListener('click',e=>{ const t=e.target.dataset.type; if(t){ els.exportMenu2.classList.add('hidden'); exportImg(t);} });
 
-/* --- Patched Listeners --- */
 els.shareBtn.addEventListener('click', () => {
   setActiveIcon(els.shareBtn);
   shareImg();
@@ -1081,7 +1204,7 @@ window.addEventListener('resize',()=>requestAnimationFrame(autoFit));
 /* Keyboard shortcuts */
 document.addEventListener('keydown',e=>{
   if (e.target.matches('input,textarea')) return;
-  if (e.key==='t' || e.key==='T'){ els.toggleTheme.click(); }
+  if (e.key==='t' || e.key==='T'){ els.themeNextBtn.click(); } // Change main button
   if (e.key==='d' || e.key==='D'){ exportImg('png'); }
   if (e.key==='s' || e.key==='S'){ shareImg(); }
 });
@@ -1093,57 +1216,73 @@ function buildThemeUI(){
   THEMES.forEach((t,i)=>{
     const b=document.createElement('button');
     b.className='swatch w-full'; b.style.background=t.bg; b.title=t.name;
-    b.addEventListener('click',()=>{ state.theme=i; applyTheme(i); });
+    b.addEventListener('click',()=>{ applyTheme(i); });
     els.themeGrid.appendChild(b);
   });
 }
 
 /* Init */
 (function init(){
-  restore(); // load previous
+  restore(); // load previous state into 'state' object
   buildThemeUI();
   
-  // Ensure initial theme index is valid
-  if (state.theme === "" || state.theme >= THEMES.length || state.theme < 0 || isNaN(state.theme)) {
-     // User had a custom theme or invalid state, reset to default
-     if (state.theme !== "") {
-        state.theme = 0; // Reset if invalid number
-     }
-  }
-
   // Apply restored state
-  if (state.theme !== "") {
-      applyTheme(state.theme);
-  } else {
+  if (state.theme === "" || isNaN(state.theme) || state.theme === null) {
       // Apply custom restored values
       els.citationSizeInput.value = state.citationSize;
       els.author.style.fontSize = state.citationSize + 'px';
       els.lineHeightInput.value = state.lineHeight;
       els.headline.style.lineHeight = state.lineHeight;
-      // Note: colors are applied via value attribute, so no need to re-apply here
+      
+      // Check for valid stored colors, fallback to defaults if invalid
+      const validFg = state.fg && state.fg.startsWith('#') ? state.fg : DEFAULTS.fg;
+      const validBg = state.bg && state.bg.startsWith('#') ? state.bg : '#0b1020';
+      
+      els.fgPicker.value = validFg;
+      els.bgPicker.value = validBg;
+
+      els.poster.style.color = validFg; 
+      els.poster.style.background = validBg; 
+      els.fgHex.textContent = validFg;
+      els.bgHex.textContent = validBg;
+      
+      // Reset fonts to default since it's a custom theme
+      els.headline.style.fontFamily = "'Noto Serif Display', serif";
+      els.author.style.fontFamily = "'Inter', sans-serif";
+      
+      els.themeSelect.value = ""; 
+  } else {
+      // Apply theme
+      applyTheme(state.theme);
   }
   
-  // Set logo src from state
   if (state.logoDataBase64) {
     els.wmarkLogo.src = state.logoDataBase64;
   }
   
   applyAlign(state.align);
-  // applyVAlign removed
   applyAuthorPos(state.authorPos); 
-  applyPad(); 
-  applyRatio(state.ratio);
   
-  els.sizeInput.value = state.size; // Set slider to stored value
   els.padInput.value = state.pad;
+  applyPad(); 
+  
   els.ratioSelect.value = state.ratio;
+  applyRatio(state.ratio); 
   
-  setWmPos(state.wmPos||'br');
+  els.sizeInput.value = state.size;
+  
+  setWmPos(state.wmPos);
+  
+  els.quoteInput.value = state.quote;
+  els.authorInput.value = state.author;
+  els.wmText.value = state.wmText;
+  els.wmToggle.checked = state.wmToggle;
+  els.retinaToggle.checked = state.retina;
+  
   els.wmark.textContent = els.wmText.value;
-  positionWatermark(); // This will now correctly show text or logo
-  els.quoteInput.dispatchEvent(new Event('input')); // Triggers initial text content and autoFit
+  positionWatermark(); 
+  els.quoteInput.dispatchEvent(new Event('input')); 
   
-  // Defer first fit until fonts are likely loaded
   if (document.fonts && document.fonts.ready) {
     document.fonts.ready.then(() => requestAnimationFrame(autoFit));
   } else {
