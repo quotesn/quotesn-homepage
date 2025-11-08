@@ -6,8 +6,9 @@
 <title>Pro Post Generator — Quotesn Studio</title>
 
 <!-- Canonical + SEO --><link rel="canonical" href="https://www.quotesn.com/pro-post-generator"/>
+<!-- Polished Meta Description for SERP -->
 <meta name="title" content="Pro Post Generator — Create Shareable Quote Posters Instantly">
-<meta name="description" content="Design, customize, and export high-quality quote posters with curated themes, neon glow, and transparent rounded PNGs.">
+<meta name="description" content="Instantly design and export beautiful, high-quality quote posters with curated themes, unique fonts, and professional text effects.">
 
 <!-- Open Graph --><meta property="og:type" content="website">
 <meta property="og:title" content="Pro Post Generator — Quotesn Studio">
@@ -28,17 +29,19 @@
   "applicationCategory": "DesignApplication",
   "operatingSystem": "Web",
   "url": "https://www.quotesn.com/pro-post-generator",
-  "description": "Create export-accurate quote posters with curated themes, watermark, and retina PNG/JPG/WEBP.",
+  "description": "Create export-accurate quote posters with curated themes, unique fonts, watermark, and retina PNG/JPG/WEBP.",
   "publisher": { "@type": "Organization", "name": "Quotesn" }
 }
 </script>
 
-<!-- Favicon --><link rel="icon" href="https://www.quotesn.com/favicon.ico" type="image/x-icon"/>
+<!-- Favicon (Verified) --><link rel="icon" href="https://www.quotesn.com/images/favicon.ico" type="image/x-icon"/>
 
 <!-- Tailwind + html2canvas --><script src="https://cdn.tailwindcss.com"></script>
 <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 
-<!-- Google Fonts (subset of families to keep size lean) --><link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Playfair+Display:wght@400;600&family=Lora:wght@400;600&family=Poppins:wght@400;600&family=Montserrat:wght@400;600&family=Inter:wght@400;600;700&display=swap" rel="stylesheet"/>
+<!-- Google Fonts (Enhanced for multi-language and unique styles) -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Lora:wght@400;600&family=Montserrat:wght@400;600&family=Inter:wght@400;600;700&family=Noto+Serif:wght@400;600&family=Noto+Serif+Display:wght@400;600&family=Playfair+Display:wght@400;700&family=Roboto+Slab:wght@400;700&family=Merriweather:wght@400;700&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet"/>
+
 
 <style>
 :root{
@@ -54,7 +57,15 @@ body{font-family:Inter,ui-sans-serif,system-ui;color:#0f172a;background:linear-g
 
 /* Panels */
 .panel{background:var(--panel-bg);border:1px solid var(--panel-border);border-radius:16px;box-shadow:0 8px 24px rgba(0,0,0,.05)}
-.field{border:1px solid var(--panel-border);background:#fff;border-radius:10px}
+.field{
+  border:1px solid var(--panel-border);
+  background:#fff;
+  border-radius:10px;
+  transition: border-color .2s ease;
+}
+.field:hover {
+  border-color: #a5b4fc; /* indigo-300 */
+}
 .subtle{color:var(--muted)}
 .swatch{height:56px;border-radius:12px;border:1px solid #e5e7eb}
 
@@ -64,20 +75,92 @@ body{font-family:Inter,ui-sans-serif,system-ui;color:#0f172a;background:linear-g
 .abs{position:absolute;inset:0}
 #poster{position:absolute;inset:0;border-radius:32px;padding:var(--pad);display:flex;align-items:center;justify-content:center;text-align:center;box-shadow:0 22px 80px rgba(15,23,42,.12);overflow:hidden}
 #content{width:100%;display:flex;flex-direction:column;align-items:center}
-#headline{font-family:"DM Serif Display",serif;font-weight:400;line-height:1.15;letter-spacing:.1px;margin:0 0 1rem}
-#author{font-size:18px;opacity:.9;margin:0}
+
+/* === POLISHED TYPOGRAPHY & LAYOUT === */
+#headline{
+  font-family:"Noto Serif Display",serif;
+  font-weight:400;
+  line-height:1.15;
+  letter-spacing:.1px;
+  margin:0 0 1.25rem; /* Increased vertical space */
+  overflow-wrap: break-word; /* Robustness for long words */
+  word-break: break-word; /* Robustness for long words */
+}
+#author{
+  font-family:"Inter", sans-serif; 
+  font-size:17px; /* Refined default proportion */
+  opacity:.9;
+  margin:0; 
+  transition: all 0.2s ease-in-out;
+}
+/* === END POLISH === */
+
 #wmark{position:absolute;font-size:14px;opacity:.65;pointer-events:none;bottom:var(--pad);right:var(--pad)}
+#wmarkLogo {
+  position: absolute;
+  max-height: 40px; /* Limit logo size */
+  max-width: 120px; /* Limit logo size */
+  opacity: .65;
+  pointer-events: none;
+}
 .align.active{outline:2px solid #6366f1;outline-offset:2px}
+/* .valign.active removed */
+.ap-pos.active{outline:2px solid #6366f1;outline-offset:2px}
 
 /* Secondary action buttons */
 .btn-action{display:flex;align-items:center;justify-content:center;gap:.6rem;font-weight:600;border-radius:14px;padding:.7rem 1.1rem;border:1px solid #e5e7eb;transition:all .2s ease}
 .btn-action:hover{background:#eef2ff;box-shadow:0 6px 20px rgba(99,102,241,.22)}
 .btn-action svg{width:18px;height:18px}
+/* Specific style for logo upload buttons */
+.btn-action svg.w-5.h-5 { width: 20px; height: 20px; }
 
-/* Neon glow toggle (applied to headline only) */
-.glow #headline{text-shadow:0 0 0 rgba(0,0,0,0), 0 0 10px rgba(236,72,153,.25), 0 0 26px rgba(79,70,229,.35)}
+
 /* Focus ring */
 :focus-visible{outline:3px solid #6366f1;outline-offset:2px}
+
+/* Custom Select Arrow */
+select.field {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='currentColor' class='w-5 h-5'%3E%3Cpath fill-rule='evenodd' d='M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.25 4.25a.75.75 0 01-1.06 0L5.23 8.29a.75.75 0 01.02-1.06z' clip-rule='evenodd' /%3E%3C/svg%3E");
+  background-position: right 0.5rem center;
+  background-repeat: no-repeat;
+  background-size: 1.25em;
+  padding-right: 2.5rem; /* Make space for arrow */
+}
+
+/* Custom Color Picker */
+.color-picker-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.25rem 0.35rem 0.25rem 0.75rem; /* p-1 pl-3 pr-1.5 */
+}
+.color-picker-wrapper input[type="color"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 32px; /* w-8 */
+  height: 32px; /* h-8 */
+  padding: 0;
+  border: none;
+  border-radius: 8px; /* rounded-lg */
+  background: transparent;
+  cursor: pointer;
+}
+.color-picker-wrapper input[type="color"]::-webkit-color-swatch-wrapper {
+  padding: 0;
+  border-radius: 8px;
+}
+.color-picker-wrapper input[type="color"]::-webkit-color-swatch {
+  border: 1px solid rgba(0,0,0,0.1);
+  border-radius: 8px;
+}
+.color-picker-wrapper input[type="color"]::-moz-color-swatch {
+  border: 1px solid rgba(0,0,0,0.1);
+  border-radius: 8px;
+}
 
 
 /* ======= UI POLISH PATCH v3.6 (Applied) ======= */
@@ -101,6 +184,10 @@ body{font-family:Inter,ui-sans-serif,system-ui;color:#0f172a;background:linear-g
 }
 .icon-btn svg {
   width:22px;height:22px;stroke-width:2;transition:transform .2s;
+}
+/* Specific fix for SVG logo size */
+.icon-btn img {
+  width: 22px; height: 22px;
 }
 .icon-btn:hover svg { transform:scale(1.07); }
 
@@ -171,10 +258,20 @@ body{font-family:Inter,ui-sans-serif,system-ui;color:#0f172a;background:linear-g
 <!-- Header --><header class="studio sticky top-0 z-40">
   <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
     <div class="flex items-center gap-3">
-      <img src="https://www.quotesn.com/assets/logo-placeholder.png" alt="Quotesn Logo" class="w-9 h-9 rounded-xl bg-gradient-to-br from-indigo-500 via-violet-500 to-fuchsia-500" loading="lazy"/>
+      <!-- Updated Logo -->
+      <img src="https://www.quotesn.com/images/quotesn-logo.svg" alt="Quotesn Logo" class="w-8 h-8" loading="lazy"/>
       <span class="font-semibold text-[15px]">Pro Post Generator</span>
     </div>
     <div class="flex items-center gap-3">
+      
+      <!-- New Home Link -->
+      <a href="https://www.quotesn.com/" class="icon-btn" aria-label="Back to Quotesn Home" title="Back to Quotesn Home">
+        <svg class="icon-purple" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+          <polyline points="9 22 9 12 15 12 15 22"></polyline>
+        </svg>
+      </a>
+
       <!-- Sparkle Shuffle = Next Theme (T) --><button id="toggleTheme" class="icon-btn" aria-label="Change Theme (T)" title="Change Theme (T)">
         <svg class="icon-purple" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
           <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 4.5l.6 2.1a4 4 0 0 0 2.3 2.7L12 10l-1.6.7a4 4 0 0 0-2.3 2.7L7.5 15.5l-.6-2.1a4 4 0 0 0-2.7-2.3L2 10l2.2-.6a4 4 0 0 0 2.7-2.7L7.5 4.5Z"/>
@@ -211,149 +308,193 @@ body{font-family:Inter,ui-sans-serif,system-ui;color:#0f172a;background:linear-g
 <!-- Panels --><section class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-6 p-4">
 
   <!-- Content --><div class="panel p-5">
-    <h3 class="font-semibold mb-3">Content</h3>
-    <label class="block mb-3">
-      <span class="subtle text-sm mb-1 block">Quote</span>
-      <textarea id="quoteInput" rows="3" class="field w-full px-3 py-2" aria-label="Quote">Stay focused. Ship value. Repeat.</textarea>
-    </label>
-    <label class="block">
-      <span class="subtle text-sm mb-1 block">Author</span>
-      <input id="authorInput" type="text" class="field w-full px-3 py-2" value="— Quotesn" aria-label="Author"/>
-    </label>
+    <div class="space-y-5">
+      <h3 class="font-semibold">Content</h3>
+      <label class="block">
+        <span class="subtle text-sm mb-1 block">Quote</span>
+        <textarea id="quoteInput" rows="3" class="field w-full px-3 py-2" aria-label="Quote">Stay focused. Ship value. Repeat.</textarea>
+      </label>
+      <label class="block">
+        <span class="subtle text-sm mb-1 block">Author / Citation</span>
+        <input id="authorInput" type="text" class="field w-full px-3 py-2" value="— Quotesn" aria-label="Author"/>
+      </label>
+    </div>
   </div>
 
   <!-- Typography & Layout --><div class="panel p-5">
-    <h3 class="font-semibold mb-3">Typography & Layout</h3>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-      <label>
-        <span class="subtle text-sm mb-1 block">Font Family</span>
-        <select id="fontFamily" class="field w-full px-3 py-2" aria-label="Font Family">
-          <option value="DM Serif Display, serif">DM Serif Display</option>
-          <option value="Playfair Display, serif">Playfair Display</option>
-          <option value="Lora, serif">Lora</option>
-          <option value="Poppins, sans-serif">Poppins</option>
-          <option value="Montserrat, sans-serif">Montserrat</option>
-          <option value="Inter, sans-serif">Inter</option>
-        </select>
-      </label>
-      <label>
-        <span class="subtle text-sm mb-1 block">Headline Size</span>
-        <input id="sizeInput" type="range" min="24" max="140" value="56" class="w-full" aria-label="Headline Size"/>
-      </label>
-      <label>
-        <span class="subtle text-sm mb-1 block">Padding</span>
-        <input id="padInput" type="range" min="24" max="140" value="56" class="w-full" aria-label="Canvas Padding"/>
-      </label>
-      <div>
-        <span class="subtle text-sm mb-1 block">Alignment</span>
-        <div class="flex gap-2">
-          <button class="align icon-btn" data-align="left" title="Align Left" aria-pressed="false">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 6h12M4 12h16M4 18h12" stroke-linecap="round"/></svg>
-          </button>
-          <button class="align icon-btn" data-align="center" title="Align Center" aria-pressed="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M6 6h12M4 12h16M6 18h12" stroke-linecap="round"/></svg>
-          </button>
-          <button class="align icon-btn" data-align="right" title="Align Right" aria-pressed="false">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M8 6h12M4 12h16M8 18h12" stroke-linecap="round"/></svg>
-          </button>
+    <div class="space-y-5">
+      <h3 class="font-semibold">Layout & Colors</h3>
+      
+      <!-- Size Sliders -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <label>
+          <span class="subtle text-sm mb-1 block">Headline Size</span>
+          <input id="sizeInput" type="range" min="24" max="140" value="56" class="w-full accent-indigo-600" aria-label="Headline Size"/>
+        </label>
+        <label>
+          <span class="subtle text-sm mb-1 block">Citation Size</span>
+          <input id="citationSizeInput" type="range" min="10" max="50" value="17" class="w-full accent-indigo-600" aria-label="Citation Size"/>
+        </label>
+      </div>
+
+      <!-- Line Height & Padding Sliders -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <label>
+          <span class="subtle text-sm mb-1 block">Line Height</span>
+          <input id="lineHeightInput" type="range" min="0.8" max="2.0" value="1.15" step="0.01" class="w-full accent-indigo-600" aria-label="Line Height"/>
+        </label>
+        <label>
+          <span class="subtle text-sm mb-1 block">Padding</span>
+          <input id="padInput" type="range" min="24" max="140" value="56" class="w-full accent-indigo-600" aria-label="Canvas Padding"/>
+        </label>
+      </div>
+
+      <!-- Ratio & Colors -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+        <label>
+          <span class="subtle text-sm mb-1 block">Aspect Ratio</span>
+          <select id="ratioSelect" class="field w-full px-3 py-2 h-10" aria-label="Aspect Ratio">
+            <option value="1:1">Square 1 : 1</option>
+            <option value="4:5" selected>Portrait 4 : 5</option>
+            <option value="9:16">Story 9 : 16</option>
+            <option value="16:9">Landscape 16 : 9</option>
+          </select>
+        </label>
+        <label>
+          <span class="subtle text-sm mb-1 block">Text Color</span>
+          <div class="field w-full h-10 color-picker-wrapper">
+            <span id="fgHex" class="text-sm pl-1">#ffffff</span>
+            <input id="fgPicker" type="color" value="#ffffff" aria-label="Text Color"/>
+          </div>
+        </label>
+        <label>
+          <span class="subtle text-sm mb-1 block">Background</span>
+          <div class="field w-full h-10 color-picker-wrapper">
+            <span id="bgHex" class="text-sm pl-1">#0b1020</span>
+            <input id="bgPicker" type="color" value="#0b1020" aria-label="Background Color"/>
+          </div>
+        </label>
+      </div>
+      
+      <!-- Alignment Controls -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div>
+            <span class="subtle text-sm mb-1 block">H-Align</span>
+            <div class="flex gap-2">
+              <button class="align icon-btn" data-align="left" title="Align Left" aria-pressed="false">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 6h12M4 12h16M4 18h12" stroke-linecap="round"/></svg>
+              </button>
+              <button class="align icon-btn active" data-align="center" title="Align Center" aria-pressed="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M6 6h12M4 12h16M6 18h12" stroke-linecap="round"/></svg>
+              </button>
+              <button class="align icon-btn" data-align="right" title="Align Right" aria-pressed="false">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M8 6h12M4 12h16M8 18h12" stroke-linecap="round"/></svg>
+              </button>
+            </div>
+        </div>
+         <div>
+            <span class="subtle text-sm mb-1 block">Citation Position</span>
+            <div class="flex gap-2">
+              <button class="ap-pos icon-btn active" data-pos="bottom" title="Citation Below" aria-pressed="true">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="16" y2="6"></line><line x1="8" y1="10" x2="16" y2="10"></line><line x1="10" y1="18" x2="14" y2="18"></line><path d="M12 14v4"></path></svg>
+              </button>
+              <button class="ap-pos icon-btn" data-pos="top" title="Citation Above" aria-pressed="false">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="10" y1="6" x2="14" y2="6"></line><path d="M12 10V6"></path><line x1="8" y1="14" x2="16" y2="14"></line><line x1="8" y1="18" x2="16" y2="18"></line></svg>
+              </button>
+            </div>
         </div>
       </div>
     </div>
-
-    <div class="mt-4 grid grid-cols-1 md:grid-cols-3 gap-3">
-      <label>
-        <span class="subtle text-sm mb-1 block">Aspect Ratio</span>
-        <select id="ratioSelect" class="field w-full px-3 py-2" aria-label="Aspect Ratio">
-          <option value="1:1">Square 1 : 1</option>
-          <option value="4:5" selected>Portrait 4 : 5</option>
-          <option value="9:16">Story 9 : 16</option>
-          <option value="16:9">Landscape 16 : 9</option>
-        </select>
-      </label>
-      <label>
-        <span class="subtle text-sm mb-1 block">Text Color</span>
-        <input id="fgPicker" type="color" class="field w-full px-1 py-2" value="#ffffff" aria-label="Text Color"/>
-      </label>
-      <label>
-        <span class="subtle text-sm mb-1 block">Background Color</span>
-        <input id="bgPicker" type="color" class="field w-full px-1 py-2" value="#0b1020" aria-label="Background Color"/>
-      </label>
-    </div>
-
-    <label class="flex items-center gap-2 mt-5">
-      <input id="shadowToggle" type="checkbox" class="accent-indigo-600" aria-label="Neon Glow"/>
-      <span class="subtle text-sm">Auto Shadow Glow / Neon Effect</span>
-    </label>
   </div>
 
   <!-- Themes & Watermark --><div class="panel p-5">
-    <h3 class="font-semibold mb-3">Themes & Watermark</h3>
+    <div class="space-y-5">
+      <h3 class="font-semibold">Themes & Watermark</h3>
 
-    <label class="block mb-3">
-      <span class="subtle text-sm mb-1 block">Theme</span>
-      <select id="themeSelect" class="field w-full px-3 py-2" aria-label="Theme"></select>
-    </label>
-
-    <div id="themeGrid" class="grid grid-cols-3 gap-3 mb-4" aria-label="Theme Grid"></div>
-
-    <div class="grid gap-3">
-      <label>
-        <span class="subtle text-sm mb-1 block">Watermark Text</span>
-        <input id="wmText" type="text" class="field w-full px-3 py-2" value="quotesn.com" aria-label="Watermark Text"/>
+      <label class="block">
+        <span class="subtle text-sm mb-1 block">Theme</span>
+        <select id="themeSelect" class="field w-full px-3 py-2 h-10" aria-label="Theme"></select>
       </label>
 
-      <div>
-        <span class="subtle text-sm mb-1 block">Watermark Position (Bottom)</span>
-        <div class="wm-choices" role="group" aria-label="Watermark Position">
-          <button class="wm-pos" data-pos="bl" aria-pressed="false">
-            <div class="bar">
-              <span class="dot"></span>
-              <span class="dot opacity-30"></span>
-              <span class="dot opacity-30"></span>
-            </div>
-          </button>
-          <button class="wm-pos" data-pos="bc" aria-pressed="false">
-            <div class="bar">
-              <span class="dot opacity-30"></span>
-              <span class="dot"></span>
-              <span class="dot opacity-30"></span>
-            </div>
-          </button>
-          <button class="wm-pos active" data-pos="br" aria-pressed="true">
-            <div class="bar">
-              <span class="dot opacity-30"></span>
-              <span class="dot opacity-30"></span>
-              <span class="dot"></span>
-            </div>
-          </button>
+      <div id="themeGrid" class="grid grid-cols-3 gap-3" aria-label="Theme Grid"></div>
+
+      <!-- Watermark Controls -->
+      <div class="grid gap-3">
+        <div class="grid grid-cols-2 gap-3">
+          <label class="block col-span-2">
+            <span class="subtle text-sm mb-1 block">Watermark Text</span>
+            <input id="wmText" type="text" class="field w-full px-3 py-2" value="quotesn.com" aria-label="Watermark Text"/>
+          </label>
+          <div>
+            <span class="subtle text-sm mb-1 block">Logo</span>
+            <input type="file" id="logoUpload" class="hidden" accept="image/png, image/jpeg, image/webp">
+            <button id="logoUploadBtn" class="btn-action w-full" aria-label="Upload Logo">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5"><path d="M9.25 13.25a.75.75 0 0 0 1.5 0V4.636l2.955 3.129a.75.75 0 0 0 1.09-1.03l-4.25-4.5a.75.75 0 0 0-1.09 0l-4.25 4.5a.75.75 0 1 0 1.09 1.03L9.25 4.636V13.25Z" /><path d="M3.5 12.75a.75.75 0 0 0-1.5 0v2.5A2.75 2.75 0 0 0 4.75 18h10.5A2.75 2.75 0 0 0 18 15.25v-2.5a.75.75 0 0 0-1.5 0v2.5c0 .69-.56 1.25-1.25 1.25H4.75c-.69 0-1.25-.56-1.25-1.25v-2.5Z" /></svg>
+              Upload
+            </button>
+          </div>
+          <div>
+            <span class="subtle text-sm mb-1 block">Clear</span>
+             <button id="logoClearBtn" class="btn-action w-full" aria-label="Clear Logo">
+               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5"><path fill-rule="evenodd" d="M10 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16ZM8.707 7.293a1 1 0 0 0-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 1 0 1.414 1.414L10 11.414l1.293 1.293a1 1 0 0 0 1.414-1.414L11.414 10l1.293-1.293a1 1 0 0 0-1.414-1.414L10 8.586 8.707 7.293Z" clip-rule="evenodd" /></svg>
+              Clear
+            </button>
+          </div>
         </div>
+
+        <div>
+          <span class="subtle text-sm mb-1 block">Watermark Position (Bottom)</span>
+          <div class="wm-choices" role="group" aria-label="Watermark Position">
+            <button class="wm-pos" data-pos="bl" aria-pressed="false">
+              <div class="bar">
+                <span class="dot"></span>
+                <span class="dot opacity-30"></span>
+                <span class="dot opacity-30"></span>
+              </div>
+            </button>
+            <button class="wm-pos" data-pos="bc" aria-pressed="false">
+              <div class="bar">
+                <span class="dot opacity-30"></span>
+                <span class="dot"></span>
+                <span class="dot opacity-30"></span>
+              </div>
+            </button>
+            <button class="wm-pos active" data-pos="br" aria-pressed="true">
+              <div class="bar">
+                <span class="dot opacity-30"></span>
+                <span class="dot opacity-30"></span>
+                <span class="dot"></span>
+              </div>
+            </button>
+          </div>
+        </div>
+
+        <label class="flex items-center gap-2">
+          <input id="wmToggle" type="checkbox" class="accent-indigo-600" checked aria-label="Show Watermark"/>
+          <span class="subtle text-sm">Show Watermark</span>
+        </label>
+
+        <label class="flex items-center gap-2">
+          <input id="retinaToggle" type="checkbox" class="accent-indigo-600" checked aria-label="Retina 2x"/>
+          <span class="subtle text-sm">Retina 2× Export</span>
+        </label>
       </div>
 
-      <label class="flex items-center gap-2">
-        <input id="wmToggle" type="checkbox" class="accent-indigo-600" checked aria-label="Show Watermark"/>
-        <span class="subtle text-sm">Show Watermark</span>
-      </label>
-
-      <label class="flex items-center gap-2">
-        <input id="retinaToggle" type="checkbox" class="accent-indigo-600" checked aria-label="Retina 2x"/>
-        <span class="subtle text-sm">Retina 2× Export</span>
-      </label>
-    </div>
-
-    <!-- Secondary Action Buttons --><div class="flex flex-col sm:flex-row gap-3 mt-6">
-      <button id="themeNextBtn" class="btn-action flex-1 text-indigo-700" aria-label="Change Theme">
-        <svg class="text-indigo-700" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7.5 4.5l.6 2.1a4 4 0 0 0 2.3 2.7L12 10l-1.6.7a4 4 0 0 0-2.3 2.7L7.5 15.5l-.6-2.1a4 4 0 0 0-2.7-2.3L2 10l2.2-.6a4 4 0 0 0 2.7-2.7L7.5 4.5Z"/></svg>
-        Change Theme
-      </button>
-      <div class="relative flex-1">
-        <button id="downloadBtn" class="btn-action w-full bg-indigo-600 text-white hover:bg-indigo-700" aria-haspopup="menu" aria-expanded="false" aria-controls="exportMenu2" aria-label="Download">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v9m0 0-3-3m3 3 3-3M5 18.5h14"/></svg>
-          Download Image
+      <!-- Secondary Action Buttons --><div class="flex flex-col sm:flex-row gap-3 pt-2">
+        <button id="themeNextBtn" class="btn-action flex-1 text-indigo-700" aria-label="Change Theme">
+          <svg class="text-indigo-700" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7.5 4.5l.6 2.1a4 4 0 0 0 2.3 2.7L12 10l-1.6.7a4 4 0 0 0-2.3 2.7L7.5 15.5l-.6-2.1a4 4 0 0 0-2.7-2.3L2 10l2.2-.6a4 4 0 0 0 2.7-2.7L7.5 4.5Z"/></svg>
+          Change Theme
         </button>
-        <div id="exportMenu2" class="hidden absolute left-0 mt-2 w-full panel p-2" role="menu">
-          <button data-type="png" class="w-full text-left px-3 py-2 rounded-md hover:bg-gray-50" role="menuitem">PNG (transparent)</button>
-          <button data-type="jpeg" class="w-full text-left px-3 py-2 rounded-md hover:bg-gray-50" role="menuitem">JPG (solid)</button>
-          <button data-type="webp" class="w-full text-left px-3 py-2 rounded-md hover:bg-gray-50" role="menuitem">WEBP</button>
+        <div class="relative flex-1">
+          <button id="downloadBtn" class="btn-action w-full bg-indigo-600 text-white hover:bg-indigo-700" aria-haspopup="menu" aria-expanded="false" aria-controls="exportMenu2" aria-label="Download">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v9m0 0-3-3m3 3 3-3M5 18.5h14"/></svg>
+            Download Image
+          </button>
+          <div id="exportMenu2" class="hidden absolute left-0 mt-2 w-full panel p-2" role="menu">
+            <button data-type="png" class="w-full text-left px-3 py-2 rounded-md hover:bg-gray-50" role="menuitem">PNG (transparent)</button>
+            <button data-type="jpeg" class="w-full text-left px-3 py-2 rounded-md hover:bg-gray-50" role="menuitem">JPG (solid)</button>
+            <button data-type="webp" class="w-full text-left px-3 py-2 rounded-md hover:bg-gray-50" role="menuitem">WEBP</button>
+          </div>
         </div>
       </div>
     </div>
@@ -370,13 +511,26 @@ body{font-family:Inter,ui-sans-serif,system-ui;color:#0f172a;background:linear-g
           <p id="author">— Quotesn</p>
         </div>
         <div id="wmark">quotesn.com</div>
+        <img id="wmarkLogo" class="hidden"/>
       </div>
     </div>
   </div>
   <p id="status" class="text-center text-sm text-indigo-600 mt-4 h-6" aria-live="polite"></p>
 </main>
 
-<footer class="text-center text-xs text-slate-500 pb-10">© <span id="yy"></span> Quotesn • <a class="underline" href="https://www.quotesn.com">quotesn.com</a></footer>
+<!-- New Enhanced Footer -->
+<footer class="bg-white border-t border-gray-200">
+  <div class="max-w-7xl mx-auto py-10 px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-center space-x-6">
+      <a href="https://www.quotesn.com/" class="text-gray-500 hover:text-gray-600">Home</a>
+      <a href="https://www.quotesn.com/about" class="text-gray-500 hover:text-gray-600" rel="noopener" target="_blank">About</a>
+      <a href="https://www.quotesn.com/privacy-policy" class="text-gray-500 hover:text-gray-600" rel="noopener" target="_blank">Privacy</a>
+      <a href="https://www.quotesn.com/terms-of-service" class="text-gray-500 hover:text-gray-600" rel="noopener" target="_blank">Terms</a>
+    </div>
+    <p class="mt-8 text-center text-base text-gray-400">&copy; <span id="yy"></span> Quotesn. All rights reserved.</p>
+  </div>
+</footer>
+
 
 <script>
 const $ = id => document.getElementById(id);
@@ -384,18 +538,28 @@ const $ = id => document.getElementById(id);
 /* ------ Elements ------ */
 const els = {
   quoteInput: $('quoteInput'), authorInput: $('authorInput'),
-  fontFamily: $('fontFamily'), sizeInput: $('sizeInput'), padInput: $('padInput'),
+  sizeInput: $('sizeInput'),
+  citationSizeInput: $('citationSizeInput'), // Renamed
+  lineHeightInput: $('lineHeightInput'),
+  padInput: $('padInput'),
   alignBtns: document.querySelectorAll('.align'),
-  ratioSelect: $('ratioSelect'), fgPicker: $('fgPicker'), bgPicker: $('bgPicker'),
-  shadowToggle: $('shadowToggle'),
+  // vAlignBtns removed
+  authorPosBtns: document.querySelectorAll('.ap-pos'),
+  ratioSelect: $('ratioSelect'), 
+  fgPicker: $('fgPicker'), bgPicker: $('bgPicker'),
+  fgHex: $('fgHex'), bgHex: $('bgHex'),
   themeSelect: $('themeSelect'), themeGrid: $('themeGrid'),
   wmText: $('wmText'), wmToggle: $('wmToggle'),
   wmChoices: document.querySelectorAll('.wm-pos'),
+  logoUpload: $('logoUpload'), // New
+  logoUploadBtn: $('logoUploadBtn'), // New
+  logoClearBtn: $('logoClearBtn'), // New
   retinaToggle: $('retinaToggle'),
   themeNextBtn: $('themeNextBtn'),
   ratioSpacer: $('ratioSpacer'), poster: $('poster'),
   content: $('content'), headline: $('headline'), author: $('author'),
   wmark: $('wmark'),
+  wmarkLogo: $('wmarkLogo'), // New
   toggleTheme: $('toggleTheme'), exportBtn: $('exportBtn'), exportMenu: $('exportMenu'),
   downloadBtn: $('downloadBtn'), exportMenu2: $('exportMenu2'),
   shareBtn: $('shareBtn'),
@@ -404,29 +568,94 @@ const els = {
 
 document.getElementById('yy').textContent = new Date().getFullYear();
 
-/* ------ Themes v3 (Updated) ------ */
+/* ------ Themes v6 (With Professional Author Pairings) ------ */
 const THEMES = [
-  {name:"Neon Pulse",bg:"linear-gradient(135deg,#0f0c29,#302b63,#24243e)",fg:"#f8fafc",accent:"#00ffff"},
-  {name:"Sunrise Bloom",bg:"linear-gradient(135deg,#ff9a9e 0%,#fad0c4 99%)",fg:"#111827",accent:"#f43f5e"},
-  {name:"Arctic Glass",bg:"linear-gradient(135deg,#a1c4fd 0%,#c2e9fb 100%)",fg:"#0f172a",accent:"#2563eb"},
-  {name:"Desert Dusk",bg:"linear-gradient(135deg,#f6d365 0%,#fda085 100%)",fg:"#1e293b",accent:"#f97316"},
-  {name:"Midnight Mint",bg:"linear-gradient(135deg,#28313b,#485461)",fg:"#ecfdf5",accent:"#10b981"},
-  {name:"Royal Ink",bg:"linear-gradient(135deg,#141E30,#243B55)",fg:"#f5f3ff",accent:"#6366f1"},
-  {name:"Rosewood",bg:"linear-gradient(135deg,#654ea3,#eaafc8)",fg:"#fdf2f8",accent:"#db2777"},
-  {name:"Citrus Mist",bg:"linear-gradient(135deg,#fdfbfb 0%,#ebedee 100%)",fg:"#1f2937",accent:"#facc15"},
-  {name:"Aurora Drift",bg:"linear-gradient(135deg,#0f2027,#203a43,#2c5364)",fg:"#e0f2fe",accent:"#38bdf8"}
+  {
+    name:"Neon Pulse",
+    bg:"linear-gradient(135deg,#0f0c29,#302b63,#24243e)",fg:"#f8fafc",accent:"#00ffff",
+    headlineStyle: {font:"Poppins, sans-serif", fontWeight: "600", textTransform: "uppercase", letterSpacing: "1.5px", fontStyle: "normal", lineHeight: "1.2"},
+    authorStyle: {font:"Poppins, sans-serif", fontWeight: "400", fontSize: "16px", textTransform: "uppercase", letterSpacing: "0.5px", fontStyle: "normal"},
+    effect:"neon-glow"
+  },
+  {
+    name:"Sunrise Bloom",
+    bg:"linear-gradient(135deg,#ff9a9e 0%,#fad0c4 99%)",fg:"#111827",accent:"#f43f5e",
+    headlineStyle: {font:"Playfair Display, serif", fontWeight: "400", fontStyle: "italic", letterSpacing: "0.5px", textTransform: "none", lineHeight: "1.1"},
+    authorStyle: {font:"Lora, serif", fontWeight: "400", fontSize: "17px", fontStyle: "italic", letterSpacing: "0.2px", textTransform: "none"},
+    effect:"soft"
+  },
+  {
+    name:"Arctic Glass",
+    bg:"linear-gradient(135deg,#a1c4fd 0%,#c2e9fb 100%)",fg:"#0f172a",accent:"#2563eb",
+    headlineStyle: {font:"Roboto Slab, serif", fontWeight: "400", letterSpacing: "0.2px", fontStyle: "normal", textTransform: "none", lineHeight: "1.25"},
+    authorStyle: {font:"Roboto Slab, serif", fontWeight: "400", fontSize: "18px", letterSpacing: "0.1px", fontStyle: "normal", textTransform: "none"},
+    effect:"emboss"
+  },
+  {
+    name:"Desert Dusk",
+    bg:"linear-gradient(135deg,#f6d365 0%,#fda085 100%)",fg:"#1e293b",accent:"#f97316",
+    headlineStyle: {font:"Montserrat, sans-serif", fontWeight: "600", letterSpacing: "1px", fontStyle: "normal", textTransform: "none", lineHeight: "1.2"},
+    authorStyle: {font:"Montserrat, sans-serif", fontWeight: "400", fontSize: "17px", letterSpacing: "0.5px", fontStyle: "normal", textTransform: "none"},
+    effect:"hard-shadow" // Accent color used for shadow
+  },
+  {
+    name:"Midnight Mint",
+    bg:"linear-gradient(135deg,#28313b,#485461)",fg:"#ecfdf5",accent:"#10b981",
+    headlineStyle: {font:"Inter, sans-serif", fontWeight: "700", textTransform: "uppercase", letterSpacing: "2px", fontStyle: "normal", lineHeight: "1.3"},
+    authorStyle: {font:"Inter, sans-serif", fontWeight: "400", fontSize: "16px", textTransform: "uppercase", letterSpacing: "1px", fontStyle: "normal"},
+    effect:"soft-glow"
+  },
+  {
+    name:"Royal Ink",
+    bg:"linear-gradient(135deg,#141E30,#243B55)",fg:"#f5f3ff",accent:"#a5b4fc",
+    headlineStyle: {font:"Noto Serif Display, serif", fontWeight: "600", letterSpacing: "0.3px", fontStyle: "normal", textTransform: "none", lineHeight: "1.15"},
+    authorStyle: {font:"Noto Serif, serif", fontWeight: "400", fontSize: "18px", letterSpacing: "0.1px", fontStyle: "normal", textTransform: "none"},
+    effect:"shine"
+  },
+  {
+    name:"Rosewood Script",
+    bg:"linear-gradient(135deg,#654ea3,#eaafc8)",fg:"#fdf2f8",accent:"#db2777",
+    headlineStyle: {font:"Dancing Script, cursive", fontWeight: "700", fontStyle: "normal", textTransform: "none", letterSpacing: "0.5px", lineHeight: "1.0"},
+    authorStyle: {font:"Montserrat, sans-serif", fontWeight: "400", fontSize: "15px", textTransform: "uppercase", letterSpacing: "1px", fontStyle: "normal"},
+    effect:"shadow"
+  },
+  {
+    name:"Citrus Mist",
+    bg:"linear-gradient(135deg,#fdfbfb 0%,#ebedee 100%)",fg:"#1f2937",accent:"#facc15",
+    headlineStyle: {font:"Lora, serif", fontWeight: "400", fontStyle: "normal", textTransform: "none", letterSpacing: "normal", lineHeight: "1.2"},
+    authorStyle: {font:"Lora, serif", fontWeight: "400", fontSize: "17px", fontStyle: "normal", letterSpacing: "normal", textTransform: "none"},
+    effect:"none" // Simple, clean look
+  },
+  {
+    name:"Aurora Drift",
+    bg:"linear-gradient(135deg,#0f2027,#203a43,#2c5364)",fg:"#e0f2fe",accent:"#38bdf8",
+    headlineStyle: {font:"Merriweather, serif", fontWeight: "400", fontStyle: "italic", textTransform: "none", letterSpacing: "normal", lineHeight: "1.25"},
+    authorStyle: {font:"Inter, sans-serif", fontWeight: "400", fontSize: "17px", fontStyle: "italic", letterSpacing: "0.2px", textTransform: "none"},
+    effect:"glow"
+  }
 ];
+
 
 let state = {
   theme: 0, align: 'center', size: 56, pad: 56, ratio: '4:5',
-  shadow: false, wmPos: 'br'
+  wmPos: 'br',
+  citationSize: 17, // Renamed
+  lineHeight: 1.15,
+  // vAlign removed
+  authorPos: 'bottom',
+  logoDataBase64: null // New
 };
 
 /* ------ Helpers ------ */
 const say = m => { els.status.textContent = m; clearTimeout(say._t); say._t = setTimeout(()=>els.status.textContent='',1800); };
 const clamp = (n,min,max)=>Math.max(min,Math.min(max,n));
-function rgbToHex(rgb){const m=rgb.match(/\d+/g); if(!m) return '#000'; return '#'+m.slice(0,3).map(x=>(+x).toString(16).padStart(2,'0')).join('');}
-function isRTL(text){return /[\u0590-\u05FF\u0600-\u06FF]/.test(text);} // Hebrew/Arabic ranges
+function rgbToHex(rgb){
+  const m=rgb.match(/\d+/g); 
+  if(!m) return '#000000'; 
+  const hex = '#'+m.slice(0,3).map(x=>(+x).toString(16).padStart(2,'0')).join('');
+  return hex;
+}
+function isRTL(text){return /[\u0590-\u05FF\u0600-\u06FF\u0750-\u077F]/.test(text);} // Hebrew/Arabic/Urdu ranges
 
 /* --- Header icon active state toggle --- */
 function setActiveIcon(btn) {
@@ -438,12 +667,67 @@ function setActiveIcon(btn) {
 /* ------ Apply ------ */
 function applyTheme(i){
   const t = THEMES[i];
+  if (!t) return; // Safety check
+  
   els.poster.style.background = t.bg;
   els.poster.style.color = t.fg;
+  
+  // Reset and apply headline styles
+  const hs = els.headline.style;
+  hs.fontFamily = t.headlineStyle.font;
+  hs.fontWeight = t.headlineStyle.fontWeight || 'normal';
+  hs.fontStyle = t.headlineStyle.fontStyle || 'normal';
+  hs.textTransform = t.headlineStyle.textTransform || 'none';
+  hs.letterSpacing = t.headlineStyle.letterSpacing || 'normal';
+  hs.textShadow = 'none';
+  
+  // Apply headline line height from theme
+  const newLh = t.headlineStyle.lineHeight || 1.15;
+  hs.lineHeight = newLh;
+  els.lineHeightInput.value = newLh;
+  state.lineHeight = newLh;
+
+  // Reset and apply author styles
+  const as = els.author.style;
+  as.fontFamily = t.authorStyle.font;
+  as.fontWeight = t.authorStyle.fontWeight || 'normal';
+  as.fontStyle = t.authorStyle.fontStyle || 'normal';
+  as.textTransform = t.authorStyle.textTransform || 'none';
+  as.letterSpacing = t.authorStyle.letterSpacing || 'normal';
+  
+  // Apply author font size from theme
+  const newCitationSize = parseInt(t.authorStyle.fontSize, 10) || 17;
+  as.fontSize = newCitationSize + 'px';
+  els.citationSizeInput.value = newCitationSize;
+  state.citationSize = newCitationSize;
+
+
+  // Apply theme effects
+  if(t.effect==='glow') hs.textShadow=`0 0 10px ${t.accent}40, 0 0 26px ${t.accent}60`;
+  if(t.effect==='shadow') hs.textShadow='2px 2px 8px rgba(0,0,0,0.25)';
+  if(t.effect==='emboss') hs.textShadow='1px 1px 1px rgba(255,255,255,0.1), -1px -1px 1px rgba(0,0,0,0.1)';
+  if(t.effect==='soft') hs.textShadow='0 2px 4px rgba(0,0,0,0.15)';
+  if(t.effect==='shine') hs.textShadow=`0 0 16px ${t.accent}80`;
+  if(t.effect==='neon-glow') hs.textShadow=`0 0 5px ${t.fg}80, 0 0 10px ${t.fg}80, 0 0 15px ${t.accent}c0, 0 0 20px ${t.accent}c0`;
+  if(t.effect==='hard-shadow') hs.textShadow=`3px 3px 0px ${t.accent}`;
+  if(t.effect==='soft-glow') hs.textShadow=`0 0 8px ${t.accent}90`;
+  if(t.effect==='none') hs.textShadow = 'none';
+
   els.themeSelect.value = i;
-  els.fgPicker.value = rgbToHex(getComputedStyle(els.poster).color);
+  const newFgHex = rgbToHex(getComputedStyle(els.poster).color);
+  els.fgPicker.value = newFgHex;
+  els.fgHex.textContent = newFgHex;
+  // Cannot set gradient to bg picker, so set a fallback color
+  const fallbackBg = t.bg.split(',')[1].trim(); // Get first color from gradient
+  if (fallbackBg.startsWith('#')) {
+    els.bgPicker.value = fallbackBg;
+    els.bgHex.textContent = fallbackBg;
+  }
+  
   persist();
+  requestAnimationFrame(autoFit); // Re-fit after font change
 }
+
 function applyAlign(a){
   state.align = a;
   els.alignBtns.forEach(b=>{
@@ -455,6 +739,19 @@ function applyAlign(a){
   els.poster.style.textAlign = a;
   persist();
 }
+// applyVAlign function removed
+// New function for Author Position
+function applyAuthorPos(p){
+  state.authorPos = p;
+  els.authorPosBtns.forEach(b=>{
+    const on = b.dataset.pos===p;
+    b.classList.toggle('active',on); b.setAttribute('aria-pressed',on)
+  });
+  els.content.style.flexDirection = (p === 'top') ? 'column-reverse' : 'column';
+  persist();
+  autoFit(); // Refit as author position changes available space
+}
+
 function applyPad(){ document.documentElement.style.setProperty('--pad', state.pad + 'px'); positionWatermark(); autoFit(); persist(); }
 function applyRatio(r){
   const map={'1:1':100,'4:5':125,'9:16':177.78,'16:9':56.25};
@@ -462,14 +759,71 @@ function applyRatio(r){
   requestAnimationFrame(autoFit);
   persist();
 }
-function applyColors(){ els.poster.style.color = els.fgPicker.value; els.poster.style.background = els.bgPicker.value; }
-function applyFont(){
-  els.headline.style.fontFamily = els.fontFamily.value; els.author.style.fontFamily = "Inter, sans-serif";
-  requestAnimationFrame(autoFit); persist();
+function applyColors(){ 
+  els.poster.style.color = els.fgPicker.value; 
+  els.poster.style.background = els.bgPicker.value; 
+  els.fgHex.textContent = els.fgPicker.value;
+  els.bgHex.textContent = els.bgPicker.value;
+
+  // When user picks a custom color, deselect theme and reset fonts
+  els.themeSelect.value = ""; 
+  
+  // Reset to neutral defaults
+  const hs = els.headline.style;
+  hs.fontFamily = "'Noto Serif Display', serif";
+  hs.fontWeight = "400";
+  hs.fontStyle = "normal";
+  hs.textTransform = "none";
+  hs.letterSpacing = "0.1px";
+  hs.textShadow = "none";
+  hs.lineHeight = "1.15"; // Reset line height
+  
+  const as = els.author.style;
+  as.fontFamily = "'Inter', sans-serif";
+  as.fontWeight = "400";
+  as.fontSize = "17px"; // Use the new polished default
+  as.fontStyle = "normal";
+  as.textTransform = "none";
+  as.letterSpacing = "normal";
+
+  // Reset sliders to default
+  els.lineHeightInput.value = 1.15;
+  state.lineHeight = 1.15;
+  els.citationSizeInput.value = 17;
+  state.citationSize = 17;
+
+  persist(); 
 }
-function applyShadow(){ els.poster.classList.toggle('glow', state.shadow); persist(); }
 
 /* ------ Watermark ------ */
+// New: Handle logo file upload
+function handleLogoUpload(event) {
+  const file = event.target.files[0];
+  if (file && file.type.startsWith('image/')) {
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      state.logoDataBase64 = e.target.result;
+      els.wmarkLogo.src = state.logoDataBase64;
+      positionWatermark(); // Re-position
+      persist();
+      say('Logo added');
+    };
+    reader.readAsDataURL(file);
+  } else if (file) {
+    say('Please select an image file');
+  }
+  els.logoUpload.value = null; // Reset file input
+}
+
+// New: Clear uploaded logo
+function clearLogo() {
+  state.logoDataBase64 = null;
+  els.wmarkLogo.src = '';
+  positionWatermark(); // Re-position
+  persist();
+  say('Logo cleared');
+}
+
 function setWmPos(pos){
   state.wmPos = pos;
   els.wmChoices.forEach(b=>{
@@ -481,20 +835,36 @@ function setWmPos(pos){
 }
 function positionWatermark(){
   const pad = getComputedStyle(document.documentElement).getPropertyValue('--pad').trim();
-  const style = els.wmark.style;
+  // Decide which watermark element to use
+  const wmarkEl = state.logoDataBase64 ? els.wmarkLogo : els.wmark;
+  const otherEl = state.logoDataBase64 ? els.wmark : els.wmarkLogo;
+
+  // Toggle visibility
+  wmarkEl.classList.toggle('hidden', !els.wmToggle.checked);
+  otherEl.classList.add('hidden');
+  
+  const style = wmarkEl.style;
   style.top = 'auto'; style.left='auto'; style.right='auto'; style.bottom='var(--pad)';
-  if(state.wmPos==='bl'){ style.left = pad; style.transform='none'; }
+  style.transform = 'none'; // Reset transform
+  
+  if(state.wmPos==='bl'){ style.left = pad; }
   if(state.wmPos==='bc'){ style.left = '50%'; style.transform='translateX(-50%)'; }
-  if(state.wmPos==='br'){ style.right = pad; style.transform='none'; }
-  els.wmark.classList.toggle('hidden', !els.wmToggle.checked);
+  if(state.wmPos==='br'){ style.right = pad; }
 }
 
 /* ------ Auto-fit (Polished) ------ */
 function autoFit(){
+  // Ensure poster is visible before measuring
+  if (els.poster.clientHeight === 0) {
+    requestAnimationFrame(autoFit); // Try again on next frame
+    return;
+  }
+  
   const H = els.poster.clientHeight, pad = parseFloat(getComputedStyle(els.poster).paddingTop);
+  // Re-reads author height every time, accounting for theme changes
   const authorH = els.author.offsetHeight||20, reserve = els.wmToggle.checked?22:0;
   // Calculate available vertical space with a small buffer
-  const available = H - (pad * 2) - authorH - reserve - 12;
+  const available = H - (pad * 2) - authorH - reserve - 12; // 12px buffer
 
   // Start with the user's *preferred* size from state
   let size = clamp(state.size, 24, 200);
@@ -512,65 +882,118 @@ function autoFit(){
   guard = 100; // Reset guard
   // Grow *only* up to the user's preferred state.size
   while(els.headline.scrollHeight <= available && size < state.size && size < 200 && guard--) {
-     size += 1;
-     els.headline.style.fontSize = size+'px';
+      size += 1;
+      els.headline.style.fontSize = size+'px';
   }
 
   // 3. After growing, it might be one step too large. Check and step back.
   if (els.headline.scrollHeight > available && size > 24) {
-      size -= 1;
-      els.headline.style.fontSize = size+'px';
+       size -= 1;
+       els.headline.style.fontSize = size+'px';
   }
 
   // 4. Update the slider knob to reflect the *actual* rendered size.
-  //    Crucially, we DON'T update state.size here.
   els.sizeInput.value = size;
 }
 
 
 /* ------ Persistence ------ */
-const KEY='quotesn_pro_post_v3';
+const KEY='quotesn_pro_post_v8'; // Upped version key for new state
 function persist(){ try{ localStorage.setItem(KEY, JSON.stringify(state)); }catch(e){} }
 function restore(){
   try{
     const s = JSON.parse(localStorage.getItem(KEY)||'{}');
-    Object.assign(state, s);
-  }catch(e){}
+    // Ensure defaults for new state properties if they don't exist
+    const defaults = {
+        citationSize: 17,
+        lineHeight: 1.15,
+        // vAlign removed
+        authorPos: 'bottom',
+        logoDataBase64: null
+    };
+    Object.assign(state, defaults, s);
+  }catch(e){
+    // If restore fails, state will use the hardcoded defaults
+  }
 }
 
 /* ------ Export ------ */
 async function exportImg(type='png'){
   try{
-    say('Rendering…'); await document.fonts.ready;
+    say('Rendering…'); 
+    await document.fonts.ready;
+    
+    // Ensure watermark font/logo is loaded
+    els.wmark.style.fontFamily = "'Inter', sans-serif"; 
+    if (state.logoDataBase64 && els.wmarkLogo.src) {
+        // Wait for the logo image to be loaded by the browser if it's not already
+        await new Promise((resolve, reject) => {
+            if (els.wmarkLogo.complete && els.wmarkLogo.naturalHeight !== 0) {
+                resolve();
+            } else {
+                els.wmarkLogo.onload = resolve;
+                els.wmarkLogo.onerror = reject;
+            }
+        });
+    }
+    
     const scale = els.retinaToggle.checked ? 2 : 1;
+    
     const canvas = await html2canvas(els.poster,{
       backgroundColor: (type==='png'?'transparent':null),
-      scale, useCORS:true
+      scale, 
+      useCORS:true,
+      logging: false
     });
+    
     const mime = type==='jpeg'?'image/jpeg':(type==='webp'?'image/webp':'image/png');
     const url = canvas.toDataURL(mime, 0.98);
     const a=document.createElement('a');
     const date=new Date().toISOString().slice(0,10);
-    a.href=url; a.download=`${date}-${state.ratio}-${THEMES[state.theme].name.replace(/\s+/g,'_')}.${type==='jpeg'?'jpg':type}`;
+    const themeName = (els.themeSelect.value !== "") ? THEMES[state.theme].name.replace(/\s+/g,'_') : "Custom";
+    a.href=url; a.download=`${date}-${state.ratio}-${themeName}.${type==='jpeg'?'jpg':type}`;
     a.click();
     say('Downloaded ✔');
-  }catch(e){ console.error(e); say('Export failed'); }
+  }catch(e){ console.error("Export failed:", e); say('Export failed'); }
 }
 
 /* ------ Share ------ */
 async function shareImg(){
   try{
-    say('Preparing share…'); await document.fonts.ready;
+    say('Preparing share…'); 
+    await document.fonts.ready;
+    
+    // Ensure watermark font/logo is loaded
+    els.wmark.style.fontFamily = "'Inter', sans-serif"; 
+    if (state.logoDataBase64 && els.wmarkLogo.src) {
+        // Wait for the logo image to be loaded by the browser if it's not already
+        await new Promise((resolve, reject) => {
+            if (els.wmarkLogo.complete && els.wmarkLogo.naturalHeight !== 0) {
+                resolve();
+            } else {
+                els.wmarkLogo.onload = resolve;
+                els.wmarkLogo.onerror = reject;
+            }
+        });
+    }
+    
     const scale = els.retinaToggle.checked ? 2 : 1;
-    const canvas = await html2canvas(els.poster,{ backgroundColor:null, scale, useCORS:true });
+
+    const canvas = await html2canvas(els.poster,{ 
+      backgroundColor:null, 
+      scale, 
+      useCORS:true,
+      logging: false 
+    });
     const blob = await new Promise(res=>canvas.toBlob(res,'image/png',0.95));
     const file = new File([blob],'quote.png',{type:'image/png'});
     if(navigator.canShare && navigator.canShare({files:[file]})){
       await navigator.share({files:[file],title:'Quote Poster',text:'Made with Quotesn'});
     }else{
-      const url=URL.createObjectURL(blob); const a=document.createElement('a'); a.href=url; a.download='quote.png'; a.click(); URL.revokeObjectURL(url);
+      // Fallback for desktop/unsupported browsers
+      exportImg('png');
     }
-  }catch(e){ console.error(e); say('Share not supported'); }
+  }catch(e){ console.error("Share failed:", e); say('Share not supported'); }
 }
 
 /* ------ Events ------ */
@@ -579,17 +1002,39 @@ els.quoteInput.addEventListener('input',()=>{
   // Auto detect RTL for Arabic/Urdu/Hebrew
   const rtl = isRTL(els.quoteInput.value);
   els.headline.dir = rtl ? 'rtl' : 'ltr';
+  els.author.dir = rtl ? 'rtl' : 'ltr';
   autoFit();
 });
 els.authorInput.addEventListener('input',()=>{ els.author.textContent = els.authorInput.value; autoFit(); });
 
-els.fontFamily.addEventListener('change',applyFont);
 els.sizeInput.addEventListener('input',e=>{ state.size=+e.target.value; persist(); autoFit(); });
 els.padInput.addEventListener('input',e=>{ state.pad=+e.target.value; applyPad(); });
 
-els.alignBtns.forEach(b=>b.addEventListener('click',()=>{ applyAlign(b.dataset.align); }));
+// Updated Listeners
+els.citationSizeInput.addEventListener('input',e=>{ 
+  state.citationSize=+e.target.value; 
+  els.author.style.fontSize = state.citationSize + 'px';
+  els.themeSelect.value = ""; // Deselect theme
+  persist(); 
+  autoFit(); // Refit
+});
+els.lineHeightInput.addEventListener('input',e=>{ 
+  state.lineHeight=+e.target.value; 
+  els.headline.style.lineHeight = state.lineHeight;
+  els.themeSelect.value = ""; // Deselect theme
+  persist(); 
+  autoFit(); // Refit
+});
 
-els.themeSelect.addEventListener('change',e=>{ state.theme=+e.target.value; applyTheme(state.theme); });
+els.alignBtns.forEach(b=>b.addEventListener('click',()=>{ applyAlign(b.dataset.align); }));
+// vAlign listener removed
+els.authorPosBtns.forEach(b=>b.addEventListener('click',()=>{ applyAuthorPos(b.dataset.pos); })); 
+
+els.themeSelect.addEventListener('change',e=>{ 
+  if (e.target.value === "") return; // Do nothing if "custom"
+  state.theme=+e.target.value; 
+  applyTheme(state.theme); 
+});
 
 /* --- Patched Listeners --- */
 els.toggleTheme.addEventListener('click', () => {
@@ -597,15 +1042,19 @@ els.toggleTheme.addEventListener('click', () => {
   state.theme = (state.theme + 1) % THEMES.length;
   applyTheme(state.theme);
 });
-els.themeNextBtn.addEventListener('click',()=>{ state.theme=(state.theme+1)%THEMES.length; applyTheme(state.theme); });
+els.themeNextBtn.addEventListener('click',()=>{ state.theme=(state.theme + 1) % THEMES.length; applyTheme(state.theme); });
 
 els.bgPicker.addEventListener('input',applyColors);
 els.fgPicker.addEventListener('input',applyColors);
-els.shadowToggle.addEventListener('change',e=>{ state.shadow=e.target.checked; applyShadow(); });
 
 els.wmText.addEventListener('input',()=>{ els.wmark.textContent = els.wmText.value; });
 els.wmToggle.addEventListener('change',positionWatermark);
 els.wmChoices.forEach(btn=>btn.addEventListener('click',()=>setWmPos(btn.dataset.pos)));
+
+// New Logo Listeners
+els.logoUploadBtn.addEventListener('click', () => els.logoUpload.click());
+els.logoClearBtn.addEventListener('click', clearLogo);
+els.logoUpload.addEventListener('change', handleLogoUpload);
 
 els.ratioSelect.addEventListener('change',e=>{ state.ratio=e.target.value; applyRatio(state.ratio); }); 
 
@@ -639,7 +1088,7 @@ document.addEventListener('keydown',e=>{
 
 /* Build theme UI */
 function buildThemeUI(){
-  els.themeSelect.innerHTML = THEMES.map((t,i)=>`<option value="${i}">${t.name}</option>`).join('');
+  els.themeSelect.innerHTML = `<option value="">-- Custom --</option>` + THEMES.map((t,i)=>`<option value="${i}">${t.name}</option>`).join('');
   els.themeGrid.innerHTML='';
   THEMES.forEach((t,i)=>{
     const b=document.createElement('button');
@@ -653,20 +1102,54 @@ function buildThemeUI(){
 (function init(){
   restore(); // load previous
   buildThemeUI();
+  
   // Ensure initial theme index is valid
-  if (state.theme >= THEMES.length) {
-    state.theme = 0;
+  if (state.theme === "" || state.theme >= THEMES.length || state.theme < 0 || isNaN(state.theme)) {
+     // User had a custom theme or invalid state, reset to default
+     if (state.theme !== "") {
+        state.theme = 0; // Reset if invalid number
+     }
   }
-  applyTheme(state.theme);
+
+  // Apply restored state
+  if (state.theme !== "") {
+      applyTheme(state.theme);
+  } else {
+      // Apply custom restored values
+      els.citationSizeInput.value = state.citationSize;
+      els.author.style.fontSize = state.citationSize + 'px';
+      els.lineHeightInput.value = state.lineHeight;
+      els.headline.style.lineHeight = state.lineHeight;
+      // Note: colors are applied via value attribute, so no need to re-apply here
+  }
+  
+  // Set logo src from state
+  if (state.logoDataBase64) {
+    els.wmarkLogo.src = state.logoDataBase64;
+  }
+  
   applyAlign(state.align);
-  applyPad(); applyRatio(state.ratio); applyFont(); applyShadow();
+  // applyVAlign removed
+  applyAuthorPos(state.authorPos); 
+  applyPad(); 
+  applyRatio(state.ratio);
+  
   els.sizeInput.value = state.size; // Set slider to stored value
   els.padInput.value = state.pad;
+  els.ratioSelect.value = state.ratio;
+  
   setWmPos(state.wmPos||'br');
   els.wmark.textContent = els.wmText.value;
-  positionWatermark();
+  positionWatermark(); // This will now correctly show text or logo
   els.quoteInput.dispatchEvent(new Event('input')); // Triggers initial text content and autoFit
-  requestAnimationFrame(autoFit); // Final check
+  
+  // Defer first fit until fonts are likely loaded
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(() => requestAnimationFrame(autoFit));
+  } else {
+    setTimeout(() => requestAnimationFrame(autoFit), 500); // Fallback
+  }
+  
   say('Ready ✨');
 })();
 </script>
