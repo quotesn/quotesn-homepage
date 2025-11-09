@@ -43,6 +43,7 @@
 <!-- v16: Added Arabic and Devanagari fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Lora:wght@400;600&family=Montserrat:wght@400;600&family=Inter:wght@400;600;700&family=Noto+Serif:wght@400;600&family=Noto+Serif+Display:wght@400;600&family=Playfair+Display:wght@400;700&family=Roboto+Slab:wght@400;700&family=Merriweather:wght@400;700&family=Dancing+Script:wght@400;700&family=Pacifico&family=Bebas+Neue&family=Noto+Naskh+Arabic&family=Noto+Sans+Devanagari&display=swap" rel="stylesheet"/>
 
+
 <style>
 :root{
   --panel-bg:#fff;--panel-border:#e5e7eb;--muted:#64748b;
@@ -475,20 +476,21 @@ select.btn-primary-action {
     </div>
   </div>
 
-  <!-- v16: New Typography Panel -->
+  <!-- v17: Merged Typography & Layout Panel -->
   <div class="panel p-5">
     <div class="space-y-5">
-      <h3 class="font-semibold">Typography</h3>
+      <h3 class="font-semibold">Typography & Layout</h3>
       
-      <!-- Size Sliders --><!-- v12: Responsive panel grid -->
+      <!-- v17: Typography Sub-section -->
+      <span class="subtle font-medium text-sm pt-2 block">TYPOGRAPHY</span>
+      
+      <!-- Size Sliders -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         <label>
           <span class="subtle text-sm mb-1 block">Headline Size</span>
-          <!-- v9: Added Auto-Fit Button -->
           <div class="flex items-center gap-2">
             <input id="sizeInput" type="range" min="24" max="140" value="50" class="w-full accent-indigo-600" aria-label="Headline Size" title="Size: 50px"/>
             <button id="autoFitBtn" class="icon-btn flex-shrink-0 w-10 h-10" title="Auto-Fit Text (A)">
-              <!-- v9.1: New Icon -->
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <line x1="20" y1="4" x2="14" y2="10"></line><line x1="4" y1="20" x2="10" y2="14"></line>
                 <polyline points="14 4 20 4 20 10"></polyline><polyline points="10 20 4 20 4 14"></polyline>
@@ -502,7 +504,7 @@ select.btn-primary-action {
         </label>
       </div>
 
-      <!-- Line Height & Padding Sliders --><!-- v12: Responsive panel grid -->
+      <!-- Line Height -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         <label>
           <span class="subtle text-sm mb-1 block">Line Height</span>
@@ -510,7 +512,7 @@ select.btn-primary-action {
         </label>
       </div>
 
-      <!-- v16: New Typography Controls -->
+      <!-- Font Select & Style Buttons -->
       <label class="block">
         <span class="subtle text-sm mb-1 block">Headline Font</span>
         <select id="fontSelect" class="field w-full h-10" aria-label="Headline Font"></select>
@@ -522,22 +524,18 @@ select.btn-primary-action {
         <button id="italicBtn" class="btn-action" aria-pressed="false" title="Toggle Italic">
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="4" x2="10" y2="4"></line><line x1="14" y1="20" x2="5" y2="20"></line><line x1="15" y1="4" x2="9" y2="20"></line></svg>
         </button>
-        <button id="caseBtn" class="btn-action" aria-pressed="false" title="Toggle Uppercase">
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M17 11.5V9a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2.5"></path><path d="M7 15v2a4 4 0 0 0 4 4h2a4 4 0 0 0 4-4v-2"></path><line x1="15" y1="13.5" x2="9" y2="13.5"></line></svg>
+        <!-- v17: New 'Aa' icon for Uppercase -->
+        <button id="caseBtn" class="btn-action text-lg" aria-pressed="false" title="Toggle Uppercase">
+          <!-- NEW "Aa" Text Icon -->
+          Aa
         </button>
       </div>
-      <!-- End New Controls -->
 
-    </div>
-  </div>
+      <!-- v17: Layout & Colors Sub-section -->
+      <div class="border-t border-gray-200 !my-5"></div>
+      <span class="subtle font-medium text-sm block">LAYOUT & COLORS</span>
 
-  <!-- Layout & Colors --><div class="panel p-5">
-    <div class="space-y-5">
-      <h3 class="font-semibold">Layout & Colors</h3>
-      
-      <!-- v16: Size/LineHeight sliders moved to Typography panel -->
-
-      <!-- Ratio & Colors --><!-- v12: Responsive panel grid -->
+      <!-- Ratio & Colors -->
       <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
         <label>
           <span class="subtle text-sm mb-1 block">Aspect Ratio</span>
@@ -549,7 +547,6 @@ select.btn-primary-action {
           </select>
         </label>
         <label>
-          <!-- v9: Added Contrast Button + Badge -->
           <div class="flex justify-between items-center mb-1">
             <span class="subtle text-sm">Text Color</span>
             <button id="fixContrastBtn" class="text-xs text-indigo-600 hover:text-indigo-800 font-medium" title="Auto-fix contrast to meet WCAG AA">Fix Contrast</button>
@@ -562,7 +559,6 @@ select.btn-primary-action {
         </label>
         <label>
           <span class="subtle text-sm mb-1 block">Background</span>
-          <!-- v9: Added Contrast Badge -->
           <div class="field w-full h-10 color-picker-wrapper">
             <span id="bgHex" class="text-sm pl-1">#0b1020</span>
             <span id="bgContrast" class="text-xs font-medium px-2 py-0.5 rounded-full"></span>
@@ -571,7 +567,7 @@ select.btn-primary-action {
         </label>
       </div>
       
-      <!-- Alignment Controls --><!-- v12: Responsive panel grid -->
+      <!-- Alignment Controls -->
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
             <span class="subtle text-sm mb-1 block">H-Align</span>
@@ -988,7 +984,7 @@ function applyTypography() {
     }
     
     persist();
-    autoFit();
+    // autoFit(); // v17: REMOVED to prevent circular logic
 }
 
 function applyTheme(i){
@@ -1518,22 +1514,22 @@ els.newPostBtn.addEventListener('click', () => {
   say('New post created'); // v9
 });
 
-// v16: Refactored to use unified function
+// v17: Removed autoFit() call to fix circular logic
 els.sizeInput.addEventListener('input', e => {
     state.size = +e.target.value;
     updateFontSizes('headline');
     persist();
-    autoFit(); // Re-run autofit to be safe
+    // autoFit(); // v17: REMOVED to prevent circular logic
 });
 
-// v16: Refactored to use unified function
+// v17: Removed autoFit() call to fix circular logic
 els.citationSizeInput.addEventListener('input', e => {
     state.citationSize = +e.target.value;
     updateFontSizes('citation');
     els.themeSelect.value = ""; // Deselect theme
     state.theme = "";
     persist();
-    autoFit(); // Recalculate layout
+    // autoFit(); // v17: REMOVED to prevent circular logic
 });
 
 els.lineHeightInput.addEventListener('input',e=>{
