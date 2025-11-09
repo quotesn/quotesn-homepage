@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- v12: Ensure correct viewport for responsiveness -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Pro Post Generator — Quotesn Studio</title>
 
 <!-- Canonical + SEO --><link rel="canonical" href="https://www.quotesn.com/pro-post-generator"/>
@@ -39,18 +40,19 @@
 <!-- Tailwind + html2canvas --><script src="https://cdn.tailwindcss.com"></script>
 <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 
-<!-- Google Fonts (Enhanced for multi-language and unique styles) -->
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Lora:wght@400;600&family=Montserrat:wght@400;600&family=Inter:wght@400;600;700&family=Noto+Serif:wght@400;600&family=Noto+Serif+Display:wght@400;600&family=Playfair+Display:wght@400;700&family=Roboto+Slab:wght@400;700&family=Merriweather:wght@400;700&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet"/>
+<!-- v14: Added Pacifico and Bebas Neue -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Lora:wght@400;600&family=Montserrat:wght@400;600&family=Inter:wght@400;600;700&family=Noto+Serif:wght@400;600&family=Noto+Serif+Display:wght@400;600&family=Playfair+Display:wght@400;700&family=Roboto+Slab:wght@400;700&family=Merriweather:wght@400;700&family=Dancing+Script:wght@400;700&family=Pacifico&family=Bebas+Neue&display=swap" rel="stylesheet"/>
 
 
 <style>
 :root{
   --panel-bg:#fff;--panel-border:#e5e7eb;--muted:#64748b;
   --pad: 60px; /* v10: Standardized padding */
-  --poster-max:768px;
+  --poster-max: 576px; /* v14: Constrained layout (was 768px) */
 }
 html,body{height:100%}
-body{font-family:Inter,ui-sans-serif,system-ui;color:#0f172a;background:linear-gradient(180deg,#f6f8fb,#eef2f7)}
+/* v15: Enhanced App Background */
+body{font-family:Inter,ui-sans-serif,system-ui;color:#0f172a; background-color: #f8f9fa; background-image: radial-gradient(circle at 100% 0, #eef2f7 0%, #f8f9fa 50%);}
 
 /* Header */
 .studio{background:#ffffffe6;backdrop-filter:blur(10px);border-bottom:1px solid var(--panel-border);box-shadow:0 4px 18px rgba(0,0,0,.06)}
@@ -74,7 +76,13 @@ body{font-family:Inter,ui-sans-serif,system-ui;color:#0f172a;background:linear-g
 .ratio-box{position:relative;width:100%;max-width:var(--poster-max);margin:0 auto}
 .ratio-spacer{width:100%}
 .abs{position:absolute;inset:0}
-#poster{position:absolute;inset:0;border-radius:32px;padding:var(--pad);display:flex;text-align:center;box-shadow:0 22px 80px rgba(15,23,42,.12);overflow:hidden}
+/* v12: Responsive border radius */
+#poster{position:absolute;inset:0;border-radius:24px;padding:var(--pad);display:flex;text-align:center;box-shadow:0 22px 80px rgba(15,23,42,.12);overflow:hidden}
+@media (min-width: 640px) {
+  #poster {
+    border-radius: 32px;
+  }
+}
 #content{width:100%; height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; padding-bottom: 50px;} /* v10: Fixed padding */
 
 /* === POLISHED TYPOGRAPHY & LAYOUT === */
@@ -96,7 +104,8 @@ body{font-family:Inter,ui-sans-serif,system-ui;color:#0f172a;background:linear-g
 }
 /* === END POLISH === */
 
-#wmark{position:absolute;font-size:14px;opacity:.65;pointer-events:none;bottom:var(--pad);right:var(--pad)}
+/* v14: Increased watermark font size */
+#wmark{position:absolute;font-size:16px;opacity:.65;pointer-events:none;bottom:var(--pad);right:var(--pad)}
 #wmarkLogo {
   position: absolute;
   max-height: 40px; /* Limit logo size */
@@ -318,12 +327,14 @@ select.btn-primary-action {
 </head>
 <body>
 <!-- Header --><header class="studio sticky top-0 z-40">
+  <!-- v12: Responsive header padding -->
   <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
     <div class="flex items-center gap-3">
       <!-- Updated Logo -->
       <img src="https://www.quotesn.com/images/quotesn-logo.svg" alt="Quotesn Logo" class="w-8 h-8" loading="lazy"/>
       <span class="font-semibold text-[15px]">Pro Post Generator</span>
     </div>
+    <!-- v12: Responsive header gap -->
     <div class="flex items-center gap-2 sm:gap-3">
       
       <!-- Home Link -->
@@ -382,7 +393,8 @@ select.btn-primary-action {
   </div>
 </header>
 
-<!-- Poster --><main class="max-w-7xl mx-auto px-4 py-8 sm:py-12">
+<!-- Poster --><!-- v12: Responsive main padding -->
+<main class="max-w-7xl mx-auto px-4 py-8 sm:py-12">
   <div class="ratio-box">
     <div id="ratioSpacer" class="ratio-spacer" style="padding-top:100%"></div> <!-- v9 default 1:1 -->
     <div class="abs">
@@ -399,7 +411,7 @@ select.btn-primary-action {
   <p id="status" class="text-center text-sm text-indigo-600 mt-4 h-6" aria-live="polite"></p>
 </main>
 
-<!-- NEW: Primary Action Buttons -->
+<!-- NEW: Primary Action Buttons --><!-- v12: Responsive flex direction -->
 <section class="max-w-7xl mx-auto px-4 pb-4 sm:pb-8 -mt-4 sm:-mt-8">
   <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
     
@@ -441,7 +453,8 @@ select.btn-primary-action {
   </div>
 </section>
 
-<!-- Panels --><section class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-6 p-4">
+<!-- Panels --><!-- v12: Responsive main grid -->
+<section class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-6 p-4">
 
   <!-- Content --><div class="panel p-5">
     <div class="space-y-5">
@@ -461,7 +474,7 @@ select.btn-primary-action {
     <div class="space-y-5">
       <h3 class="font-semibold">Layout & Colors</h3>
       
-      <!-- Size Sliders -->
+      <!-- Size Sliders --><!-- v12: Responsive panel grid -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         <label>
           <span class="subtle text-sm mb-1 block">Headline Size</span>
@@ -483,7 +496,7 @@ select.btn-primary-action {
         </label>
       </div>
 
-      <!-- Line Height & Padding Sliders -->
+      <!-- Line Height & Padding Sliders --><!-- v12: Responsive panel grid -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         <label>
           <span class="subtle text-sm mb-1 block">Line Height</span>
@@ -492,7 +505,7 @@ select.btn-primary-action {
         <!-- v10: Removed Padding Slider -->
       </div>
 
-      <!-- Ratio & Colors -->
+      <!-- Ratio & Colors --><!-- v12: Responsive panel grid -->
       <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
         <label>
           <span class="subtle text-sm mb-1 block">Aspect Ratio</span>
@@ -526,7 +539,7 @@ select.btn-primary-action {
         </label>
       </div>
       
-      <!-- Alignment Controls -->
+      <!-- Alignment Controls --><!-- v12: Responsive panel grid -->
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
             <span class="subtle text-sm mb-1 block">H-Align</span>
@@ -570,8 +583,9 @@ select.btn-primary-action {
 
       <!-- Watermark Controls -->
       <div class="grid gap-3">
-        <div class="grid grid-cols-2 gap-3">
-          <label class="block col-span-2">
+        <!-- v12: Responsive panel grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <label class="block sm:col-span-2">
             <span class="subtle text-sm mb-1 block">Watermark Text</span>
             <input id="wmText" type="text" class="field w-full px-3 py-2" value="quotesn.com" aria-label="Watermark Text"/>
           </label>
@@ -673,77 +687,79 @@ const els = {
 
 document.getElementById('yy').textContent = new Date().getFullYear();
 
-/* ------ Themes v11 (Hybrid Refactor) ------ */
+/* ------ Themes v15 (Final Polish & Rebalance) ------ */
 const THEMES = [
+  {
+    name:"Bold Poster",
+    bg:"#F0F0F0",fg:"#D82C2C",accent:"#000000",
+    headlineStyle: {font:"Bebas Neue, sans-serif", fontWeight: "400", letterSpacing: "2px", fontStyle: "normal", textTransform: "uppercase", lineHeight: "1.0"},
+    authorStyle: {font:"Inter, sans-serif", fontWeight: "600", letterSpacing: "1px", textTransform: "uppercase"},
+    effect:"hard-shadow" // Will use accent
+  },
+  {
+    name:"Retro Diner",
+    bg:"linear-gradient(135deg,#ff9a9e 0%,#fad0c4 99%)",fg:"#1E293B",accent:"#FFFFFF",
+    headlineStyle: {font:"Pacifico, cursive", fontWeight: "400", letterSpacing: "0.5px", fontStyle: "normal", textTransform: "none", lineHeight: "1.3"},
+    authorStyle: {font:"Montserrat, sans-serif", fontWeight: "600", letterSpacing: "1px", textTransform: "uppercase"},
+    effect:"inset-shadow"
+  },
+  {
+    name:"Ink & Parchment",
+    bg:"#FDFBFB",fg:"#333333",accent:"#8A6E59",
+    headlineStyle: {font:"Dancing Script, cursive", fontWeight: "700", letterSpacing: "0px", fontStyle: "normal", textTransform: "none", lineHeight: "1.2"},
+    authorStyle: {font:"Lora, serif", fontWeight: "400", fontStyle: "italic", letterSpacing: "0.2px"},
+    effect:"soft-shadow"
+  },
   {
     name:"Royal Ink",
     bg:"linear-gradient(135deg,#141E30,#243B55)",fg:"#f5f3ff",accent:"#a5b4fc",
     headlineStyle: {font:"Noto Serif Display, serif", fontWeight: "600", letterSpacing: "0.3px", fontStyle: "normal", textTransform: "none", lineHeight: "1.15"},
-    authorStyle: {font:"Inter, sans-serif", fontWeight: "600", letterSpacing: "1px", textTransform: "uppercase"},
+    authorStyle: {font:"Inter, sans-serif", fontWeight: "400", letterSpacing: "1.5px", textTransform: "uppercase"},
     effect:"shine"
   },
+  // v15: REPLACED "Corporate Swiss" with "Vintage Paper"
   {
-    name:"Oceanic",
-    bg:"linear-gradient(135deg,#0f2027,#203a43,#2c5364)",fg:"#E0F2FE",accent:"#38BDF8",
-    headlineStyle: {font:"Montserrat, sans-serif", fontWeight: "300", letterSpacing: "1px", fontStyle: "normal", textTransform: "uppercase", lineHeight: "1.4"},
-    authorStyle: {font:"Montserrat, sans-serif", fontWeight: "600", letterSpacing: "2px", textTransform: "uppercase"},
-    effect:"soft-glow"
-  },
-  {
-    name:"Desert Dusk",
-    bg:"linear-gradient(135deg,#f6d365 0%,#fda085 100%)",fg:"#1e293b",accent:"#f97316",
-    headlineStyle: {font:"Roboto Slab, serif", fontWeight: "700", letterSpacing: "-1px", fontStyle: "normal", textTransform: "uppercase", lineHeight: "1.0"},
-    authorStyle: {font:"Inter, sans-serif", fontWeight: "400", letterSpacing: "1px", textTransform: "uppercase"},
-    effect:"hard-shadow"
-  },
-  {
-    name:"Poetic",
-    bg:"linear-gradient(135deg,#654ea3,#eaafc8)",fg:"#FDF2F8",accent:"#FDF2F8",
-    headlineStyle: {font:"Merriweather, serif", fontWeight: "300", letterSpacing: "0.5px", fontStyle: "italic", textTransform: "none", lineHeight: "1.35"},
-    authorStyle: {font:"Lora, serif", fontWeight: "400", fontStyle: "normal", letterSpacing: "0.2px"},
-    effect:"letterpress"
-  },
-  {
-    name:"Elegant Serif",
-    bg:"#FDFBFB",fg:"#222222",accent:"#8A6E59",
-    headlineStyle: {font:"Playfair Display, serif", fontWeight: "700", letterSpacing: "0.5px", fontStyle: "normal", textTransform: "none", lineHeight: "1.2"},
+    name:"Vintage Paper",
+    bg:"#F5EFE6",fg:"#4A443D",accent:"#8A6E59",
+    headlineStyle: {font:"Playfair Display, serif", fontWeight: "700", letterSpacing: "1px", fontStyle: "normal", textTransform: "none", lineHeight: "1.2"},
     authorStyle: {font:"Lora, serif", fontWeight: "400", fontStyle: "italic", letterSpacing: "0.2px"},
     effect:"soft-shadow"
   },
   {
     name:"Neon Pulse",
     bg:"linear-gradient(135deg,#0f0c29,#302b63,#24243e)",fg:"#f8fafc",accent:"#00ffff",
-    headlineStyle: {font:"Poppins, sans-serif", fontWeight: "600", textTransform: "uppercase", letterSpacing: "1.5px", fontStyle: "normal", lineHeight: "1.2"},
+    headlineStyle: {font:"Poppins, sans-serif", fontWeight: "600", textTransform: "uppercase", letterSpacing: "2px", fontStyle: "normal", lineHeight: "1.2"},
     authorStyle: {font:"Poppins, sans-serif", fontWeight: "400", textTransform: "uppercase", letterSpacing: "0.5px", fontStyle: "normal"},
     effect:"neon-glow"
   },
+  // v15: REPLACED "Brutalist Bloc" with "Cyber Grid"
   {
-    name:"Modern Minimal",
-    bg:"#F4F4F4",fg:"#111111",accent:"#007AFF",
-    headlineStyle: {font:"Inter, sans-serif", fontWeight: "600", letterSpacing: "-1.5px", fontStyle: "normal", textTransform: "none", lineHeight: "1.1"},
-    authorStyle: {font:"Inter, sans-serif", fontWeight: "400", letterSpacing: "0.5px", textTransform: "uppercase"},
-    effect:"none"
-  },
-  {
-    name:"Sunrise Bloom",
-    bg:"linear-gradient(135deg,#ff9a9e 0%,#fad0c4 99%)",fg:"#111827",accent:"#f43f5e",
-    headlineStyle: {font:"Playfair Display, serif", fontWeight: "400", fontStyle: "italic", letterSpacing: "0.5px", textTransform: "none", lineHeight: "1.1"},
-    authorStyle: {font:"Lora, serif", fontWeight: "400", fontStyle: "italic", letterSpacing: "0.2px", textTransform: "none"},
-    effect:"soft"
-  },
-  {
-    name:"Dark Academia",
-    bg:"#242320",fg:"#EAE8E1",accent:"#C0A080",
-    headlineStyle: {font:"Lora, serif", fontWeight: "400", letterSpacing: "0.2px", fontStyle: "normal", textTransform: "none", lineHeight: "1.3"},
-    authorStyle: {font:"Merriweather, serif", fontWeight: "400", fontStyle: "italic", letterSpacing: "0.1px"},
+    name:"Cyber Grid",
+    bg:"#000000",fg:"#00FF00",accent:"#00FF00",
+    headlineStyle: {font:"Bebas Neue, sans-serif", fontWeight: "400", letterSpacing: "3px", fontStyle: "normal", textTransform: "uppercase", lineHeight: "1.1"},
+    authorStyle: {font:"Inter, sans-serif", fontWeight: "400", letterSpacing: "1px", textTransform: "uppercase"},
     effect:"subtle-glow"
+  },
+  {
+    name:"Poetic Mist",
+    bg:"linear-gradient(135deg,#654ea3,#eaafc8)",fg:"#FDF2F8",accent:"#FDF2F8",
+    headlineStyle: {font:"Merriweather, serif", fontWeight: "300", letterSpacing: "0.5px", fontStyle: "italic", textTransform: "none", lineHeight: "1.35"},
+    authorStyle: {font:"Lora, serif", fontWeight: "400", fontStyle: "normal", letterSpacing: "0.2px"},
+    effect:"letterpress"
+  },
+  {
+    name:"Oceanic",
+    bg:"linear-gradient(135deg,#0f2027,#203a43,#2c5364)",fg:"#E0F2FE",accent:"#38BDF8",
+    headlineStyle: {font:"Montserrat, sans-serif", fontWeight: "400", letterSpacing: "1.5px", fontStyle: "normal", textTransform: "uppercase", lineHeight: "1.4"},
+    authorStyle: {font:"Montserrat, sans-serif", fontWeight: "600", letterSpacing: "2.5px", textTransform: "uppercase"},
+    effect:"soft-glow"
   }
 ];
 
 
 // Hardcoded defaults to reset to
 const DEFAULTS = {
-  theme: 0, // v11: Default to "Royal Ink"
+  theme: 3, // v15: Default to "Royal Ink"
   align: 'center',
   size: 50,
   // pad: 56, // v10: Removed
@@ -819,7 +835,7 @@ function getContrast(rgb1, rgb2) {
     return (Math.max(l1, l2) + 0.05) / (Math.min(l1, l2) + 0.05);
 }
 
-// Update the UI
+// v12: Update the UI (Positive-Only Feedback)
 function updateContrastIndicator() {
     try {
         const fgColor = els.fgPicker.value;
@@ -830,15 +846,12 @@ function updateContrastIndicator() {
         
         const contrast = getContrast(fgRgb, bgRgb);
         
-        let badge, text;
+        let badge = '', text = ''; // v12: Default to empty
 
         if (contrast >= 4.5) {
-            badge = 'bg-green-100 text-green-800'; text = 'Good';
-        } else if (contrast >= 3) {
-            badge = 'bg-yellow-100 text-yellow-800'; text = 'Fair';
-        } else {
-            badge = 'bg-red-100 text-red-800'; text = 'Poor';
-        }
+            badge = 'bg-green-100 text-green-800'; text = 'Good ✓';
+        } 
+        // v12: Removed 'else if' and 'else' to hide 'Fair' and 'Poor'
         
         let el = $('fgContrast');
         el.className = `text-xs font-medium px-2 py-0.5 rounded-full ${badge}`;
@@ -933,16 +946,16 @@ function applyTheme(i){
   // The font size is now correctly controlled by the citationSizeInput slider
   // and sourced from state.citationSize.
   
-  // v11: APPLY Hybrid theme effects
+  // v11: APPLY Hybrid theme effects (v14/v15: All effects are covered)
   if(t.effect==='soft-shadow') hs.textShadow='0 2px 8px rgba(0,0,0,0.15)';
   if(t.effect==='hard-shadow') hs.textShadow=`3px 3px 0 ${t.accent}`;
   if(t.effect==='inset-shadow') hs.textShadow=`0 1px 1px ${t.accent}90, 0 1px 2px rgba(0,0,0,0.2)`;
   if(t.effect==='subtle-glow') hs.textShadow=`0 0 12px ${t.accent}30`;
   if(t.effect==='soft-glow') hs.textShadow=`0 0 10px ${t.accent}40, 0 0 26px ${t.accent}60`;
   if(t.effect==='letterpress') hs.textShadow='0 1px 0 rgba(255,255,255,0.2)';
-  if(t.effect==='shine') hs.textShadow=`0 0 16px ${t.accent}80`; // Added
-  if(t.effect==='neon-glow') hs.textShadow=`0 0 5px ${t.fg}80, 0 0 10px ${t.fg}80, 0 0 15px ${t.accent}c0, 0 0 20px ${t.accent}c0`; // Added
-  if(t.effect==='soft') hs.textShadow='0 2px 4px rgba(0,0,0,0.15)'; // Added
+  if(t.effect==='shine') hs.textShadow=`0 0 16px ${t.accent}80`;
+  if(t.effect==='neon-glow') hs.textShadow=`0 0 5px ${t.fg}80, 0 0 10px ${t.fg}80, 0 0 15px ${t.accent}c0, 0 0 20px ${t.accent}c0`;
+  if(t.effect==='soft') hs.textShadow='0 2px 4px rgba(0,0,0,0.15)';
   if(t.effect==='none') hs.textShadow = 'none';
 
   els.themeSelect.value = i;
@@ -1015,10 +1028,10 @@ function applyColors(){
   els.themeSelect.value = "";
   state.theme = ""; // Set state theme to custom
   
-  // Reset to neutral defaults
+  // v12: Update default custom font
   const hs = els.headline.style;
-  hs.fontFamily = "'Noto Serif Display', serif";
-  hs.fontWeight = "400";
+  hs.fontFamily = "'Inter', sans-serif";
+  hs.fontWeight = "600";
   hs.fontStyle = "normal";
   hs.textTransform = "none";
   hs.letterSpacing = "0.1px";
@@ -1195,9 +1208,13 @@ function restore(){
 /* ------ Export ------ */
 async function exportImg(type='png'){
   try{
+    // v13: New render-wait logic
     say('Rendering…');
+
+    // 1. Wait for all fonts to be loaded
     await document.fonts.ready;
-    
+
+    // 2. Wait for logo to be loaded (if it exists)
     els.wmark.style.fontFamily = "'Inter', sans-serif";
     if (state.logoDataBase64 && els.wmarkLogo.src) {
         await new Promise((resolve, reject) => {
@@ -1209,13 +1226,21 @@ async function exportImg(type='png'){
             }
         });
     }
-    
-    // v10: Add scroll to top and wait for frame for render consistency
+
+    // 3. Force browser to re-calculate styles with loaded fonts
     window.scrollTo(0, 0);
+    getComputedStyle(els.headline).fontSize; // Force style recalc
+    getComputedStyle(els.author).fontSize; // Force style recalc
+
+    // 4. Wait for the next animation frame
     await new Promise(r => requestAnimationFrame(r));
 
-    // v9.1: Updated scale logic to target fixed resolutions
+    // 5. Wait a brief moment for the browser to paint the new fonts
+    await new Promise(r => setTimeout(r, 250)); 
+
+    // 6. Now, finally, render the canvas
     const targetMap = { standard: 1080, hd: 2160, '4k': 4320 };
+    // v13: (Rest of function continues from here)
     const targetWidth = targetMap[state.exportRes] || 1080;
     const currentWidth = els.poster.offsetWidth;
     const scale = targetWidth / currentWidth;
@@ -1256,9 +1281,13 @@ async function exportImg(type='png'){
 /* ------ Share ------ */
 async function shareImg(){
   try{
+    // v13: New render-wait logic
     say('Preparing share…');
+
+    // 1. Wait for all fonts to be loaded
     await document.fonts.ready;
-    
+
+    // 2. Wait for logo to be loaded (if it exists)
     els.wmark.style.fontFamily = "'Inter', sans-serif";
     if (state.logoDataBase64 && els.wmarkLogo.src) {
         await new Promise((resolve, reject) => {
@@ -1271,12 +1300,20 @@ async function shareImg(){
         });
     }
 
-    // v10: Add scroll to top and wait for frame for render consistency
+    // 3. Force browser to re-calculate styles with loaded fonts
     window.scrollTo(0, 0);
+    getComputedStyle(els.headline).fontSize; // Force style recalc
+    getComputedStyle(els.author).fontSize; // Force style recalc
+
+    // 4. Wait for the next animation frame
     await new Promise(r => requestAnimationFrame(r));
-    
-    // v9.1: Updated scale logic to target fixed resolutions
+
+    // 5. Wait a brief moment for the browser to paint the new fonts
+    await new Promise(r => setTimeout(r, 250)); 
+
+    // 6. Now, finally, render the canvas
     const targetMap = { standard: 1080, hd: 2160, '4k': 4320 };
+    // v13: (Rest of function continues from here)
     const targetWidth = targetMap[state.exportRes] || 1080;
     const currentWidth = els.poster.offsetWidth;
     const scale = targetWidth / currentWidth;
@@ -1539,7 +1576,9 @@ function buildThemeUI(){
       els.bgHex.textContent = validBg;
       
       // Reset fonts to default since it's a custom theme
-      els.headline.style.fontFamily = "'Noto Serif Display', serif";
+      // v12: Updated default custom font
+      els.headline.style.fontFamily = "'Inter', sans-serif";
+      els.headline.style.fontWeight = "600";
       els.author.style.fontFamily = "'Inter', sans-serif";
       
       els.themeSelect.value = "";
